@@ -11,6 +11,9 @@
 		E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB31286D17F60007DDC5 /* ContentView.swift */; };
 		E1ACCB34286D17FB0007DDC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ACCB33286D17FB0007DDC5 /* Assets.xcassets */; };
 		E1ACCB37286D17FB0007DDC5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ACCB36286D17FB0007DDC5 /* Preview Assets.xcassets */; };
+		E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */; };
+		E1ACCB46286D24790007DDC5 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB45286D24790007DDC5 /* MenuScreen.swift */; };
+		E1ACCB48286D25E10007DDC5 /* AbastecimentoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		E1ACCB31286D17F60007DDC5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1ACCB33286D17FB0007DDC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1ACCB36286D17FB0007DDC5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abastecimento.swift; sourceTree = "<group>"; };
+		E1ACCB45286D24790007DDC5 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
+		E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,7 @@
 		E1ACCB2E286D17F60007DDC5 /* projetoCarro */ = {
 			isa = PBXGroup;
 			children = (
+				E1ACCB3D286D19AD0007DDC5 /* Features */,
 				E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */,
 				E1ACCB31286D17F60007DDC5 /* ContentView.swift */,
 				E1ACCB33286D17FB0007DDC5 /* Assets.xcassets */,
@@ -65,6 +72,56 @@
 				E1ACCB36286D17FB0007DDC5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E1ACCB3D286D19AD0007DDC5 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACCB43286D23AF0007DDC5 /* Screen */,
+				E1ACCB44286D23BF0007DDC5 /* Service */,
+				E1ACCB42286D23A10007DDC5 /* ViewModel */,
+				E1ACCB41286D23970007DDC5 /* View */,
+				E1ACCB3E286D19B70007DDC5 /* Model */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		E1ACCB3E286D19B70007DDC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E1ACCB41286D23970007DDC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E1ACCB42286D23A10007DDC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E1ACCB43286D23AF0007DDC5 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E1ACCB45286D24790007DDC5 /* MenuScreen.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		E1ACCB44286D23BF0007DDC5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +194,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1ACCB48286D25E10007DDC5 /* AbastecimentoForm.swift in Sources */,
+				E1ACCB46286D24790007DDC5 /* MenuScreen.swift in Sources */,
 				E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
+				E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
