@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AbastecimentoForm: View {
+    let calendar = Calendar.current
+let date = Date()
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
