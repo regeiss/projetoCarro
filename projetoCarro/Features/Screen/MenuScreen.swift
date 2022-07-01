@@ -31,16 +31,27 @@ struct MenuScreen: View
                     .resizable()
                     .scaledToFill()
                     .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(height: 200)
+                    .frame(height: gridLayout.count == 1 ? 200 : 100)
                     .cornerRadius(10)
                     .shadow(color: Color.primary.opacity(0.3), radius: 1)
 
             }
         }
         .padding(.all, 10)
+        .animation(.interactiveSpring(), value: gridLayout.count)
     }
-
     .navigationTitle("Coffee Feed")
+    .toolbar {
+    ToolbarItem(placement: .navigationBarTrailing) {
+        Button(action: {
+            self.gridLayout = Array(repeating: .init(.flexible()), count: self.gridLayout.count % 4 + 1)
+        }) {
+            Image(systemName: "square.grid.2x2")
+                .font(.title)
+                .foregroundColor(.primary)
+        }
+    }
+}
 }
     }
 }
