@@ -4,7 +4,7 @@
 //
 //  Created by Roberto Edgar Geiss on 29/06/22.
 //
-
+// baseado em: https://www.appcoda.com/learnswiftui/swiftui-gridlayout.html
 import SwiftUI
 
 struct Photo: Identifiable {
