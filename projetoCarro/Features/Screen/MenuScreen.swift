@@ -5,6 +5,7 @@
 //  Created by Roberto Edgar Geiss on 29/06/22.
 //
 // baseado em: https://www.appcoda.com/learnswiftui/swiftui-gridlayout.html
+// e https://thehappyprogrammer.com/lazyvgrid-and-lazyhgrid-in-swiftui-part-1
 import SwiftUI
 
 struct Photo: Identifiable {
