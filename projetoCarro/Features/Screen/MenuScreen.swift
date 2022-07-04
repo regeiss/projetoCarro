@@ -62,3 +62,36 @@ struct MenuScreen_Previews: PreviewProvider {
         MenuScreen()
     }
 }
+/////////////////////////
+struct ImageGrid: View {
+    
+    @ObservedObject var part: Part
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    var body: some View {
+        Button("add images"){
+            self.showingImagePicker = true
+        }
+        LazyVGrid(columns: [GridItem(.adaptive(minimum:100))]){
+            ForEach(part.images){ image in
+                ZStack {
+                    Image(uiImage: image.thumb)
+                        .resizable()
+                        .scaledToFit()
+                    NavigationLink (
+                        destination: ImageDetail(image:image),
+                        label: {
+                            EmptyView()
+                        }
+                    ).buttonStyle(PlainButtonStyle())
+                }
+            }
+        }
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage)
+        }
+        
+    }
+    // other functions ...
+    ...
+}
