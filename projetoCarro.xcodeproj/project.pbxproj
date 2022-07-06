@@ -14,6 +14,8 @@
 		E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */; };
 		E1ACCB46286D24790007DDC5 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB45286D24790007DDC5 /* MenuScreen.swift */; };
 		E1ACCB48286D25E10007DDC5 /* AbastecimentoForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */; };
+		E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E71F5A2875106800BF5D26 /* Enums.swift */; };
+		E1E71F5D2875107B00BF5D26 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E71F5C2875107B00BF5D26 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abastecimento.swift; sourceTree = "<group>"; };
 		E1ACCB45286D24790007DDC5 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
 		E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoForm.swift; sourceTree = "<group>"; };
+		E1E71F5A2875106800BF5D26 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E1E71F5C2875107B00BF5D26 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 		E1ACCB2E286D17F60007DDC5 /* projetoCarro */ = {
 			isa = PBXGroup;
 			children = (
+				E1E71F5728750A1E00BF5D26 /* Base */,
 				E1ACCB3D286D19AD0007DDC5 /* Features */,
 				E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */,
 				E1ACCB31286D17F60007DDC5 /* ContentView.swift */,
@@ -122,6 +127,31 @@
 			children = (
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		E1E71F5728750A1E00BF5D26 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E1E71F5928750A3500BF5D26 /* Enum */,
+				E1E71F5828750A2A00BF5D26 /* Extension */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E1E71F5828750A2A00BF5D26 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E1E71F5C2875107B00BF5D26 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E1E71F5928750A3500BF5D26 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				E1E71F5A2875106800BF5D26 /* Enums.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,8 +226,10 @@
 			files = (
 				E1ACCB48286D25E10007DDC5 /* AbastecimentoForm.swift in Sources */,
 				E1ACCB46286D24790007DDC5 /* MenuScreen.swift in Sources */,
+				E1E71F5D2875107B00BF5D26 /* Extension.swift in Sources */,
 				E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
+				E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */,
 				E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
