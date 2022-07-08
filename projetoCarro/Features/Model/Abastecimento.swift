@@ -28,13 +28,3 @@ extension Abastecimento
          ]
      }
 }
-
-extension NumberFormatter {
-    static var currencyFormatter: NumberFormatter {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .currency
-            formatter.locale = Locale(identifier: "pt_BR")
-            return formatter
-    }
-}
-//print(“GB”, NumberFormatter.currencyFormatter.string(from: correctResult as NSDecimalNumber)!) // GB £0.30
