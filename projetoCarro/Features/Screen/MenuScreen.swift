@@ -14,69 +14,20 @@ struct MenuScreen: View
     {
         NavigationView
         {
-            ZStack
+            HStack(alignment: .top, spacing: 0.10)
             {
-                VStack(alignment: .center, spacing: 0.2)
-                {
-                    Image("gasStation")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                    NavigationLink("Abastecimento", destination: AbastecimentoForm()) {}
-                    
-                    HStack(alignment: .top, spacing: 0.2)
-                    {
-                        Image("service")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                        Image("report")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                    }.padding()
-                    HStack(alignment: .top, spacing: 0.2)
-                    {
-                        Image("config")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                        Image("alertas")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                    }.padding()
-                }.padding()
+                Image("gasStation")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(height: 200)
+                    .cornerRadius(10)
+                    .shadow(color: Color.primary.opacity(0.3), radius: 1)
+                    .onTapGesture {
+                        NavigationLink(destination: AbastecimentoForm()) {Text("********").opacity(0.8)}
+                    }
             }
             Spacer()
-            //https://blog.devgenius.io/swiftui-tutorial-working-with-navigationview-2f72c18a30d1
 //            LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10)
 //            {
 //                ForEach(samplePhotos.indices) { index in
