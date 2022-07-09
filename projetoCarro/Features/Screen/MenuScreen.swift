@@ -12,98 +12,67 @@ struct MenuScreen: View
 {
     var body: some View
     {
-        NavigationView
-        {
-            ZStack
-            {
-                VStack(alignment: .center, spacing: 0.2)
-                {
-                    Image("gasStation")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                    NavigationLink("Abastecimento", destination: AbastecimentoForm()) {}
+        let collections = [
+                //Make sure to change the image name to the one that you'll be using
+                Collections(name: "Abastecimento", image: "gasStation", content: "Cafe. Lorem ipsum dolor sit amet."),
+                Collections(name: "Serviço", image: "service", content: "Home. Lorem ipsum dolor sit amet."),
+                Collections(name: "Relatórios", image: "report", content: "Commute. Lorem ipsum dolor sit amet."),
+                Collections(name: "Alertas", image: "alertas", content: "Travel. Lorem ipsum dolor sit amet."),
+                Collections(name: "Config", image: "config", content: "Public. Lorem ipsum dolor sit amet.")
+        ]
+        
+        NavigationView {
+            
+            List(collections) { index in
+                
+                ZStack {
                     
-                    HStack(alignment: .top, spacing: 0.2)
-                    {
-                        Image("service")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                        Image("report")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                    }.padding()
-                    HStack(alignment: .top, spacing: 0.2)
-                    {
-                        Image("config")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                        Image("alertas")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                            .onTapGesture {
-                                AbastecimentoForm()
-                            }
-                    }.padding()
-                }.padding()
-            }
-            Spacer()
-            //https://blog.devgenius.io/swiftui-tutorial-working-with-navigationview-2f72c18a30d1
-//            LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10)
-//            {
-//                ForEach(samplePhotos.indices) { index in
-//                    ZStack
-//                    {
-//                        NavigationLink(destination: AbastecimentoForm()) {Text("********").opacity(0.8)}
-//                        Image(samplePhotos[index].name)
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(minWidth: 0, maxWidth: .infinity)
-//                            .frame(height: gridLayout.count == 1 ? 200 : 100)
-//                            .cornerRadius(10)
-//                            .shadow(color: Color.primary.opacity(0.3), radius: 1)
-//                            .allowsHitTesting(false)
-//
-//                    }
-//        }
-//        .padding(.all, 10)
-//        .animation(.interactiveSpring(), value: gridLayout.count)
-//    }
+                    ImageLabelRow(collection: index)
+                    NavigationLink(destination: AbastecimentoForm(collection: index)) {}
+                    
+                } //ZStack
+                
+            } //List
+            .navigationTitle("Meu Jetta")
+            
+        } //NavigationView
 
-
-    }
-        .navigationTitle("Coffee Feed")
     }
 }
 
+struct Collections: Identifiable {
+    var id = UUID()
+    var name: String
+    var image: String
+    var content: String
+}
+struct ImageLabelRow: View {
+    
+    var collection: Collections
+
+    var body: some View {
+        ZStack(alignment: .trailing) {
+            Image(collection.image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 150)
+                .cornerRadius(20)
+                .overlay(
+                    Rectangle()
+                        .foregroundColor(.black)
+                        .cornerRadius(20)
+                        .opacity(0.4)
+                )
+
+            Text(collection.name)
+                .font(.system(.largeTitle, design: .rounded))
+                .fontWeight(.black)
+                .foregroundColor(.white)
+                .padding()
+        }
+    }
+    
+}
 struct MenuScreen_Previews: PreviewProvider {
     static var previews: some View {
         MenuScreen()

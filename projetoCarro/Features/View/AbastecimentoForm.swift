@@ -8,30 +8,16 @@
 import SwiftUI
 
 struct AbastecimentoForm: View {
-    let calendar = Calendar.current
-    let date = Date()
-    var body: some View {
-
-            Form
-            {
-                // TODO: arrumar formatacao
-                Section(header: Text("Display"),
-                        footer: Text("System settings will override Dark Mode and use the current device theme")) {
-
-                }
-                .foregroundColor(.black)
-                .font(.system(size: 16, weight: .semibold))
-            }
-            .navigationTitle("Settings")
-        
-    }
+    var collection: Collections
+       
+       var body: some View {
+           
+           Text(collection.content)
+               .font(.body)
+           
+       }
 }
 
-struct AbastecimentoForm_Previews: PreviewProvider {
-    static var previews: some View {
-        AbastecimentoForm()
-    }
-}
 
 //////
 //struct ContentView: View {
