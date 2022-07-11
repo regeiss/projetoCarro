@@ -7,64 +7,43 @@
 
 import SwiftUI
 
-struct AbastecimentoForm: View {
-    var collection: Collections
-       
-       var body: some View {
-           
-           Text(collection.content)
-               .font(.body)
-           
-       }
+struct AbastecimentoForm: View 
+{
+    let calendar = Calendar.current
+    let date = Date()
+
+    @State var km: Int
+    @State var data: Date
+    @State var litros: Double
+    @State var valorLitro: Double
+    @State var valorTotal: Decimal 
+    @State var completo: Bool
+
+    var body: some View 
+    {
+        {
+            Form
+            {
+                // TODO: arrumar formatacao
+                Section(header: Text("Abastecimento"),
+                        footer: Text("Informe todos os dados")) 
+                {
+                    TextField("km", text: $km)
+                     DatePicker("Data", selection: $data)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .frame(maxHeight: 400)
+                    TextField("litros", text: $litros)
+                    TextField("valorLitro", text: $valorLitro)
+                    TextField("valorTotal", text: $valorTotal)
+                    Toggle(isOn: $completo) 
+                    {
+                        Text("completo")
+                    }
+                }
+
+            }
+        }
+    }
 }
 
 
-//////
-//struct ContentView: View {
-//    @State var username: String = ""
-//    @State var isPrivate: Bool = true
-//    @State var notificationsEnabled: Bool = false
-//    @State private var previewIndex = 0
-//    var previewOptions = ["Always", "When Unlocked", "Never”]
-//
-//    var body: some View {
-//        NavigationView {
-//            Form {
-//                Section(header: Text("PROFILE")) {
-//                    TextField("Username", text: $username)
-//                    Toggle(isOn: $isPrivate) {
-//                        Text("Private Account")
-//                    }
-//                }
-//                
-//                Section(header: Text("NOTIFICATIONS")) {
-//                    Toggle(isOn: $notificationsEnabled) {
-//                        Text("Enabled")
-//                    }
-//                    Picker(selection: $previewIndex, label: Text("Show Previews")) {
-//                        ForEach(0 ..< previewOptions.count) {
-//                            Text(self.previewOptions[$0])
-//                        }
-//                    }
-//                }
-//                
-//                Section(header: Text("ABOUT")) {
-//                    HStack {
-//                        Text("Version")
-//                        Spacer()
-//                        Text("2.2.1")
-//                    }
-//                }
-//                
-//                Section {
-//                    Button(action: {
-//                        print("Perform an action here...")
-//                    }) {
-//                        Text("Reset All Settings")
-//                    }
-//                }
-//            }
-//            .navigationBarTitle("Settings")
-//        }
-//    }
-//}
