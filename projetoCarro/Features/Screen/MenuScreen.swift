@@ -6,13 +6,14 @@
 //
 // baseado em: https://www.appcoda.com/learnswiftui/swiftui-gridlayout.html
 // e https://thehappyprogrammer.com/lazyvgrid-and-lazyhgrid-in-swiftui-part-1
-// https://www.avanderlee.com/swiftui/navigationlink-programmatically-binding/
+// https://stackoverflow.com/questions/56513568/ios-swiftui-pop-or-dismiss-view-programmatically
+// https://github.com/matteopuc/swiftui-navigation-stack
+
 import SwiftUI
 
 enum Telas
 {
     case abastecimento
-    
 }
 
 struct MenuScreen: View
@@ -35,7 +36,7 @@ struct MenuScreen: View
                 ZStack
                 {
                     ImageLabelRow(collection: index)
-                    NavigationLink(destination: AbastecimentoForm(collection: index)) {}
+                    NavigationLink(destination: AbastecimentoForm()) {}
                     
                 } //ZStack
                 
