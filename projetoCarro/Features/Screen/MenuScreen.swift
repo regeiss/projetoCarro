@@ -8,8 +8,9 @@
 // e https://thehappyprogrammer.com/lazyvgrid-and-lazyhgrid-in-swiftui-part-1
 // https://stackoverflow.com/questions/56513568/ios-swiftui-pop-or-dismiss-view-programmatically
 // https://github.com/matteopuc/swiftui-navigation-stack
-
+// https://iosexample.com/a-simple-and-customizable-declarative-form-validator-for-swiftui/
 import SwiftUI
+import NavigationStack
 
 enum Telas
 {
@@ -35,6 +36,9 @@ struct MenuScreen: View
                 
                 ZStack
                 {
+                    PushView(destination: ChildView()) {
+                        Text("PUSH")
+}
                     ImageLabelRow(collection: index)
                     NavigationLink(destination: AbastecimentoForm()) {}
                     
