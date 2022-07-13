@@ -61,7 +61,7 @@ struct AbastecimentoForm: View
                 }
             }
         }
-    }
+    }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
 }
 
 
