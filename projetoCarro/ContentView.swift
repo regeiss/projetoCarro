@@ -12,7 +12,7 @@ struct ContentView: View
 {
     var body: some View 
     {
-        NavigationStackView (transitionType: .custom(.scale), easing: .spring(response: 0.5, dampingFraction: 0.25, blendDuration: 0.5))
+        NavigationStackView ()
         {
             MenuScreen()
         }

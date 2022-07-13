@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E11EA8DD287F8B5000E93A43 /* ConfigForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11EA8DC287F8B5000E93A43 /* ConfigForm.swift */; };
 		E172B3C7287CF28D00C2D4A3 /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = E172B3C6287CF28D00C2D4A3 /* NavigationStack */; };
 		E1801401287E42DE0021AE2A /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = E1801400287E42DE0021AE2A /* FormValidator */; };
 		E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E11EA8DC287F8B5000E93A43 /* ConfigForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigForm.swift; sourceTree = "<group>"; };
 		E1ACCB2C286D17F60007DDC5 /* projetoCarro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = projetoCarro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projetoCarroApp.swift; sourceTree = "<group>"; };
 		E1ACCB31286D17F60007DDC5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				E1ACCB47286D25E10007DDC5 /* AbastecimentoForm.swift */,
+				E11EA8DC287F8B5000E93A43 /* ConfigForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				E1E71F5D2875107B00BF5D26 /* Extension.swift in Sources */,
 				E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
+				E11EA8DD287F8B5000E93A43 /* ConfigForm.swift in Sources */,
 				E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */,
 				E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */,
 			);

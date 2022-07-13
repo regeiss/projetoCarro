@@ -34,34 +34,40 @@ struct AbastecimentoForm: View
     @State private var valorLitro: String = ""
     @State private var valorTotal: String = ""
     @State private var completo: Bool = false
-
+    @State private var isSaveDisabled: Bool = false
+    
     var body: some View 
     {
-        Form
+        VStack
         {
-            // TODO: arrumar formatacao
-            Section(header: Text("Abastecimento"),
-                    footer: Text("Informe todos os dados"))
+            Form
             {
-                TextField("km", text: $km)
-                DatePicker("Data", selection: $data)
-                //.datePickerStyle(GraphicalDatePickerStyle())
-                    .frame(maxHeight: 400)
-                TextField("litros", text: $litros)
-                TextField("valorLitro", text: $valorLitro)
-                TextField("valorTotal", text: $valorTotal)
-                TextField("First Name", text: $formInfo.firstName)
-                    .validation(formInfo.firstNameValidation) // 6
-                Toggle(isOn: $completo)
+                // TODO: arrumar formatacao
+                Section(header: Text("Abastecimento"),
+                        footer: Text("Informe todos os dados"))
                 {
-                    Text("completo")
-                }
-                PopView {
-                    Text("POP")
+                    TextField("km", text: $km)
+                    DatePicker("Data", selection: $data)
+                    //.datePickerStyle(GraphicalDatePickerStyle())
+                        .frame(maxHeight: 400)
+                    TextField("litros", text: $litros)
+                    TextField("valorLitro", text: $valorLitro)
+                    TextField("valorTotal", text: $valorTotal)
+                    TextField("First Name", text: $formInfo.firstName)
+                        .validation(formInfo.firstNameValidation) // 6
+                    Toggle(isOn: $completo)
+                    {
+                        Text("completo")
+                    }
+                    Section()
+                    {
+                    PopView {
+                        Text("POP")
+                    }}
                 }
             }
-        }
-    }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
+        }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
+    }
 }
 
 
