@@ -30,25 +30,16 @@ struct MenuScreen: View
                 Collections(name: "Config", image: "config", content: "Public. Lorem ipsum dolor sit amet.")
         ]
         
-        NavigationView {
+        List(collections) { index in
             
-            List(collections) { index in
-                
-                ZStack
+            ZStack
+            {
+                PushView(destination: AbastecimentoForm())
                 {
-                    PushView(destination: ChildView()) {
-                        Text("PUSH")
-}
                     ImageLabelRow(collection: index)
-                    NavigationLink(destination: AbastecimentoForm()) {}
-                    
-                } //ZStack
-                
-            } //List
-            .navigationTitle("Meu Jetta")
-            
-        } //NavigationView
-
+                }
+            }
+        }
     }
 }
 
