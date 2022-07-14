@@ -30,8 +30,8 @@ struct AbastecimentoForm: View
     
     @State private var km: String = ""
     @State private var data: Date = Date()
-    @State private var litros: String = "10"
-    @State private var valorLitro: String = "10"
+    @State private var litros: String = "0"
+    @State private var valorLitro: String = "0"
     @State private var completo: Bool = false
     @State private var isSaveDisabled: Bool = false
     
@@ -40,7 +40,7 @@ struct AbastecimentoForm: View
            let formatter = NumberFormatter()
            formatter.numberStyle = .currency
            
-           guard let total = Double(litros) * Double(valorLitro)
+           guard let total = Double(litros ?? 0) * Double(valorLitro ?? 0)
            else {return "0"}
            
            return formatter.string(from: NSNumber(value: total)) ?? "$0"
