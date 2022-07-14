@@ -30,11 +30,21 @@ struct AbastecimentoForm: View
     
     @State private var km: String = ""
     @State private var data: Date = Date()
-    @State private var litros: String = ""
-    @State private var valorLitro: String = ""
-    @State private var valorTotal: String = ""
+    @State private var litros: String = "10"
+    @State private var valorLitro: String = "10"
     @State private var completo: Bool = false
     @State private var isSaveDisabled: Bool = false
+    
+    private var valorTotal: String
+       {
+           let formatter = NumberFormatter()
+           formatter.numberStyle = .currency
+           
+           guard let total = Double(litros) * Double(valorLitro)
+           else {return "0"}
+           
+           return formatter.string(from: NSNumber(value: total)) ?? "$0"
+       }
     
     var body: some View 
     {
@@ -52,7 +62,7 @@ struct AbastecimentoForm: View
                         .frame(maxHeight: 400)
                     TextField("litros", text: $litros)
                     TextField("valorLitro", text: $valorLitro)
-                    TextField("valorTotal", text: $valorTotal)
+                    Text("valorTotal \(valorTotal)")
                     TextField("First Name", text: $formInfo.firstName)
                         .validation(formInfo.firstNameValidation) // 6
                     Toggle(isOn: $completo)
@@ -62,11 +72,12 @@ struct AbastecimentoForm: View
                     Section()
                     {
                     PopView {
-                        Text("POP")
+                        Text("Ok")
                     }}
                 }
             }
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
+            .padding()
     }
 }
 

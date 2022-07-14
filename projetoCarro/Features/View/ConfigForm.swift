@@ -47,6 +47,6 @@ struct ConfigForm: View
                     Text("OK")
                 }
             }
-        }
+        }.padding()
     }
 }

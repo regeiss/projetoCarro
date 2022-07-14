@@ -30,16 +30,36 @@ struct MenuScreen: View
                 Collections(name: "Config", image: "config", content: "Public. Lorem ipsum dolor sit amet.")
         ]
         
-        List(collections) { index in
+        //List(collections) { index in
             
-            ZStack
+            VStack
             {
                 PushView(destination: AbastecimentoForm())
                 {
-                    ImageLabelRow(collection: index)
+                    ImageLabelRow(collection: collections[0])
+                    
                 }
-            }
-        }
+                PushView(destination: AbastecimentoForm())
+                {
+                    ImageLabelRow(collection: collections[1])
+                    
+                }
+                PushView(destination: AbastecimentoForm())
+                {
+                    ImageLabelRow(collection: collections[2])
+                    
+                }
+                PushView(destination: AbastecimentoForm())
+                {
+                    ImageLabelRow(collection: collections[3])
+                    
+                }
+                PushView(destination: ConfigForm())
+                {
+                    ImageLabelRow(collection: collections[4])
+                }
+            }.padding()
+       // }
     }
 }
 
