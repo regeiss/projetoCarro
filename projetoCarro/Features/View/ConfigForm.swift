@@ -43,10 +43,17 @@ struct ConfigForm: View
                 {
                     Text("Alertas")
                 }
-                PopView {
-                    Text("OK")
+                
+            }
+            Section
+            {
+                PopView
+                {
+                    Text("Ok").foregroundColor(.blue)
                 }
             }
         }.padding()
+            .toolbar{ToolbarItem(placement: .primaryAction) {
+                Button("New"){} }}
     }
 }
