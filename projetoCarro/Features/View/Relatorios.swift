@@ -7,14 +7,27 @@
 
 import SwiftUI
 
-struct Relatorios: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct Relatorios: View 
+{
+    var body: some View 
+    {
+        PopView 
+        {
+            Text("<")
+        }
+        
+        ForEach(0 ..< 6) { item in
+        RoundedRectangle(cornerRadius: 10)
+	        .fill(Color.blue)
+	        .frame(height: 100)
+    }
     }
 }
 
-struct Relatorios_Previews: PreviewProvider {
-    static var previews: some View {
+struct Relatorios_Previews: PreviewProvider 
+{
+    static var previews: some View 
+    {
         Relatorios()
     }
 }
