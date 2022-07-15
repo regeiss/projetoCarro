@@ -11,10 +11,16 @@ struct Relatorios: View
 {
     var body: some View 
     {
-        PopView 
+      PopView 
         {
             Text("<")
         }
+	
+       Text("Relatorios")
+                        .font(.system(.largeTitle, design: .rounded))
+                        .fontWeight(.black)
+                        .foregroundColor(.white)
+                        .padding()
         
         ForEach(0 ..< 6) { item in
         RoundedRectangle(cornerRadius: 10)
