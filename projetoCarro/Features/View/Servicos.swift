@@ -8,20 +8,23 @@
 import SwiftUI
 import NavigationStack
 
+struct Servicos: View
+{
     var body: some View 
     {
-        PopView 
+        VStack
         {
-            Text("<")
-        }
-
-        ForEach(0 ..< 6) { item in
-        RoundedRectangle(cornerRadius: 10)
-	        .fill(Color.blue)
-	        .frame(height: 100)
+            HeaderView()
+            
+            ForEach(0 ..< 6) { item in
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.blue)
+                    .frame(height: 100)
+            }
+            
+        }.padding()
     }
-    }
-
+}
 struct Servicos_Previews: PreviewProvider {
     static var previews: some View {
         Servicos()

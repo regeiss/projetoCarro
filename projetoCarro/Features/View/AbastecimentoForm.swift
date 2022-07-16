@@ -49,6 +49,7 @@ struct AbastecimentoForm: View
     {
         VStack
         {
+            HStack {HeaderView()}.ignoresSafeArea(.all)
             Form
             {
                 // TODO: arrumar formatacao
@@ -79,8 +80,6 @@ struct AbastecimentoForm: View
             }
             
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
-            .toolbar{ToolbarItem(placement: .navigationBarLeading) {
-                Button("New"){} }}
     }
 }
 

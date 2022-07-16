@@ -12,7 +12,9 @@
 		E17CB7C32880EA98004BEE9E /* Alertas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C22880EA97004BEE9E /* Alertas.swift */; };
 		E17CB7C52880EAA7004BEE9E /* Relatorios.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C42880EAA7004BEE9E /* Relatorios.swift */; };
 		E17CB7C72880EAC0004BEE9E /* Servicos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C62880EAC0004BEE9E /* Servicos.swift */; };
+		E17CB7C928822F62004BEE9E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C828822F62004BEE9E /* HeaderView.swift */; };
 		E1801401287E42DE0021AE2A /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = E1801400287E42DE0021AE2A /* FormValidator */; };
+		E185BDD32883133A00352EEC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = E185BDD22883133A00352EEC /* FormValidator */; };
 		E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */; };
 		E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACCB31286D17F60007DDC5 /* ContentView.swift */; };
 		E1ACCB34286D17FB0007DDC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1ACCB33286D17FB0007DDC5 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 		E17CB7C22880EA97004BEE9E /* Alertas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertas.swift; sourceTree = "<group>"; };
 		E17CB7C42880EAA7004BEE9E /* Relatorios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relatorios.swift; sourceTree = "<group>"; };
 		E17CB7C62880EAC0004BEE9E /* Servicos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servicos.swift; sourceTree = "<group>"; };
+		E17CB7C828822F62004BEE9E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E185BDD4288366C900352EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E1ACCB2C286D17F60007DDC5 /* projetoCarro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = projetoCarro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projetoCarroApp.swift; sourceTree = "<group>"; };
 		E1ACCB31286D17F60007DDC5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E185BDD32883133A00352EEC /* FormValidator in Frameworks */,
 				E172B3C7287CF28D00C2D4A3 /* NavigationStack in Frameworks */,
 				E1801401287E42DE0021AE2A /* FormValidator in Frameworks */,
 			);
@@ -73,6 +78,7 @@
 		E1ACCB2E286D17F60007DDC5 /* projetoCarro */ = {
 			isa = PBXGroup;
 			children = (
+				E185BDD4288366C900352EEC /* Info.plist */,
 				E1E71F5728750A1E00BF5D26 /* Base */,
 				E1ACCB3D286D19AD0007DDC5 /* Features */,
 				E1ACCB2F286D17F60007DDC5 /* projetoCarroApp.swift */,
@@ -119,6 +125,7 @@
 				E17CB7C22880EA97004BEE9E /* Alertas.swift */,
 				E17CB7C42880EAA7004BEE9E /* Relatorios.swift */,
 				E17CB7C62880EAC0004BEE9E /* Servicos.swift */,
+				E17CB7C828822F62004BEE9E /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +196,7 @@
 			packageProductDependencies = (
 				E172B3C6287CF28D00C2D4A3 /* NavigationStack */,
 				E1801400287E42DE0021AE2A /* FormValidator */,
+				E185BDD22883133A00352EEC /* FormValidator */,
 			);
 			productName = projetoCarro;
 			productReference = E1ACCB2C286D17F60007DDC5 /* projetoCarro.app */;
@@ -221,6 +229,7 @@
 			packageReferences = (
 				E172B3C5287CF28D00C2D4A3 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
 				E18013FF287E42DE0021AE2A /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
+				E185BDD12883133A00352EEC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
 			);
 			productRefGroup = E1ACCB2D286D17F60007DDC5 /* Products */;
 			projectDirPath = "";
@@ -255,6 +264,7 @@
 				E17CB7C32880EA98004BEE9E /* Alertas.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
 				E11EA8DD287F8B5000E93A43 /* ConfigForm.swift in Sources */,
+				E17CB7C928822F62004BEE9E /* HeaderView.swift in Sources */,
 				E17CB7C72880EAC0004BEE9E /* Servicos.swift in Sources */,
 				E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */,
 				E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */,
@@ -390,7 +400,7 @@
 				DEVELOPMENT_TEAM = 4DLN7FPJ74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = projetoCarro/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -404,7 +414,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -419,7 +429,7 @@
 				DEVELOPMENT_TEAM = 4DLN7FPJ74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = projetoCarro/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -433,7 +443,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -477,6 +487,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		E185BDD12883133A00352EEC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ShabanKamell/SwiftUIFormValidator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -488,6 +506,11 @@
 		E1801400287E42DE0021AE2A /* FormValidator */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E18013FF287E42DE0021AE2A /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */;
+			productName = FormValidator;
+		};
+		E185BDD22883133A00352EEC /* FormValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E185BDD12883133A00352EEC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */;
 			productName = FormValidator;
 		};
 /* End XCSwiftPackageProductDependency section */

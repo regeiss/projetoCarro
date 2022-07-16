@@ -12,16 +12,17 @@ struct Alertas: View
 {
     var body: some View 
     {
-        PopView 
+        VStack
         {
-            Text("<")
-        }
-
-        ForEach(0 ..< 6) { item in
-        RoundedRectangle(cornerRadius: 10)
-	        .fill(Color.blue)
-	        .frame(height: 100)
-        }
+            HeaderView()
+            
+            ForEach(0 ..< 6) { item in
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.blue)
+                    .frame(height: 100)
+            }
+            
+        }.padding()
     }
 }
 

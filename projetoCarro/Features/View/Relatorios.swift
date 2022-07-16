@@ -6,27 +6,23 @@
 //
 
 import SwiftUI
+import NavigationStack
 
 struct Relatorios: View 
 {
     var body: some View 
     {
-      PopView 
+        VStack
         {
-            Text("<")
-        }
-	
-       Text("Relatorios")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .fontWeight(.black)
-                        .foregroundColor(.white)
-                        .padding()
-        
-        ForEach(0 ..< 6) { item in
-        RoundedRectangle(cornerRadius: 10)
-	        .fill(Color.blue)
-	        .frame(height: 100)
-    }
+            HeaderView()
+            
+            ForEach(0 ..< 6) { item in
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.blue)
+                    .frame(height: 100)
+            }
+            
+        }.padding()
     }
 }
 

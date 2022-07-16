@@ -25,6 +25,9 @@ struct ConfigForm: View
 
     var body: some View
     {
+        VStack {
+        HeaderView()
+        
         Form
         {
             // TODO: arrumar formatacao
@@ -53,7 +56,5 @@ struct ConfigForm: View
                 }
             }
         }.padding()
-            .toolbar{ToolbarItem(placement: .primaryAction) {
-                Button("New"){} }}
-    }
+        }}
 }

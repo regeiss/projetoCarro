@@ -12,11 +12,6 @@
 import SwiftUI
 import NavigationStack
 
-enum Telas
-{
-    case abastecimento
-}
-
 struct MenuScreen: View
 {
     var body: some View
@@ -39,17 +34,17 @@ struct MenuScreen: View
                     ImageLabelRow(collection: collections[0])
                     
                 }
-                PushView(destination: AbastecimentoForm())
+                PushView(destination: Servicos())
                 {
                     ImageLabelRow(collection: collections[1])
                     
                 }
-                PushView(destination: AbastecimentoForm())
+                PushView(destination: Relatorios())
                 {
                     ImageLabelRow(collection: collections[2])
                     
                 }
-                PushView(destination: AbastecimentoForm())
+                PushView(destination: Alertas())
                 {
                     ImageLabelRow(collection: collections[3])
                     
