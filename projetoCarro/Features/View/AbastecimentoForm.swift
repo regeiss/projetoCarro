@@ -9,17 +9,10 @@ import SwiftUI
 import NavigationStack
 import FormValidator
 
-// 2
-class FormInfo: ObservableObject {
-  @Published var firstName: String = ""
-  // 3
-  lazy var form = {
-    FormValidation(validationType: .immediate)
-  }()
-  // 4
-  lazy var firstNameValidation: ValidationContainer = {
-    $firstName.nonEmptyValidator(form: form, errorMessage: "First name is not valid")
-  }()
+class FormInfo: ObservableObject { @Published var firstName: String = ""
+
+  lazy var form = { FormValidation(validationType: .immediate)}()
+  lazy var firstNameValidation: ValidationContainer = { $firstName.nonEmptyValidator(form: form, errorMessage: "First name is not valid")}()
 }
 
 struct AbastecimentoForm: View 
@@ -49,16 +42,14 @@ struct AbastecimentoForm: View
     {
         VStack
         {
-            HStack {HeaderView()}.ignoresSafeArea(.all)
+            HeaderView(nomeView: "Abastecimento", nomeMenu: "Menu")
             Form
             {
                 // TODO: arrumar formatacao
-                Section(header: Text("Abastecimento"),
-                        footer: Text("Informe todos os dados"))
+                Section()
                 {
                     TextField("km", text: $km)
                     DatePicker("Data", selection: $data)
-                    //.datePickerStyle(GraphicalDatePickerStyle())
                         .frame(maxHeight: 400)
                     TextField("litros", text: $litros)
                     TextField("valorLitro", text: $valorLitro)
@@ -77,7 +68,7 @@ struct AbastecimentoForm: View
                         Text("Ok").foregroundColor(.blue)
                     }
                 }
-            }
+            }.padding()
             
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
     }

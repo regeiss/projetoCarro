@@ -10,20 +10,32 @@ import NavigationStack
 
 struct HeaderView: View
 {
+    var nomeView: String
+    var nomeMenu: String
+    
     var body: some View
     {
-        VStack(alignment: .leading, spacing: 0.1)
+        VStack()
         {
             HStack
             {
                 PopView
                 {
                     Image(systemName: "chevron.backward").foregroundColor(.blue)
+                        .padding([.leading])
                 }
-                Text("Menu").foregroundColor(.blue )
+                Text(nomeMenu).foregroundColor(.blue )
+                Spacer()
+                Image(systemName: "house").foregroundColor(.blue)
+                    .padding([.trailing])
             }
-            Text("Titulo").font(.system(.largeTitle, design: .default))
+            HStack
+            {
+            Text(nomeView).font(.system(.title, design: .default))
                 .fontWeight(.black)
+                .padding([.leading])
+            Spacer()
+            }
         }
     }
 }
@@ -32,6 +44,6 @@ struct HeaderView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        HeaderView().previewLayout(.sizeThatFits)
+        HeaderView(nomeView: "*", nomeMenu: "*")
     }
 }

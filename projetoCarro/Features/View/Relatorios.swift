@@ -12,17 +12,20 @@ struct Relatorios: View
 {
     var body: some View 
     {
-        VStack
+        ZStack(alignment: .topLeading)
         {
-            HeaderView()
-            
-            ForEach(0 ..< 6) { item in
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.blue)
-                    .frame(height: 100)
-            }
-            
-        }.padding()
+            Color.clear
+            HeaderView(nomeView: "Relatórios", nomeMenu: "Menu")
+            VStack()
+            {
+                ForEach(0 ..< 6) { item in
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.blue)
+                        .frame(height: 100)
+                }
+                
+            }.padding()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

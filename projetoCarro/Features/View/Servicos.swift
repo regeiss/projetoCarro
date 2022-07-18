@@ -10,23 +10,41 @@ import NavigationStack
 
 struct Servicos: View
 {
-    var body: some View 
+    var body: some View
     {
-        VStack
+        ZStack(alignment: .topLeading)
         {
-            HeaderView()
-            
-            ForEach(0 ..< 6) { item in
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.blue)
-                    .frame(height: 100)
-            }
-            
-        }.padding()
+            Color.clear
+            HeaderView(nomeView: "Serviços", nomeMenu: "Menu")
+            VStack()
+            {
+                ForEach(0 ..< 6) { item in
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.blue)
+                        .frame(height: 100)
+                }
+                
+            }.padding()
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
+
 struct Servicos_Previews: PreviewProvider {
     static var previews: some View {
         Servicos()
     }
 }
+//struct ContentView: View {
+//    var body: some View {
+//            ZStack(alignment: .topLeading) {
+//                Color.clear
+//                VStack(alignment: .leading) {
+//                    Text("Top Text")
+//                        .font(.system(size: 20))
+//                        .fontWeight(.medium)
+//                     Text("Bottom Text")
+//                        .font(.system(size: 12))
+//                        .fontWeight(.regular)
+//                }
+//            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+//    }}

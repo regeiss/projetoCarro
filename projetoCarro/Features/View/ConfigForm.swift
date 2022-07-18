@@ -25,36 +25,40 @@ struct ConfigForm: View
 
     var body: some View
     {
-        VStack {
-        HeaderView()
-        
-        Form
+        ZStack(alignment: .topLeading)
         {
-            // TODO: arrumar formatacao
-            Section(header: Text("Configuração"),
-                    footer: Text("c 2002"))
+            Color.clear
+            HeaderView(nomeView: "Configuração", nomeMenu: "Menu")
+            VStack()
             {
-                TextField("lts/gls", text: $unidadeVolume)
+                Form
+                {
+                    // TODO: arrumar formatacao
+                    Section()
+                    {
+                        TextField("lts/gls", text: $unidadeVolume)
 
-                TextField("First Name", text: $configInfo.firstName)
-                    .validation(configInfo.firstNameValidation) // 6
-                Toggle(isOn: $backup)
-                {
-                    Text("Backup")
-                }
-                Toggle(isOn: $alerta)
-                {
-                    Text("Alertas")
-                }
-                
+                        TextField("First Name", text: $configInfo.firstName)
+                            .validation(configInfo.firstNameValidation) // 6
+                        Toggle(isOn: $backup)
+                        {
+                            Text("Backup")
+                        }
+                        Toggle(isOn: $alerta)
+                        {
+                            Text("Alertas")
+                        }
+                        
+                    }
+                    Section
+                    {
+                        PopView
+                        {
+                            Text("Ok").foregroundColor(.blue)
+                        }
+                    }
+                }.padding()
             }
-            Section
-            {
-                PopView
-                {
-                    Text("Ok").foregroundColor(.blue)
-                }
-            }
-        }.padding()
-        }}
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
 }
