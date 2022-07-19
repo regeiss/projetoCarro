@@ -9,17 +9,17 @@ import SwiftUI
 import NavigationStack
 import FormValidator
 
-class FormInfo: ObservableObject { @Published var firstName: String = ""
+class AbastecimentoInfo: ObservableObject { @Published var firstName: String = ""
 
   lazy var form = { FormValidation(validationType: .immediate)}()
   lazy var firstNameValidation: ValidationContainer = { $firstName.nonEmptyValidator(form: form, errorMessage: "First name is not valid")}()
 }
 
-struct AbastecimentoForm: View 
+struct AbastecimentoView: View 
 {
     let calendar = Calendar.current
     let date = Date()
-    @ObservedObject var formInfo = FormInfo()
+    @ObservedObject var formInfo = AbastecimentoInfo()
     
     @State private var km: String = ""
     @State private var data: Date = Date()
@@ -69,7 +69,7 @@ struct AbastecimentoForm: View
                     }
                 }
             }.padding()
-            
+            Spacer()
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid }
     }
 }

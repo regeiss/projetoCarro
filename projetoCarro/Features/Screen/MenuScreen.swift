@@ -24,56 +24,59 @@ struct MenuScreen: View
                 Collections(name: "Alertas", image: "alertas", content: "Travel. Lorem ipsum dolor sit amet."),
                 Collections(name: "Config", image: "config", content: "Public. Lorem ipsum dolor sit amet.")
         ]
-        
-        //List(collections) { index in
             
-            VStack
+        VStack
+        {
+            Spacer()
+            PushView(destination: AbastecimentoView())
             {
-                PushView(destination: AbastecimentoForm())
-                {
-                    ImageLabelRow(collection: collections[0])
-                    
-                }
-                PushView(destination: Servicos())
-                {
-                    ImageLabelRow(collection: collections[1])
-                    
-                }
-                PushView(destination: Relatorios())
-                {
-                    ImageLabelRow(collection: collections[2])
-                    
-                }
-                PushView(destination: Alertas())
-                {
-                    ImageLabelRow(collection: collections[3])
-                    
-                }
-                PushView(destination: ConfigForm())
-                {
-                    ImageLabelRow(collection: collections[4])
-                }
-            }.padding()
-       // }
+                ImageLabelRow(collection: collections[0])
+                
+            }
+            HStack{
+            PushView(destination: ServicosView())
+            {
+                ImageLabelRow(collection: collections[1])
+                
+            }
+            PushView(destination: RelatoriosView())
+            {
+                ImageLabelRow(collection: collections[2])
+                
+            }}.padding()
+            PushView(destination: AlertasView())
+            {
+                ImageLabelRow(collection: collections[3])
+                
+            }
+            PushView(destination: ConfiguracaoView())
+            {
+                ImageLabelRow(collection: collections[4])
+            }
+        }.padding()
     }
 }
 
-struct Collections: Identifiable {
+struct Collections: Identifiable
+{
     var id = UUID()
     var name: String
     var image: String
     var content: String
 }
-struct ImageLabelRow: View {
+struct ImageLabelRow: View
+{
     
     var collection: Collections
 
-    var body: some View {
-        ZStack(alignment: .trailing) {
+    var body: some View
+    {
+        ZStack(alignment: .trailing)
+        {
             Image(collection.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 150)
+                .frame(height: 170)
                 .cornerRadius(20)
                 .overlay(
                     Rectangle()
@@ -91,8 +94,10 @@ struct ImageLabelRow: View {
     }
     
 }
-struct MenuScreen_Previews: PreviewProvider {
-    static var previews: some View {
+struct MenuScreen_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         MenuScreen()
     }
 }

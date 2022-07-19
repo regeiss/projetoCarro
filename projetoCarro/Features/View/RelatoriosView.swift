@@ -8,24 +8,24 @@
 import SwiftUI
 import NavigationStack
 
-struct Relatorios: View 
+struct RelatoriosView: View 
 {
     var body: some View 
     {
-        ZStack(alignment: .topLeading)
+        VStack(alignment: .leading)
         {
-            Color.clear
             HeaderView(nomeView: "Relatórios", nomeMenu: "Menu")
             VStack()
             {
                 ForEach(0 ..< 6) { item in
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.blue)
+                        .fill(Color.gray)
                         .frame(height: 100)
                 }
                 
             }.padding()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            Spacer()
+        }
     }
 }
 
@@ -33,6 +33,6 @@ struct Relatorios_Previews: PreviewProvider
 {
     static var previews: some View 
     {
-        Relatorios()
+        RelatoriosView()
     }
 }

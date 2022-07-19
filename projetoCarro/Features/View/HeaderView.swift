@@ -32,7 +32,7 @@ struct HeaderView: View
             HStack
             {
             Text(nomeView).font(.system(.title, design: .default))
-                .fontWeight(.black)
+                    .fontWeight(.bold)
                 .padding([.leading])
             Spacer()
             }

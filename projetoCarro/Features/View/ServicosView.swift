@@ -8,30 +8,30 @@
 import SwiftUI
 import NavigationStack
 
-struct Servicos: View
+struct ServicosView: View
 {
     var body: some View
     {
-        ZStack(alignment: .topLeading)
+        VStack(alignment: .leading)
         {
-            Color.clear
             HeaderView(nomeView: "Serviços", nomeMenu: "Menu")
             VStack()
             {
                 ForEach(0 ..< 6) { item in
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.blue)
+                        .fill(Color.yellow)
                         .frame(height: 100)
                 }
                 
             }.padding()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            Spacer()
+        }
     }
 }
 
 struct Servicos_Previews: PreviewProvider {
     static var previews: some View {
-        Servicos()
+        ServicosView()
     }
 }
 //struct ContentView: View {

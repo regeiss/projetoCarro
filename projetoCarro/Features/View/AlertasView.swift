@@ -8,13 +8,12 @@
 import SwiftUI
 import NavigationStack
 
-struct Alertas: View 
+struct AlertasView: View 
 {
     var body: some View 
     {
-        ZStack(alignment: .topLeading)
+        VStack(alignment: .leading)
         {
-            Color.clear
             HeaderView(nomeView: "Alertas", nomeMenu: "Menu")
             VStack()
             {
@@ -25,7 +24,8 @@ struct Alertas: View
                 }
                 
             }.padding()
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            Spacer()
+        }
     }
 }
 
@@ -33,6 +33,6 @@ struct Alertas_Previews: PreviewProvider
 {
     static var previews: some View 
     {
-        Alertas()
+        AlertasView()
     }
 }
