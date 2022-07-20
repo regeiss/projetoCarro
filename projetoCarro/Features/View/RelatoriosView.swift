@@ -17,10 +17,8 @@ struct RelatoriosView: View
             HeaderView(nomeView: "Relatórios", nomeMenu: "Menu")
             VStack()
             {
-                ForEach(0 ..< 6) { item in
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray)
-                        .frame(height: 100)
+                ForEach(0 ..< 5) { item in
+                    MenuRow(titulo: "Relatorios")
                 }
                 
             }.padding()

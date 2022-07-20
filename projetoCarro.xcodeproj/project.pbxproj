@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E151C26F28862C3300F03BE7 /* ConfiguracaoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */; };
+		E151C271288778E700F03BE7 /* MenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C270288778E700F03BE7 /* MenuRow.swift */; };
 		E172B3C7287CF28D00C2D4A3 /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = E172B3C6287CF28D00C2D4A3 /* NavigationStack */; };
 		E17CB7C32880EA98004BEE9E /* AlertasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C22880EA97004BEE9E /* AlertasView.swift */; };
 		E17CB7C52880EAA7004BEE9E /* RelatoriosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C42880EAA7004BEE9E /* RelatoriosView.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguracaoView.swift; sourceTree = "<group>"; };
+		E151C270288778E700F03BE7 /* MenuRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRow.swift; sourceTree = "<group>"; };
 		E17CB7C22880EA97004BEE9E /* AlertasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertasView.swift; sourceTree = "<group>"; };
 		E17CB7C42880EAA7004BEE9E /* RelatoriosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatoriosView.swift; sourceTree = "<group>"; };
 		E17CB7C62880EAC0004BEE9E /* ServicosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicosView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				E17CB7C62880EAC0004BEE9E /* ServicosView.swift */,
 				E17CB7C828822F62004BEE9E /* HeaderView.swift */,
 				E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */,
+				E151C270288778E700F03BE7 /* MenuRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */,
 				E17CB7C32880EA98004BEE9E /* AlertasView.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
+				E151C271288778E700F03BE7 /* MenuRow.swift in Sources */,
 				E17CB7C928822F62004BEE9E /* HeaderView.swift in Sources */,
 				E17CB7C72880EAC0004BEE9E /* ServicosView.swift in Sources */,
 				E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */,

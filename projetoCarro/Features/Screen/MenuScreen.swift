@@ -33,17 +33,18 @@ struct MenuScreen: View
                 ImageLabelRow(collection: collections[0])
                 
             }
-            HStack{
-            PushView(destination: ServicosView())
+            HStack
             {
-                ImageLabelRow(collection: collections[1])
-                
+                PushView(destination: ServicosView())
+                {
+                    ImageLabelRow(collection: collections[1])
+                }
+                PushView(destination: RelatoriosView())
+                {
+                    ImageLabelRow(collection: collections[2])
+                    
+                }
             }
-            PushView(destination: RelatoriosView())
-            {
-                ImageLabelRow(collection: collections[2])
-                
-            }}.padding()
             PushView(destination: AlertasView())
             {
                 ImageLabelRow(collection: collections[3])
@@ -66,7 +67,6 @@ struct Collections: Identifiable
 }
 struct ImageLabelRow: View
 {
-    
     var collection: Collections
 
     var body: some View
@@ -76,7 +76,7 @@ struct ImageLabelRow: View
             Image(collection.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 170)
+                .frame(height: 150)
                 .cornerRadius(20)
                 .overlay(
                     Rectangle()
@@ -92,7 +92,6 @@ struct ImageLabelRow: View
                 .padding()
         }
     }
-    
 }
 struct MenuScreen_Previews: PreviewProvider
 {

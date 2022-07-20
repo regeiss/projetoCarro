@@ -10,19 +10,16 @@ import NavigationStack
 
 struct AlertasView: View 
 {
-    var body: some View 
+    var body: some View
     {
         VStack(alignment: .leading)
         {
             HeaderView(nomeView: "Alertas", nomeMenu: "Menu")
             VStack()
             {
-                ForEach(0 ..< 6) { item in
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.blue)
-                        .frame(height: 100)
+                ForEach(0 ..< 5) { item in
+                    MenuRow(titulo: "Älertas")
                 }
-                
             }.padding()
             Spacer()
         }
