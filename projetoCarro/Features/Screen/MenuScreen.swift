@@ -65,6 +65,7 @@ struct Collections: Identifiable
     var image: String
     var content: String
 }
+
 struct ImageLabelRow: View
 {
     var collection: Collections
@@ -93,6 +94,7 @@ struct ImageLabelRow: View
         }
     }
 }
+
 struct MenuScreen_Previews: PreviewProvider
 {
     static var previews: some View
