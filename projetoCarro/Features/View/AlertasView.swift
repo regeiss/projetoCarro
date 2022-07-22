@@ -17,8 +17,8 @@ struct AlertasView: View
             HeaderView(nomeView: "Alertas", nomeMenu: "Menu")
             VStack()
             {
-                ForEach(0 ..< 5) { item in
-                    MenuRow(titulo: "Älertas")
+                ForEach(0 ..< 4) { item in
+                    MenuRow(titulo: "Alertas")
                 }
             }.padding()
             Spacer()

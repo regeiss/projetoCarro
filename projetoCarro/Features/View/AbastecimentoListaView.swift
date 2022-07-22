@@ -10,24 +10,19 @@ import NavigationStack
 
 struct AbastecimentoListaView: View
 {
-    var abastecimentos: [Abastecimento]
+    //var abastecimentos: [Abastecimento]
     
     var body: some View
     {
-        List
-        {
-            ForEach(abastecimentos)
-            { item in
-                AbastecimentoListaItemView()
-            }
-        }
+        Text("*)")
     }
 }
 
 struct AbastecimentoListaView_Previews: PreviewProvider
 {
+
     static var previews: some View
     {
-        AbastecimentoListaView(abastecimentos: Abastecimento.dummyData)
+        AbastecimentoListaView()
     }
 }

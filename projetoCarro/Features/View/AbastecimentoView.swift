@@ -27,13 +27,14 @@ struct AbastecimentoView: View
     @State private var valorLitro: String = "1"
     @State private var completo: Bool = false
     @State private var isSaveDisabled: Bool = false
+    private var tempValorLitro: String?
     
     private var valorTotal: String
        {
            let formatter = NumberFormatter()
            formatter.numberStyle = .currency
            
-           let total = Double(litros)! * Double(valorLitro)!
+           let total = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
            
            return formatter.string(from: NSNumber(value: total)) ?? "$0"
        }

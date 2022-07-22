@@ -27,6 +27,10 @@ struct MenuScreen: View
             
         VStack
         {
+            Text("Meu Jetta").font(.system(.largeTitle, design: .rounded))
+                .fontWeight(.black)
+                .foregroundColor(.black)
+                .padding()
             Spacer()
             PushView(destination: AbastecimentoView())
             {
@@ -77,7 +81,7 @@ struct ImageLabelRow: View
             Image(collection.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 150)
+                .frame(height: 155)
                 .cornerRadius(20)
                 .overlay(
                     Rectangle()
