@@ -17,3 +17,14 @@ extension NumberFormatter
             return formatter
     }
 }
+
+extension DateFormatter
+{
+    static var shortDateFormatter: DateFormatter
+    {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        return formatter
+    }
+}
