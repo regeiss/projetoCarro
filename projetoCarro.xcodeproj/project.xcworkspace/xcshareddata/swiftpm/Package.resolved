@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftui-navigation-stack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/matteopuc/swiftui-navigation-stack",
+      "state" : {
+        "revision" : "be0db68ed0d84ed543bf8f7600a1f84de015f753",
+        "version" : "1.0.4"
+      }
+    },
+    {
+      "identity" : "swiftuiformvalidator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ShabanKamell/SwiftUIFormValidator.git",
+      "state" : {
+        "revision" : "840dc478b6036bcd786711240b32d4e0f3435349",
+        "version" : "0.14.0"
+      }
+    }
+  ],
+  "version" : 2
+}
