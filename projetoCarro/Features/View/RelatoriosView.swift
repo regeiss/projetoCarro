@@ -17,7 +17,7 @@ struct RelatoriosView: View
             HeaderView(nomeView: "Relatórios", nomeMenu: "Menu")
             VStack()
             {
-                ForEach(0 ..< 5) { item in
+                ForEach(0 ..< 4) { item in
                     MenuRow(titulo: "Relatorios")
                 }
                 
