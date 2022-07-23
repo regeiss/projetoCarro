@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AbastecimentoListaItemView: View {
+struct AbastecimentoListaDetailView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +15,6 @@ struct AbastecimentoListaItemView: View {
 
 struct AbastecimentoListaItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AbastecimentoListaItemView()
+        AbastecimentoListaDetailView()
     }
 }

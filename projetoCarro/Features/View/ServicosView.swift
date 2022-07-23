@@ -17,9 +17,10 @@ struct ServicosView: View
             HeaderView(nomeView: "Serviços", nomeMenu: "Menu")
             VStack()
             {
-                ForEach(0 ..< 5) { item in
-                    MenuRow(titulo: "Servicos")
-                }
+//                ForEach(0 ..< 5) { item in
+//                    MenuRow(titulo: "Servicos")
+//                }
+                AbastecimentoListaView()
                 
             }.padding()
             Spacer()
