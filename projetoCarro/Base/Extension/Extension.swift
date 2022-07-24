@@ -28,3 +28,23 @@ extension DateFormatter
         return formatter
     }
 }
+
+extension Abastecimento
+{
+    static var currencyFormatter: NumberFormatter
+    {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt-BR")
+        return formatter
+    }
+    
+    static var decimalFormater: NumberFormatter
+    {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.decimalSeparator = ","
+        formatter.minimumIntegerDigits = 2
+        return formatter
+    }
+}

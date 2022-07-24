@@ -4,7 +4,6 @@
 //
 //  Created by Roberto Edgar Geiss on 20/07/22.
 //
-import UIKit
 import SwiftUI
 import NavigationStack
 
@@ -15,8 +14,8 @@ struct AbastecimentoListaView: View
         NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)
     ]) var abastecimentos: FetchedResults<Abastecimento>
     
-    let dateFormatter = DateFormatter()
-    //dateFormatter.dateStyle = .short
+    let formaterDecimal = NumberFormatter()
+    //formaterDecimal.numberStyle = .decimal
     
     var body: some View
     {
@@ -26,13 +25,13 @@ struct AbastecimentoListaView: View
                 VStack
                 {
                     Text(String(abastecimento.km))
-                        .foregroundColor(.black)
                     Text((abastecimento.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
-                        .foregroundColor(.black)
-                    Text(String(abastecimento.litros))
-                    Text(String(abastecimento.valorLitro))
+                    Text(String(format: "%.3f",abastecimento.litros))
+                    Text(String(format: "%.3f",abastecimento.valorLitro))
+                    Text(String(format: "%.2f",abastecimento.valorTotal))
+                    Text("Completo")
                 }
-            }
+            }.onDelete(perform: deleteAbastecimentos)
         }
     }
     

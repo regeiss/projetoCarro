@@ -10,10 +10,16 @@ import FormValidator
 
 class AbastecimentoInfo: ObservableObject
 {
-    @Published var firstName: String = ""
-
+    @Published var km: String = ""
+    @Published var data: Date = Date()
+    @Published var litros: String = ""
+    @Published var valorLitro: String = ""
+    @Published var completo: Bool = false
+    
     lazy var form = { FormValidation(validationType: .immediate)}()
-    lazy var firstNameValidation: ValidationContainer = { $firstName.nonEmptyValidator(form: form, errorMessage: "First name is not valid")}()
+    lazy var validacaoKm: ValidationContainer = { $km.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
+    lazy var validacaoLitros: ValidationContainer = { $litros.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
+    lazy var validacaoValorLitro: ValidationContainer = { $valorLitro.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
 }
 
 struct AbastecimentoView: View 
@@ -23,8 +29,8 @@ struct AbastecimentoView: View
     
     @State private var km: String = ""
     @State private var data: Date = Date()
-    @State private var litros: String = "1"
-    @State private var valorLitro: String = "1"
+    @State private var litros: String = ""
+    @State private var valorLitro: String = ""
     @State private var completo: Bool = false
     @State private var isSaveDisabled: Bool = false
     
@@ -34,7 +40,6 @@ struct AbastecimentoView: View
     {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        
         let total = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
         
         return formatter.string(from: NSNumber(value: total)) ?? "$0"
@@ -49,14 +54,14 @@ struct AbastecimentoView: View
             {
                 Section()
                 {
-                    TextField("km", text: $km)
+                    TextField("km", text: $km).validation(formInfo.validacaoKm)
                     DatePicker("Data", selection: $data)
                         .frame(maxHeight: 400)
                     TextField("litros", text: $litros)
                     TextField("valorLitro", text: $valorLitro)
                     Text("valorTotal \(valorTotal)")
-                    TextField("First Name", text: $formInfo.firstName)
-                        .validation(formInfo.firstNameValidation) // 6
+//                    TextField("First Name", text: $formInfo.firstName)
+//                        .validation(formInfo.firstNameValidation) // 6
                     Toggle(isOn: $completo)
                     {
                         Text("completo")
@@ -76,13 +81,14 @@ struct AbastecimentoView: View
          .onDisappear {
                 let newAbastecimento = Abastecimento(context: moc)
                 newAbastecimento.id = UUID()
-                newAbastecimento.km = Int16(km) ?? 0
+                newAbastecimento.km = Int32(km) ?? 0
                 newAbastecimento.completo = Bool(completo)
                 newAbastecimento.litros = Double(litros) ?? 0.0
                 newAbastecimento.data = (data)
                 newAbastecimento.valorLitro = Double(valorLitro) ?? 0.0
-                newAbastecimento.valorTotal = Double(valorTotal) ?? 0.0
-             
+                newAbastecimento.valorTotal = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
+                print("printing valor total")
+                print(valorTotal)
              try? moc.save()
             }
     }

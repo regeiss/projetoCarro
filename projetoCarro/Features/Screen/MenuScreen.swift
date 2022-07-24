@@ -18,7 +18,7 @@ struct MenuScreen: View
     {
         let collections = [
                 //Make sure to change the image name to the one that you'll be using
-                Collections(name: "Abastecimento", image: "gasStation", content: "Cafe. Lorem ipsum dolor sit amet."),
+                Collections(name: "Combustível", image: "gasStation", content: "Cafe. Lorem ipsum dolor sit amet."),
                 Collections(name: "Serviço", image: "service", content: "Home. Lorem ipsum dolor sit amet."),
                 Collections(name: "Relatórios", image: "report", content: "Commute. Lorem ipsum dolor sit amet."),
                 Collections(name: "Alertas", image: "alertas", content: "Travel. Lorem ipsum dolor sit amet."),
