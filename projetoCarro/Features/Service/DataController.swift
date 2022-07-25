@@ -17,4 +17,16 @@ class DataController: ObservableObject {
             }
         }
     }
+    func retornaUltimoABastecimento() -> Abastecimento
+{
+
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true),
+        predicate: NSPredicate(format: "date == max(date))
+    ]) 
+    var abastecimento: FetchedResults<Abastecimento>
+    return abastecimentoabastecimento
+}
+
 }
