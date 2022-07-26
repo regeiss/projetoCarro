@@ -87,8 +87,7 @@ struct AbastecimentoView: View
                 newAbastecimento.data = (data)
                 newAbastecimento.valorLitro = Double(valorLitro) ?? 0.0
                 newAbastecimento.valorTotal = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
-                print("printing valor total")
-                print(valorTotal)
+
              try? moc.save()
             }
     }

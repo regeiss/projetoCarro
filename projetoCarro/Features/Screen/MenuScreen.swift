@@ -13,7 +13,11 @@ import SwiftUI
 import NavigationStack
 
 struct MenuScreen: View
-{
+{    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [ NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)],
+        predicate: NSPredicate(format: "data == max(data)"))
+        var abastecimento: FetchedResults<Abastecimento>
+    
     var body: some View
     {
         let collections = [
@@ -25,8 +29,22 @@ struct MenuScreen: View
                 Collections(name: "Config", image: "config", content: "Public. Lorem ipsum dolor sit amet.")
         ]
             
+
+//        ultimoAbastecimento.id = $abastecimento.id
+//        ultimoAbastecimento.km = abastecimento.km
+//        ultimoAbastecimento.completo = abastecimento.completo
+//        ultimoAbastecimento.litros = abastecimento.litros
+//        ultimoAbastecimento.data = abastecimento.data
+//        ultimoAbastecimento.valorLitro = abastecimento.valorLitro
+//        ultimoAbastecimento.valorTotal = abastecimento.valorTotal
+
         VStack
         {
+            for abas in abastecimento
+            {
+                let x = abastecimento.km
+            }
+
             Text("Meu Jetta").font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(.black)
@@ -35,7 +53,7 @@ struct MenuScreen: View
             PushView(destination: AbastecimentoView())
             {
                 ImageLabelRow(collection: collections[0])
-                
+                //print(abastecimento.km)
             }
             HStack
             {
@@ -73,7 +91,7 @@ struct Collections: Identifiable
 struct ImageLabelRow: View
 {
     var collection: Collections
-
+    
     var body: some View
     {
         ZStack(alignment: .trailing)
@@ -89,20 +107,19 @@ struct ImageLabelRow: View
                         .cornerRadius(20)
                         .opacity(0.4)
                 )
-
+            VStack{
             Text(collection.name)
                 .font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(.white)
                 .padding()
+            
+            if collection.name == "Combustível"
+            {
+                Text("139878").foregroundColor(.white)
+                Text("25/07/2022").foregroundColor(.white)
+                Text("20 litros").foregroundColor(.white)
+            }}
         }
-    }
-}
-
-struct MenuScreen_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
-        MenuScreen()
     }
 }

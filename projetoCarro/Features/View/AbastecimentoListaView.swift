@@ -14,9 +14,6 @@ struct AbastecimentoListaView: View
         NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)
     ]) var abastecimentos: FetchedResults<Abastecimento>
     
-    let formaterDecimal = NumberFormatter()
-    //formaterDecimal.numberStyle = .decimal
-    
     var body: some View
     {
         List
@@ -26,25 +23,23 @@ struct AbastecimentoListaView: View
                 {
                     Text(String(abastecimento.km))
                     Text((abastecimento.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
-                    Text(String(format: "%.3f",abastecimento.litros))
-                    Text(String(format: "%.3f",abastecimento.valorLitro))
-                    Text(String(format: "%.2f",abastecimento.valorTotal))
+                    Text(String(format: "%.3f", abastecimento.litros))
+                    Text(String(format: "%.3f", abastecimento.valorLitro))
+                    Text(String(format: "%.2f", abastecimento.valorTotal))
                     Text("Completo")
                 }
             }.onDelete(perform: deleteAbastecimentos)
         }
     }
     
-    func deleteAbastecimentos(at offsets: IndexSet) {
-           for offset in offsets {
-               // find this book in our fetch request
-               let abastecimento = abastecimentos[offset]
-
-               // delete it from the context
-               moc.delete(abastecimento)
-           }
-
-           // save the context
-           try? moc.save()
-       }
+    func deleteAbastecimentos(at offsets: IndexSet)
+    {
+        for offset in offsets
+        {
+            let abastecimento = abastecimentos[offset]
+            moc.delete(abastecimento)
+        }
+        
+        try? moc.save()
+    }
 }
