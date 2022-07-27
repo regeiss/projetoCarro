@@ -15,17 +15,18 @@ import NavigationStack
 
 struct MenuScreen: View
 {
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)], predicate: NSPredicate(format: "data = max(data)"))
-    var abastecimentos: FetchedResults<Abastecimento>
+//    @Environment(\.managedObjectContext) var moc
+//    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)], predicate: NSPredicate(format: "data = max(data)"))
+//    var abastecimentos: FetchedResults<Abastecimento>
  
-//    @Environment(\.managedObjectContext) var moc1
-//    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)])
-//    var abastecimentos1: FetchedResults<Abastecimento>
+    @Environment(\.managedObjectContext) var moc1
+    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)])
+    var abastecimentos1: FetchedResults<Abastecimento>
 
-    
     var body: some View
     {
+        let abas = Abastecimento(context: moc1)
+        
         let collections = [
                 Collections(name: "Abastecimento", image: "gasStation", content: "Cafe. Lorem ipsum dolor sit amet."),
                 Collections(name: "Serviço", image: "service", content: "Home. Lorem ipsum dolor sit amet."),
@@ -36,6 +37,9 @@ struct MenuScreen: View
             
         VStack
         {
+            Text(String(abas.km))
+            Text((abas.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
+            
             Text("Meu Jetta").font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(.black)
