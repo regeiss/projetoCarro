@@ -10,11 +10,11 @@ import CoreData
 
 
 class TodoItemStorage: NSObject, ObservableObject {
-  @Published var dueSoon: [TodoItem] = []
-  private let dueSoonController: NSFetchedResultsController<TodoItem>
+  @Published var dueSoon: [Abastecimento] = []
+  private let dueSoonController: NSFetchedResultsController<Abastecimento>
 
   init(managedObjectContext: NSManagedObjectContext) {
-    dueSoonController = NSFetchedResultsController(fetchRequest: TodoItem.dueSoonFetchRequest,
+    dueSoonController = NSFetchedResultsController(fetchRequest: Abastecimento.dueSoonFetchRequest,
     managedObjectContext: managedObjectContext,
     sectionNameKeyPath: nil, cacheName: nil)
 
@@ -33,12 +33,25 @@ class TodoItemStorage: NSObject, ObservableObject {
 
 extension TodoItemStorage: NSFetchedResultsControllerDelegate {
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    guard let todoItems = controller.fetchedObjects as? [TodoItem]
+    guard let todoItems = controller.fetchedObjects as? [Abastecimento]
       else { return }
 
     dueSoon = todoItems
   }
 }
+extension Abastecimento {
+  static var dueSoonFetchRequest: NSFetchRequest<Abastecimento> {
+    let request: NSFetchRequest<Abastecimento> = Abastecimento.fetchRequest()
+    request.predicate = NSPredicate(format: "dueDate < %@", Date() as CVarArg)
+    request.sortDescriptors = [NSSortDescriptor(key: "dueDate", ascending: true)]
+
+    return request
+  }
+}
+
+// in your view
+//@FetchRequest(fetchRequest: TodoItem.dueSoonFetchRequest)
+//var tasksDueSoon: FetchedResults<TodoItem>
 
 //struct MainView: View {
 //  @ObservedObject var todoItemStore: TodoItemStorage

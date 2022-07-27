@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E123F06B28909DF1009C0F4D /* AbastecimentoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06A28909DF1009C0F4D /* AbastecimentoController.swift */; };
+		E123F06D2890AA75009C0F4D /* ImageLabelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */; };
+		E123F06F2890AB8C009C0F4D /* MenuInicial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06E2890AB8C009C0F4D /* MenuInicial.swift */; };
 		E151C26F28862C3300F03BE7 /* ConfiguracaoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */; };
 		E151C271288778E700F03BE7 /* MenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C270288778E700F03BE7 /* MenuRow.swift */; };
 		E151C2732888B03400F03BE7 /* AbastecimentoListaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C2722888B03400F03BE7 /* AbastecimentoListaView.swift */; };
-		E151C2752888C2EA00F03BE7 /* AbastecimentoListaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C2742888C2EA00F03BE7 /* AbastecimentoListaDetailView.swift */; };
 		E151C2782888C6C500F03BE7 /* Abastecimento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E151C2762888C6C500F03BE7 /* Abastecimento.xcdatamodeld */; };
 		E151C27B2888C92200F03BE7 /* Abastecimento+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C2792888C92200F03BE7 /* Abastecimento+CoreDataClass.swift */; };
 		E151C29D2888D05800F03BE7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C29C2888D05800F03BE7 /* Persistence.swift */; };
@@ -36,10 +37,11 @@
 
 /* Begin PBXFileReference section */
 		E123F06A28909DF1009C0F4D /* AbastecimentoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoController.swift; sourceTree = "<group>"; };
+		E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelRow.swift; sourceTree = "<group>"; };
+		E123F06E2890AB8C009C0F4D /* MenuInicial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInicial.swift; sourceTree = "<group>"; };
 		E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguracaoView.swift; sourceTree = "<group>"; };
 		E151C270288778E700F03BE7 /* MenuRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRow.swift; sourceTree = "<group>"; };
 		E151C2722888B03400F03BE7 /* AbastecimentoListaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoListaView.swift; sourceTree = "<group>"; };
-		E151C2742888C2EA00F03BE7 /* AbastecimentoListaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoListaDetailView.swift; sourceTree = "<group>"; };
 		E151C2772888C6C500F03BE7 /* Abastecimento.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Abastecimento.xcdatamodel; sourceTree = "<group>"; };
 		E151C2792888C92200F03BE7 /* Abastecimento+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Abastecimento+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E151C29C2888D05800F03BE7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				E1ACCB3F286D19CB0007DDC5 /* Abastecimento.swift */,
+				E123F06E2890AB8C009C0F4D /* MenuInicial.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,7 +148,7 @@
 				E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */,
 				E151C270288778E700F03BE7 /* MenuRow.swift */,
 				E151C2722888B03400F03BE7 /* AbastecimentoListaView.swift */,
-				E151C2742888C2EA00F03BE7 /* AbastecimentoListaDetailView.swift */,
+				E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E123F06F2890AB8C009C0F4D /* MenuInicial.swift in Sources */,
 				E1ACCB48286D25E10007DDC5 /* AbastecimentoView.swift in Sources */,
 				E151C2782888C6C500F03BE7 /* Abastecimento.xcdatamodeld in Sources */,
 				E1ACCB46286D24790007DDC5 /* MenuScreen.swift in Sources */,
@@ -286,7 +290,6 @@
 				E1ACCB32286D17F60007DDC5 /* ContentView.swift in Sources */,
 				E17CB7C32880EA98004BEE9E /* AlertasView.swift in Sources */,
 				E1ACCB30286D17F60007DDC5 /* projetoCarroApp.swift in Sources */,
-				E151C2752888C2EA00F03BE7 /* AbastecimentoListaDetailView.swift in Sources */,
 				E151C271288778E700F03BE7 /* MenuRow.swift in Sources */,
 				E151C29D2888D05800F03BE7 /* Persistence.swift in Sources */,
 				E1BA64F7288C2B6C00C0FFF4 /* DataController.swift in Sources */,
@@ -298,6 +301,7 @@
 				E151C26F28862C3300F03BE7 /* ConfiguracaoView.swift in Sources */,
 				E151C27B2888C92200F03BE7 /* Abastecimento+CoreDataClass.swift in Sources */,
 				E1ACCB40286D19CB0007DDC5 /* Abastecimento.swift in Sources */,
+				E123F06D2890AA75009C0F4D /* ImageLabelRow.swift in Sources */,
 				E17CB7C52880EAA7004BEE9E /* RelatoriosView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
