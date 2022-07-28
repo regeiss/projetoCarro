@@ -89,6 +89,7 @@ struct AbastecimentoView: View
                 newAbastecimento.valorTotal = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
 
              try? moc.save()
+             print("Registro incluido")
             }
     }
 }
