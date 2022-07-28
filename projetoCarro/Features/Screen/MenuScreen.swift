@@ -16,10 +16,20 @@ import NavigationStack
 
 struct MenuScreen: View
 {
+    // init() {
+    //     let request: NSFetchRequest<Abastecimento> = Abastecimento.fetchRequest()
+    //     request.fetchLimit = 1
+    //     request.predicate = NSPredicate(format: "active = true")
+    //     request.sortDescriptors = [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)]
+    //     _abastecimentos = FetchRequest(fetchRequest: request)
+    // }
+
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data = max(data)"))
-    var abastecimentos: FetchedResults<Abastecimento>
- 
+    //@FetchRequest var abastecimentos: FetchedResults<Abastecimento>
+    // @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data = max(data)"))
+    // var abastecimentos: FetchedResults<Abastecimento>
+    
+    // caminho da base sqlite
     let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
     
 //    let request =  NSFetchRequest<NSFetchRequestResult>(entityName:"Abastecimento")
@@ -27,10 +37,6 @@ struct MenuScreen: View
 //    @FetchRequest(fetchRequest: request)
     //@FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)])
    // var abastecimentos1: FetchedResults<Abastecimento>
-// mostra o caminho da base sqllite
-//    let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//    let docsDir = dirPaths[0]
-//    print(docsDir)
 
     var body: some View
     {
@@ -117,5 +123,53 @@ struct MenuScreen: View
             }
         }.padding()
     }
-}
 
+
+    private func getLastSyncTimestamp() -> Int64? 
+    {
+        // https://stackoverflow.com/questions/10398019/core-data-how-to-fetch-an-entity-with-max-value-property?newreg=cf5949d3d96a4220ae822e26a135944d
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        request.entity = NSEntityDescription.entity(forEntityName: "Abastecimento", in: self.moc)
+        request.resultType = NSFetchRequestResultType.dictionaryResultType
+
+        let keypathExpression = NSExpression(forKeyPath: "data")
+        let maxExpression = NSExpression(forFunction: "max:", arguments: [keypathExpression])
+
+        let key = "data"
+
+        let expressionDescription = NSExpressionDescription()
+        expressionDescription.name = key
+        expressionDescription.expression = maxExpression
+        expressionDescription.expressionResultType = .integer64AttributeType
+
+        request.propertiesToFetch = [expressionDescription]
+
+        var maxTimestamp: Int64? = nil
+
+        do {
+
+            if let result = try self.moc.fetch(request) as? [[String: Int64]], let dict = result.first {
+            maxTimestamp = dict[key]
+            }
+
+        } catch {
+            assertionFailure("Failed to fetch max timestamp with error = \(error)")
+            return nil
+        }
+
+        return maxTimestamp
+    }
+}
+let request: NSFetchRequest<Person> = Person.fetchRequest()
+request.fetchLimit = 1
+
+let predicate = NSPredicate(format: "personId ==max(personId)")
+request.predicate = predicate
+
+var maxValue: Int64? = nil
+do {
+    let result = try self.context.fetch(request).first
+    maxValue = result?.personId
+} catch {
+    print("Unresolved error in retrieving max personId value \(error)")
+}
