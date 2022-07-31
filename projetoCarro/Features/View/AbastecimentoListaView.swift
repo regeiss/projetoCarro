@@ -11,14 +11,14 @@ struct AbastecimentoListaView: View
 {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Abastecimento.data, ascending: true)
-    ]) var abastecimentos: FetchedResults<Abastecimento>
+        NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)
+    ]) var abastecimentoLista: FetchedResults<Abastecimento>
     
     var body: some View
     {
         List
         {
-            ForEach(abastecimentos, id: \.self) { abastecimento in
+            ForEach(abastecimentoLista, id: \.self) { abastecimento in
                 VStack
                 {
                     Text(String(abastecimento.km))
@@ -36,7 +36,7 @@ struct AbastecimentoListaView: View
     {
         for offset in offsets
         {
-            let abastecimento = abastecimentos[offset]
+            let abastecimento = abastecimentoLista[offset]
             moc.delete(abastecimento)
         }
         

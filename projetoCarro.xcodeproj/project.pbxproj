@@ -164,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				E1ACCB45286D24790007DDC5 /* MenuScreen.swift */,
-				E123F06A28909DF1009C0F4D /* AbastecimentoController.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -172,6 +171,7 @@
 		E1ACCB44286D23BF0007DDC5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E123F06A28909DF1009C0F4D /* AbastecimentoController.swift */,
 				E1BA64F6288C2B6C00C0FFF4 /* DataController.swift */,
 			);
 			path = Service;
@@ -435,6 +435,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = projetoCarro/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";
@@ -464,6 +465,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = projetoCarro/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";

@@ -5,42 +5,38 @@
 //  Created by Roberto Edgar Geiss on 29/06/22.
 //
 import SwiftUI
+import CoreData
 import NavigationStack
 import FormValidator
 
-class AbastecimentoInfo: ObservableObject
+class FormInfo: ObservableObject
 {
     @Published var km: String = ""
     @Published var data: Date = Date()
     @Published var litros: String = ""
     @Published var valorLitro: String = ""
     @Published var completo: Bool = false
+    @Published var firstName: String = ""
     
     lazy var form = { FormValidation(validationType: .immediate)}()
     lazy var validacaoKm: ValidationContainer = { $km.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
     lazy var validacaoLitros: ValidationContainer = { $litros.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
     lazy var validacaoValorLitro: ValidationContainer = { $valorLitro.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
+    lazy var firstNameValidation: ValidationContainer = { $firstName.nonEmptyValidator(form: form, errorMessage: "First name is not valid")}()
 }
 
 struct AbastecimentoView: View 
 {
-    @ObservedObject var formInfo = AbastecimentoInfo()
-    @Environment(\.managedObjectContext) var moc
-    
-    @State private var km: String = ""
-    @State private var data: Date = Date()
-    @State private var litros: String = ""
-    @State private var valorLitro: String = ""
-    @State private var completo: Bool = false
+    @Environment(\.managedObjectContext) var moc1
+    @ObservedObject var formInfo = FormInfo()
     @State private var isSaveDisabled: Bool = false
-    
-    let date = Date()
+    @FocusState private var nameInFocus: Bool
     
     private var valorTotal: String
     {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        let total = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
+        let total = (Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0)
         
         return formatter.string(from: NSNumber(value: total)) ?? "$0"
     }
@@ -54,15 +50,17 @@ struct AbastecimentoView: View
             {
                 Section()
                 {
-                    TextField("km", text: $km).validation(formInfo.validacaoKm)
-                    DatePicker("Data", selection: $data)
+                    TextField("km", text: $formInfo.km)
+                        .validation(formInfo.validacaoKm)
+                        .focused($nameInFocus)
+                        .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {self.nameInFocus = true}}
+                    TextField("First Name", text: $formInfo.firstName).validation(formInfo.firstNameValidation) // 6
+                    DatePicker("Data", selection: $formInfo.data)
                         .frame(maxHeight: 400)
-                    TextField("litros", text: $litros)
-                    TextField("valorLitro", text: $valorLitro)
+                    TextField("litros", text: $formInfo.litros)
+                    TextField("valorLitro", text: $formInfo.valorLitro)
                     Text("valorTotal \(valorTotal)")
-//                    TextField("First Name", text: $formInfo.firstName)
-//                        .validation(formInfo.firstNameValidation) // 6
-                    Toggle(isOn: $completo)
+                    Toggle(isOn: $formInfo.completo)
                     {
                         Text("completo")
                     }
@@ -78,19 +76,21 @@ struct AbastecimentoView: View
             Spacer()
             
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
-         .onDisappear {
-                let newAbastecimento = Abastecimento(context: moc)
+            .onDisappear { moc1.perform {
+                let newAbastecimento = Abastecimento(context: moc1)
                 newAbastecimento.id = UUID()
-                newAbastecimento.km = Int32(km) ?? 0
-                newAbastecimento.completo = Bool(completo)
-                newAbastecimento.litros = Double(litros) ?? 0.0
-                newAbastecimento.data = (data)
-                newAbastecimento.valorLitro = Double(valorLitro) ?? 0.0
-                newAbastecimento.valorTotal = (Double(litros) ?? 0) * (Double(valorLitro) ?? 0)
+                newAbastecimento.km = Int32(formInfo.km) ?? 45
+             newAbastecimento.completo = Bool(formInfo.completo)
+             newAbastecimento.litros = Double(formInfo.litros) ?? 23.0
+             newAbastecimento.data = (formInfo.data)
+             newAbastecimento.valorLitro = Double(formInfo.valorLitro) ?? 7.0
+             newAbastecimento.valorTotal = (Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0)
 
-             try? moc.save()
+             try? moc1.save()
              print("Registro incluido")
             }
+            }
+                
     }
 }
 

@@ -16,18 +16,11 @@ import NavigationStack
 
 struct MenuScreen: View
 {
-    // init() {
-    //     let request: NSFetchRequest<Abastecimento> = Abastecimento.fetchRequest()
-    //     request.fetchLimit = 1
-    //     request.predicate = NSPredicate(format: "active = true")
-    //     request.sortDescriptors = [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)]
-    //     _abastecimentos = FetchRequest(fetchRequest: request)
-    // }
 
     @Environment(\.managedObjectContext) var moc
-    //@FetchRequest var abastecimentos: FetchedResults<Abastecimento>
-    // @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data = max(data)"))
-    // var abastecimentos: FetchedResults<Abastecimento>
+   // @FetchRequest var abastecimentos: FetchedResults<Abastecimento>
+     @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data == max(data)"))
+     var abastecimentos: FetchedResults<Abastecimento>
     
     // caminho da base sqlite
     let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -49,10 +42,11 @@ struct MenuScreen: View
                 Collections(name: "Config", image: "config", content: ".")
         ]
 
-        let ultimoAbastecimento = Abastecimento(context: moc)
+        //let ultimoAbastecimento = Abastecimento(context: moc)
 
         VStack
         {
+            ForEach(abastecimentos) { ultimoAbastecimento in
             VStack
             {
                 HStack
@@ -62,7 +56,7 @@ struct MenuScreen: View
                         .font(.body)
                         .foregroundColor(.black)
                 }.onAppear(perform: {print(paths[0])})
-                
+
                 HStack
                 {
                     Text("Odometro: ")
@@ -70,7 +64,7 @@ struct MenuScreen: View
                         .font(.body)
                         .foregroundColor(.black)
                 }
-                
+
                 HStack
                 {
                     Text("Volume: ")
@@ -78,7 +72,7 @@ struct MenuScreen: View
                         .font(.body)
                         .foregroundColor(.black)
                 }
-                
+
                 HStack
                 {
                     Text("Valor: ")
@@ -86,7 +80,7 @@ struct MenuScreen: View
                         .font(.body)
                         .foregroundColor(.black)
                 }
-            }
+            }}
 
             Text("VW Jetta").font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
@@ -160,16 +154,16 @@ struct MenuScreen: View
         return maxTimestamp
     }
 }
-let request: NSFetchRequest<Person> = Person.fetchRequest()
-request.fetchLimit = 1
-
-let predicate = NSPredicate(format: "personId ==max(personId)")
-request.predicate = predicate
-
-var maxValue: Int64? = nil
-do {
-    let result = try self.context.fetch(request).first
-    maxValue = result?.personId
-} catch {
-    print("Unresolved error in retrieving max personId value \(error)")
-}
+//let request: NSFetchRequest<Person> = Person.fetchRequest()
+//request.fetchLimit = 1
+//
+//let predicate = NSPredicate(format: "personId ==max(personId)")
+//request.predicate = predicate
+//
+//var maxValue: Int64? = nil
+//do {
+//    let result = try self.context.fetch(request).first
+//    maxValue = result?.personId
+//} catch {
+//    print("Unresolved error in retrieving max personId value \(error)")
+//}
