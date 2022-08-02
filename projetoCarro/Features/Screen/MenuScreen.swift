@@ -16,21 +16,13 @@ import NavigationStack
 
 struct MenuScreen: View
 {
-
     @Environment(\.managedObjectContext) var moc
-   // @FetchRequest var abastecimentos: FetchedResults<Abastecimento>
-     @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data == max(data)"))
-     var abastecimentos: FetchedResults<Abastecimento>
+    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data == max(data)"))
+    var abastecimentos: FetchedResults<Abastecimento>
     
     // caminho da base sqlite
     let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
     
-//    let request =  NSFetchRequest<NSFetchRequestResult>(entityName:"Abastecimento")
-//    @Environment(\.managedObjectContext) var moc1
-//    @FetchRequest(fetchRequest: request)
-    //@FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)])
-   // var abastecimentos1: FetchedResults<Abastecimento>
-
     var body: some View
     {
         //
@@ -42,47 +34,10 @@ struct MenuScreen: View
                 Collections(name: "Config", image: "config", content: ".")
         ]
 
-        //let ultimoAbastecimento = Abastecimento(context: moc)
-
         VStack
         {
-            ForEach(abastecimentos) { ultimoAbastecimento in
-            VStack
-            {
-                HStack
-                {
-                    Text("Última vez: ")
-                    Text((ultimoAbastecimento.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
-                        .font(.body)
-                        .foregroundColor(.black)
-                }.onAppear(perform: {print(paths[0])})
-
-                HStack
-                {
-                    Text("Odometro: ")
-                    Text(String(ultimoAbastecimento.km))
-                        .font(.body)
-                        .foregroundColor(.black)
-                }
-
-                HStack
-                {
-                    Text("Volume: ")
-                    Text(String(format: "%.2f", ultimoAbastecimento.litros))
-                        .font(.body)
-                        .foregroundColor(.black)
-                }
-
-                HStack
-                {
-                    Text("Valor: ")
-                    Text(String(format: "%.2f", ultimoAbastecimento.valorTotal))
-                        .font(.body)
-                        .foregroundColor(.black)
-                }
-            }}
-
-            Text("VW Jetta").font(.system(.largeTitle, design: .rounded))
+            UltimoAbastecimentoView(abastecimentos)
+            Text("*******").font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(.black)
                 .padding()
@@ -104,7 +59,7 @@ struct MenuScreen: View
                 {
                     ImageLabelRow(collection: collections[2])
                 }
-            }
+            }.onAppear(perform: {print(paths[0])})
             
             PushView(destination: AlertasView())
             {
@@ -154,16 +109,48 @@ struct MenuScreen: View
         return maxTimestamp
     }
 }
-//let request: NSFetchRequest<Person> = Person.fetchRequest()
-//request.fetchLimit = 1
-//
-//let predicate = NSPredicate(format: "personId ==max(personId)")
-//request.predicate = predicate
-//
-//var maxValue: Int64? = nil
-//do {
-//    let result = try self.context.fetch(request).first
-//    maxValue = result?.personId
-//} catch {
-//    print("Unresolved error in retrieving max personId value \(error)")
-//}
+
+//////////
+struct UltimoAbastecimentoView: View
+{
+    private var abastecimentos: Abastecimento 
+
+    var body: some View
+    {
+        ForEach(abastecimentos) { ultimoAbastecimento in
+        VStack(alignment: .leading, spacing: 10)        
+        {
+            HStack
+            {
+                Text("Última vez: ")
+                Text((ultimoAbastecimento.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
+                    .font(.body)
+                    .foregroundColor(.black)
+            }
+
+            HStack
+            {
+                Text("Odômetro: ")
+                Text(String(ultimoAbastecimento.km))
+                    .font(.body)
+                    .foregroundColor(.black)
+            }
+
+            HStack
+            {
+                Text("Volume: ")
+                Text(String(format: "%.2f", ultimoAbastecimento.litros))
+                    .font(.body)
+                    .foregroundColor(.black)
+            }
+
+            HStack
+            {
+                Text("Valor: ")
+                Text(String(format: "%.2f", ultimoAbastecimento.valorTotal))
+                    .font(.body)
+                    .foregroundColor(.black)
+            }
+        }}
+    }
+}
