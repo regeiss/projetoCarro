@@ -76,20 +76,20 @@ struct AbastecimentoView: View
             Spacer()
             
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
-            .onDisappear { moc1.perform {
-                let newAbastecimento = Abastecimento(context: moc1)
-                newAbastecimento.id = UUID()
-                newAbastecimento.km = Int32(formInfo.km) ?? 45
-             newAbastecimento.completo = Bool(formInfo.completo)
-             newAbastecimento.litros = Double(formInfo.litros) ?? 23.0
-             newAbastecimento.data = (formInfo.data)
-             newAbastecimento.valorLitro = Double(formInfo.valorLitro) ?? 7.0
-             newAbastecimento.valorTotal = (Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0)
-
-             try? moc1.save()
-             print("Registro incluido")
-            }
-            }
+//            .onDisappear { moc1.perform {
+//                let newAbastecimento = Abastecimento(context: moc1)
+//                newAbastecimento.id = UUID()
+//                newAbastecimento.km = Int32(formInfo.km) ?? 45
+//             newAbastecimento.completo = Bool(formInfo.completo)
+//             newAbastecimento.litros = Double(formInfo.litros) ?? 23.0
+//             newAbastecimento.data = (formInfo.data)
+//             newAbastecimento.valorLitro = Double(formInfo.valorLitro) ?? 7.0
+//             newAbastecimento.valorTotal = (Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0)
+//
+//             try? moc1.save()
+//             print("Registro incluido")
+//            }
+//            }
                 
     }
 }

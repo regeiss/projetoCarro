@@ -17,7 +17,7 @@ import NavigationStack
 struct MenuScreen: View
 {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)], predicate: NSPredicate(format: "data == max(data)"))
+    @FetchRequest(entity: Abastecimento.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Abastecimento.data, ascending: false)])//, predicate: NSPredicate(format: "data == max(data)"))
     var abastecimentos: FetchedResults<Abastecimento>
     
     // caminho da base sqlite
@@ -33,10 +33,11 @@ struct MenuScreen: View
                 Collections(name: "Alertas", image: "alertas", content: "."),
                 Collections(name: "Config", image: "config", content: ".")
         ]
-
+        let ultimoAbastecimento = Abastecimento(context: moc)
+        
         VStack
         {
-            UltimoAbastecimentoView(abastecimentos)
+            UltimoAbastecimentoView(abastecimentos: ultimoAbastecimento)
             Text("*******").font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(.black)
@@ -107,50 +108,5 @@ struct MenuScreen: View
         }
 
         return maxTimestamp
-    }
-}
-
-//////////
-struct UltimoAbastecimentoView: View
-{
-    private var abastecimentos: Abastecimento 
-
-    var body: some View
-    {
-        ForEach(abastecimentos) { ultimoAbastecimento in
-        VStack(alignment: .leading, spacing: 10)        
-        {
-            HStack
-            {
-                Text("Última vez: ")
-                Text((ultimoAbastecimento.data ?? Date()).formatted(date: .abbreviated, time: .shortened))
-                    .font(.body)
-                    .foregroundColor(.black)
-            }
-
-            HStack
-            {
-                Text("Odômetro: ")
-                Text(String(ultimoAbastecimento.km))
-                    .font(.body)
-                    .foregroundColor(.black)
-            }
-
-            HStack
-            {
-                Text("Volume: ")
-                Text(String(format: "%.2f", ultimoAbastecimento.litros))
-                    .font(.body)
-                    .foregroundColor(.black)
-            }
-
-            HStack
-            {
-                Text("Valor: ")
-                Text(String(format: "%.2f", ultimoAbastecimento.valorTotal))
-                    .font(.body)
-                    .foregroundColor(.black)
-            }
-        }}
     }
 }
