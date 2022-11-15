@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Abastecimento" representedClassName="Abastecimento" syncable="YES">
+        <attribute name="completo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="data" optional="YES" attributeType="Date" defaultDateTimeInterval="683228520" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="km" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="litros" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="media" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="valorLitro" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="valorTotal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="doCarro" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Carro" inverseName="carroAbastecimento" inverseEntity="Carro"/>
+        <relationship name="doPosto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Posto" inverseName="postoAbastecimento" inverseEntity="Posto"/>
+    </entity>
+    <entity name="Carro" representedClassName="Carro" syncable="YES">
+        <attribute name="ano" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ativo" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="chassis" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="idperfil" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="marca" optional="YES" attributeType="String"/>
+        <attribute name="modelo" optional="YES" attributeType="String"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+        <attribute name="placa" optional="YES" attributeType="String"/>
+        <relationship name="carroAbastecimento" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Abastecimento" inverseName="doCarro" inverseEntity="Abastecimento"/>
+        <relationship name="dePerfil" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Perfil" inverseName="deCarro" inverseEntity="Perfil"/>
+    </entity>
+    <entity name="Categoria" representedClassName="Categoria" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ItemServico" representedClassName="ItemServico" syncable="YES">
+        <attribute name="custo" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="data" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="km" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+        <attribute name="observacoes" optional="YES" attributeType="String"/>
+        <relationship name="doServico" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Servico" inverseName="doItemServico" inverseEntity="Servico"/>
+    </entity>
+    <entity name="Perfil" representedClassName="Perfil" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+        <relationship name="deCarro" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Carro" inverseName="dePerfil" inverseEntity="Carro"/>
+    </entity>
+    <entity name="Posto" representedClassName="Posto" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="logo" optional="YES" attributeType="Binary"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+        <relationship name="postoAbastecimento" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Abastecimento" inverseName="doPosto" inverseEntity="Abastecimento"/>
+    </entity>
+    <entity name="Servico" representedClassName="Servico" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="idcategoria" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="idperiodicidade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String"/>
+        <relationship name="doItemServico" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemServico" inverseName="doServico" inverseEntity="ItemServico"/>
+    </entity>
+    <fetchRequest name="FetchRequest" entity="Perfil" predicateString="id CONTAINS &quot;1&quot;"/>
+</model>
