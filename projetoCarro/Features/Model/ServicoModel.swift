@@ -10,9 +10,9 @@ import Foundation
 struct NovoServico: Identifiable
 {
     let id: UUID
-    let idcategoria: UUID
     let idperiodicidade: Int16
     let nome: String
+    let daCategoria: Categoria
 }
 
 struct NovoItemServico: Identifiable

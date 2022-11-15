@@ -57,10 +57,10 @@ class ServicoPublisher: NSObject, ObservableObject
     {
         let newServico = Servico(context: backgroundContext)
         newServico.id = servico.id
-        newServico.idcategoria = servico.idcategoria
         newServico.idperiodicidade = servico.idperiodicidade
         newServico.nome = servico.nome
-
+        newServico.daCategoria = servico.daCategoria
+        
         backgroundContext.performAndWait
         {
             do

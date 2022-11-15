@@ -27,7 +27,6 @@ extension Abastecimento
     @NSManaged public var valorTotal: Double
     @NSManaged public var doCarro: Carro?
     @NSManaged public var doPosto: Posto?
-
 }
 
 extension Abastecimento : Identifiable

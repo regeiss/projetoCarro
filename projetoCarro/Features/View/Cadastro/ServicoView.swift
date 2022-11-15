@@ -33,13 +33,13 @@ class ServicoFormInfo: ObservableObject
 struct ServicoView: View
 {
     @StateObject private var viewModel = ServicoViewModel()
-
+    @StateObject private var viewModelCategoria = CategoriaViewModel()
+    
     @ObservedObject var formInfo = ServicoFormInfo()
     @State var isSaveDisabled: Bool = true
     @FocusState private var servicoInFocus: ServicoFocusable?
     
-    var categoria: String = ""
-    // controle do tipo de edição
+    @State var categoria: Categoria?
     var isEdit: Bool
     var servico: Servico
     
@@ -59,7 +59,13 @@ struct ServicoView: View
                         .validation(formInfo.valNomeVazio)
                         .focused($servicoInFocus, equals: .nome)
                         .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {self.servicoInFocus = .nome}}
-                    Text(categoria)
+                    
+                    Picker("Categoria:", selection: $categoria)
+                    {
+                        ForEach(viewModelCategoria.categoriasLista) { (categoria: Categoria) in
+                            Text(categoria.nome!).tag(categoria as Categoria?)
+                        }
+                    }.pickerStyle(.automatic)
                     Text(String(formInfo.idperiodicidade))
                 }
             }.onReceive(pub)  {_ in gravarServico()}
@@ -82,9 +88,9 @@ struct ServicoView: View
                 else
                 {
                     let servico = NovoServico(id: UUID(),
-                                              idcategoria: formInfo.idcategoria,
                                               idperiodicidade: formInfo.idperiodicidade,
-                                              nome: formInfo.nome)
+                                              nome: formInfo.nome,
+                                              daCategoria: categoria!)
                     viewModel.add(servico: servico)
                 }
             }

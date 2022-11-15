@@ -28,6 +28,7 @@
     <entity name="Categoria" representedClassName="Categoria" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
+        <relationship name="doServico" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Servico" inverseName="daCategoria" inverseEntity="Servico"/>
     </entity>
     <entity name="ItemServico" representedClassName="ItemServico" syncable="YES">
         <attribute name="custo" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -55,6 +56,7 @@
         <attribute name="idcategoria" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="idperiodicidade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
+        <relationship name="daCategoria" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Categoria" inverseName="doServico" inverseEntity="Categoria"/>
         <relationship name="doItemServico" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemServico" inverseName="doServico" inverseEntity="ItemServico"/>
     </entity>
     <fetchRequest name="FetchRequest" entity="Perfil" predicateString="id CONTAINS &quot;1&quot;"/>

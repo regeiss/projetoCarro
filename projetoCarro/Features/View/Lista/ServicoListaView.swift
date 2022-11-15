@@ -26,7 +26,7 @@ struct ServicoListaView: View
                     {
                         Text(String(servico.nome ?? ""))
                         Spacer()
-                        //Image(servico.icone)
+                        Text(String(servico.nomeCategoria))
                     }.onTapGesture { editServicos(servico: servico)}
                 }.onDelete(perform: deleteServicos)
             }
@@ -49,3 +49,11 @@ struct ServicoListaView: View
     }
 }
 
+extension Servico
+{
+    @objc
+    var nomeCategoria: String
+    {
+        self.daCategoria?.nome ?? "não informado"
+    }
+}
