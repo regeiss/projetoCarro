@@ -19,8 +19,8 @@ class AbastecimentoPublisher: NSObject, ObservableObject
     private let abastecimentoFetchController: NSFetchedResultsController<Abastecimento>
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Publisher")
     
-    var backgroundContext: NSManagedObjectContext = {
-        let context = PersistenceController.shared.container.viewContext
+    var publisherContext: NSManagedObjectContext = {
+         let context = PersistenceController.shared.container.viewContext
              context.mergePolicy = NSMergePolicy( merge: .mergeByPropertyObjectTrumpMergePolicyType)
              context.automaticallyMergesChangesFromParent = true
          return context
@@ -28,7 +28,6 @@ class AbastecimentoPublisher: NSObject, ObservableObject
     
     private override init() 
     {
-        @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
         let fetchRequest: NSFetchRequest<Abastecimento> = Abastecimento.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "data", ascending: false)
 
@@ -36,8 +35,8 @@ class AbastecimentoPublisher: NSObject, ObservableObject
 
         abastecimentoFetchController = NSFetchedResultsController(
             fetchRequest: fetchRequest,  
-            managedObjectContext: backgroundContext,
-            sectionNameKeyPath: nil, cacheName: nil
+            managedObjectContext: publisherContext,
+            sectionNameKeyPath: "data", cacheName: nil
         )
 
         super.init()
@@ -57,8 +56,7 @@ class AbastecimentoPublisher: NSObject, ObservableObject
 
     func add(abastecimento: ultimoAbastecimento)
     {
-        let newAbastecimento = Abastecimento(context: backgroundContext)
-        
+        let newAbastecimento = Abastecimento(context: publisherContext)
         newAbastecimento.id = abastecimento.id
         newAbastecimento.km = abastecimento.km
         newAbastecimento.completo = abastecimento.completo
@@ -67,14 +65,13 @@ class AbastecimentoPublisher: NSObject, ObservableObject
         newAbastecimento.valorLitro = abastecimento.valorLitro        
         newAbastecimento.valorTotal = abastecimento.litros * abastecimento.valorLitro
         newAbastecimento.media = abastecimento.media
-        newAbastecimento.doPosto = abastecimento.doPosto
-        newAbastecimento.doCarro = abastecimento.doCarro
+        newAbastecimento.setValue(abastecimento.idposto, forKey: "idposto") //idposto = abastecimento.idposto
         
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
             do
             {
-                try backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
@@ -90,12 +87,12 @@ class AbastecimentoPublisher: NSObject, ObservableObject
 
     func delete(abastecimento: Abastecimento)
     {
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
-            backgroundContext.delete(abastecimento)
+            publisherContext.delete(abastecimento)
             do
             {
-                try backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
@@ -115,4 +112,3 @@ extension AbastecimentoPublisher: NSFetchedResultsControllerDelegate
         self.abastecimentoCVS.value = abastecimentos
     }
 }
-
