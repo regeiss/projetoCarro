@@ -65,3 +65,4 @@
 //
 //}   
 //// https://dps923.ca/notes/core-data-multi-entities.html
+// https://www.hackingwithswift.com/forums/swiftui/list-nsfetchedresultscontroller-sections/9379
