@@ -36,7 +36,7 @@ class AbastecimentoPublisher: NSObject, ObservableObject
         abastecimentoFetchController = NSFetchedResultsController(
             fetchRequest: fetchRequest,  
             managedObjectContext: publisherContext,
-            sectionNameKeyPath: "data", cacheName: nil
+            sectionNameKeyPath: #keyPath(Abastecimento.data), cacheName: nil
         )
 
         super.init()
@@ -65,7 +65,8 @@ class AbastecimentoPublisher: NSObject, ObservableObject
         newAbastecimento.valorLitro = abastecimento.valorLitro        
         newAbastecimento.valorTotal = abastecimento.litros * abastecimento.valorLitro
         newAbastecimento.media = abastecimento.media
-        newAbastecimento.setValue(abastecimento.idposto, forKey: "idposto") //idposto = abastecimento.idposto
+        newAbastecimento.doPosto = abastecimento.doPosto 
+        newAbastecimento.doCarro = abastecimento.doCarro
         
         publisherContext.performAndWait
         {

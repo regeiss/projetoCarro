@@ -19,26 +19,29 @@ struct AbastecimentoListaView: View
             HeaderAddView(nomeView: "Lista abastecimento", nomeMenu: "Menu", destRouter: "abast", backRouter: "cadastros")
             List
             {
-                ForEach(viewModel.abastecimentosLista, id: \.self) { abastecimento in
-                    HStack
-                    {
-                        Label("gas", systemImage: "fuelpump.circle")
-                            .labelStyle(.iconOnly)
-                            .imageScale(.large)
-                        VStack
+                Section(header: Text(String(viewModel.abastecimentosLista.first.data).formatted(date: .numeric, time: .omitted)))
+                {
+                    ForEach(viewModel.abastecimentosLista, id: \.self) { abastecimento in
+                        HStack
                         {
-                            HStack{Text("Data: "); Text((abastecimento.data ?? Date()).formatted(date: .numeric, time: .omitted))
-                                Spacer();
-                                if abastecimento.media > 0 {
-                                    Text(String(format: "%.3f", abastecimento.media)); Text(" km/l")}}
-                            HStack{Text("Total: ");Text (String(format: "%.2f", abastecimento.valorTotal).toCurrencyFormat()); Spacer()}
-                            HStack{Text("Odômetro: "); Text(String(abastecimento.km).toQuilometrosFormat())
-                                Spacer(); Text("Litros: "); Text(String(format: "%.3f", abastecimento.litros))}
-                            HStack{Text(abastecimento.nomePosto); Spacer()}
-                            HStack{Text(abastecimento.nomeCarro); Spacer()}
-                        }.padding(.all, 2)
-                    }.padding([.top, .bottom], 2)
-                }.onDelete(perform: deleteAbastecimentos)
+                            Label("gas", systemImage: "fuelpump.circle")
+                                .labelStyle(.iconOnly)
+                                .imageScale(.large)
+                            VStack
+                            {
+                                HStack{Text("Data: "); Text((abastecimento.data ?? Date()).formatted(date: .numeric, time: .omitted))
+                                    Spacer();
+                                    if abastecimento.media > 0 {
+                                        Text(String(format: "%.3f", abastecimento.media)); Text(" km/l")}}
+                                HStack{Text("Total: ");Text (String(format: "%.2f", abastecimento.valorTotal).toCurrencyFormat()); Spacer()}
+                                HStack{Text("Odômetro: "); Text(String(abastecimento.km).toQuilometrosFormat())
+                                    Spacer(); Text("Litros: "); Text(String(format: "%.3f", abastecimento.litros))}
+                                HStack{Text(abastecimento.nomePosto); Spacer()}
+                                HStack{Text(abastecimento.nomeCarro); Spacer()}
+                            }.padding(.all, 2)
+                        }.padding([.top, .bottom], 2)
+                    }.onDelete(perform: deleteAbastecimentos)
+                }
             }
             Spacer()
         }
