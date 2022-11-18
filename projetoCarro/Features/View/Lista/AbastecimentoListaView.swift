@@ -19,7 +19,7 @@ struct AbastecimentoListaView: View
             HeaderAddView(nomeView: "Lista abastecimento", nomeMenu: "Menu", destRouter: "abast", backRouter: "cadastros")
             List
             {
-                Section(header: Text(String(viewModel.abastecimentosLista.first.data).formatted(date: .numeric, time: .omitted)))
+                Section(header: Text("mm"))
                 {
                     ForEach(viewModel.abastecimentosLista, id: \.self) { abastecimento in
                         HStack

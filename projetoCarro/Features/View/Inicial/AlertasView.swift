@@ -25,7 +25,8 @@ struct AlertasView: View
                     {
                         router.toAlertaDetalhe()
                     }
-                ForEach(0 ..< 4) { item in
+                ForEach(0 ..< 4)
+                { item in
                     MenuRow(titulo: "Alertas")
                 }
             }.padding()

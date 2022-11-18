@@ -11,18 +11,18 @@ struct ImageLabelRow: View
 {
     let router = MyRouter.shared
     var collection: Collections
-    let height: CGFloat = 150
+    let height: CGFloat = 110
     
     var body: some View
     {
         ZStack(alignment: .bottomTrailing)
         {
             // TODO: Verificar o tamanho da imagem e do retangulo
-//            Image(collection.image)
-//            .resizable()
-//            .aspectRatio(contentMode: .fill)
-//                .frame(height: height)
-//                .cornerRadius(20)
+            Image(collection.image)
+            //.resizable()
+            //.aspectRatio(contentMode: .fill)
+                .frame(height: collection.name == "Abastecimento" ? 150 : 110)
+                .cornerRadius(20)
 //                .overlay(
 //                    Rectangle()
 //                        .foregroundColor(.black)
@@ -32,8 +32,10 @@ struct ImageLabelRow: View
                        // .onTapGesture { screenRouter(indice: collection.id)}
 //                    )
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
-                .frame(height: 150)
+                .background(.ultraThinMaterial)
+                .opacity(0.7)
+                .frame(height: collection.name == "Abastecimento" ? 150 : 110)
+                .opacity(10)
                 .onTapGesture { screenRouter(indice: collection.id)}
             Text(collection.name)
                 .font(.system(.largeTitle, design: .rounded))

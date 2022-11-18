@@ -53,7 +53,8 @@ struct ConfiguracaoView: View
                 }
                 Section()
                 {
-                    Button("OK") {
+                    Button("OK")
+                    {
                         router.toMenu()
                     }
                 }
