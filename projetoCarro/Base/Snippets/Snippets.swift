@@ -66,3 +66,4 @@
 //}   
 // https://dps923.ca/notes/core-data-multi-entities.html
 // https://www.hackingwithswift.com/forums/swiftui/list-nsfetchedresultscontroller-sections/9379
+// https://stackoverflow.com/questions/58574847/how-to-dynamically-create-sections-in-a-swiftui-list-foreach-and-avoid-unable-t
