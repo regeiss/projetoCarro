@@ -31,11 +31,9 @@ struct ImageLabelRow: View
 //                        .frame(height: height)
                        // .onTapGesture { screenRouter(indice: collection.id)}
 //                    )
-            RoundedRectangle(cornerRadius: 20)
-                .background(.ultraThinMaterial)
-                .opacity(0.7)
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray)
                 .frame(height: collection.name == "Abastecimento" ? 150 : height)
-            
                 .onTapGesture { screenRouter(indice: collection.id)}
             Text(collection.name)
                 .font(.system(.largeTitle, design: .rounded))
