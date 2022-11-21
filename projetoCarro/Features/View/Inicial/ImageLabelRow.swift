@@ -18,11 +18,11 @@ struct ImageLabelRow: View
         ZStack(alignment: .bottomTrailing)
         {
             // TODO: Verificar o tamanho da imagem e do retangulo
-            Image(collection.image)
-            //.resizable()
-            //.aspectRatio(contentMode: .fill)
-                .frame(height: collection.name == "Abastecimento" ? 150 : 110)
-                .cornerRadius(20)
+//            Image(collection.image)
+//            .resizable()
+//            .aspectRatio(contentMode: .fill)
+//                .frame(height: collection.name == "Abastecimento" ? 150 : height)
+//                .cornerRadius(20)
 //                .overlay(
 //                    Rectangle()
 //                        .foregroundColor(.black)
@@ -31,11 +31,11 @@ struct ImageLabelRow: View
 //                        .frame(height: height)
                        // .onTapGesture { screenRouter(indice: collection.id)}
 //                    )
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 20)
                 .background(.ultraThinMaterial)
                 .opacity(0.7)
-                .frame(height: collection.name == "Abastecimento" ? 150 : 110)
-                .opacity(10)
+                .frame(height: collection.name == "Abastecimento" ? 150 : height)
+            
                 .onTapGesture { screenRouter(indice: collection.id)}
             Text(collection.name)
                 .font(.system(.largeTitle, design: .rounded))
@@ -43,8 +43,10 @@ struct ImageLabelRow: View
                 .foregroundColor(.orange)
                 .offset(x: 1.0, y: 10)
                 .padding()
-                .allowsHitTesting(false)
-            
+                .background(
+                        Image("collection.image")
+                            .resizable())
+                .onTapGesture { screenRouter(indice: collection.id)}
             if collection.name == "Abastecimento"
             {
                 UltimoAbastecimentoView().offset(x: -10, y: -50)

@@ -42,7 +42,7 @@ struct AbastecimentoListaView: View
                         }.padding([.top, .bottom], 2)
                     }.onDelete(perform: deleteAbastecimentos)
                 }
-            }
+            }.listStyle(.grouped)
             Spacer()
         }
     }
