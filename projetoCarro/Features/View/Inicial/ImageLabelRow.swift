@@ -42,7 +42,7 @@ struct ImageLabelRow: View
                 .offset(x: 1.0, y: 10)
                 .padding()
                 //.background(
-                //        Image("collection.image")
+                //        Image("collection.image") 
                 //            .resizable())
                 .onTapGesture { screenRouter(indice: collection.id)}
             if collection.name == "Abastecimento"
