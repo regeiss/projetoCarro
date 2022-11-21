@@ -41,9 +41,9 @@ struct ImageLabelRow: View
                 .foregroundColor(.orange)
                 .offset(x: 1.0, y: 10)
                 .padding()
-                .background(
-                        Image("collection.image")
-                            .resizable())
+                //.background(
+                //        Image("collection.image")
+                //            .resizable())
                 .onTapGesture { screenRouter(indice: collection.id)}
             if collection.name == "Abastecimento"
             {
