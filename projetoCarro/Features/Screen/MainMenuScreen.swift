@@ -48,9 +48,10 @@ struct MainMenuScreen: View
                     .padding([.leading])
             }
             
-            ScrollView(.vertical)
-            {
-                LazyVGrid(columns: columns, alignment: .center, spacing: 5)
+            //ScrollView(.vertical)
+            //{
+            //    LazyVGrid(columns: columns, alignment: .center, spacing: 5)
+            VStack
                 {
                     ImageLabelRow(collection: collections[0])
                     ImageLabelRow(collection: collections[1])
