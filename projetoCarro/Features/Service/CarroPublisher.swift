@@ -111,26 +111,22 @@ class CarroPublisher: NSObject, ObservableObject
     func selecionarCarroAtivo()
     {
         let fetchRequest: NSFetchRequest<Carro> = Carro.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "nome", ascending: false)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "(ativo == 1)")
+        fetchRequest.fetchLimit = 1
 
-        let carroAtual = NSPredicate(format: "(ativo == 1)")
-        fetchRequest.predicate = carroAtual
+        // TODO: verificar por ID
+        // let carroAtualFC = NSFetchedResultsController(
+        //     fetchRequest: fetchRequest,
+        //     managedObjectContext: backgroundContext,
+        //     sectionNameKeyPath: nil, cacheName: nil)
         
-        // TODO: verificar quebras de secao
-        let carroAtualFC = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: backgroundContext,
-            sectionNameKeyPath: nil, cacheName: nil)
-        
-        carroAtualFC.delegate = self
+        // carroAtualFC.delegate = self
         
         do
         {
-            logger.log("Context has changed - filter, reloading carro")
-            try carroAtualFC.performFetch()
-            carroCVS.value = carroAtualFC.fetchedObjects ?? []
+            logger.log("Context has changed, buscando carro atual")
+            let carroAtual = try backgroundContext.fetch(fetchRequest).first
+            
         }
         catch
         {
