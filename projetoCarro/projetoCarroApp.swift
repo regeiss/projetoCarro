@@ -12,6 +12,7 @@ final class modeloGlobal: ObservableObject
 {
     static let shared = modeloGlobal()
     var ultimaKM: Int32 = 1
+    var carroAtual: Carro?
 }
 
 @main

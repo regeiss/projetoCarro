@@ -107,6 +107,36 @@ class CarroPublisher: NSObject, ObservableObject
             }
         }
     }
+    
+    func selecionarCarroAtivo()
+    {
+        let fetchRequest: NSFetchRequest<Carro> = Carro.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "nome", ascending: false)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let carroAtual = NSPredicate(format: "(ativo == 1)")
+        fetchRequest.predicate = carroAtual
+        
+        // TODO: verificar quebras de secao
+        let carroAtualFC = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: backgroundContext,
+            sectionNameKeyPath: nil, cacheName: nil)
+        
+        carroAtualFC.delegate = self
+        
+        do
+        {
+            logger.log("Context has changed - filter, reloading carro")
+            try carroAtualFC.performFetch()
+            carroCVS.value = carroAtualFC.fetchedObjects ?? []
+        }
+        catch
+        {
+            fatalError("Erro moc \(error.localizedDescription)")
+        }
+    }
 }
 
 extension CarroPublisher: NSFetchedResultsControllerDelegate
@@ -117,5 +147,6 @@ extension CarroPublisher: NSFetchedResultsControllerDelegate
         else { return}
         logger.log("Context has changed, reloading carros")
         self.carroCVS.value = carros
+        modeloGlobal.shared.carroAtual = carros[0]
     }
 }

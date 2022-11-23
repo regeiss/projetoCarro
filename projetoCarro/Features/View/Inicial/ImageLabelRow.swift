@@ -23,28 +23,29 @@ struct ImageLabelRow: View
 //            .aspectRatio(contentMode: .fill)
 //                .frame(height: collection.name == "Abastecimento" ? 150 : height)
 //                .cornerRadius(20)
+//                .clipped()
 //                .overlay(
 //                    Rectangle()
 //                        .foregroundColor(.black)
 //                        .cornerRadius(20)
 //                        .opacity(0.2)
 //                        .frame(height: height)
-                       // .onTapGesture { screenRouter(indice: collection.id)}
+//                        .onTapGesture { screenRouter(indice: collection.id)}
 //                    )
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.gray)
                 .frame(height: collection.name == "Abastecimento" ? 150 : height)
+                .opacity(0.4)
                 .onTapGesture { screenRouter(indice: collection.id)}
+            
             Text(collection.name)
                 .font(.system(.largeTitle, design: .rounded))
                 .fontWeight(.heavy)
                 .foregroundColor(.orange)
                 .offset(x: 1.0, y: 10)
                 .padding()
-                //.background(
-                //        Image("collection.image") 
-                //            .resizable())
                 .onTapGesture { screenRouter(indice: collection.id)}
+            
             if collection.name == "Abastecimento"
             {
                 UltimoAbastecimentoView().offset(x: -10, y: -50)
@@ -69,7 +70,6 @@ struct ImageLabelRow: View
             default:
                 router.toMenu()
         }
-        
     }
 }
 

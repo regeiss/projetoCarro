@@ -36,6 +36,8 @@ struct HeaderHamburguerView: View
                 
                 Text(nomeMenu).foregroundColor(.blue).font(.system(.title3, design: .rounded))
                 Spacer()
+                Text(modeloGlobal.shared.carroAtual?.nome ?? "N/A")
+                Spacer()
                 Image(systemName: "car.2").foregroundColor(.blue)
                     .imageScale(.large)
                     .padding([.trailing])

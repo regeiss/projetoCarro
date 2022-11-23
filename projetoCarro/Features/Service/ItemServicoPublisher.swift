@@ -79,7 +79,17 @@ class ItemServicoPublisher: NSObject, ObservableObject
 
     func update(itemServico: ItemServico)
     {
-        //...
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
     }
     // MARK: Filtro de registro
     func filter(tipo: String)

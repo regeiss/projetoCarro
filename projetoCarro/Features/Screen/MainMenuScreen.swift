@@ -26,7 +26,7 @@ struct MainMenuScreen: View
             Collections(id: 3, name: "Alertas", image: "alertas", content: "."),
             Collections(id: 4, name: "Cadastros", image: "config", content: ".")
         ]
-
+        
         let drag = DragGesture()
             .onEnded
         {
@@ -48,19 +48,18 @@ struct MainMenuScreen: View
                     .padding([.leading])
             }
             
-            //ScrollView(.vertical)
-            //{
-            //    LazyVGrid(columns: columns, alignment: .center, spacing: 5)
-            VStack
+            ScrollView(.vertical)
+            {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 5)
                 {
                     ImageLabelRow(collection: collections[0])
                     ImageLabelRow(collection: collections[1])
                     ImageLabelRow(collection: collections[2])
                     ImageLabelRow(collection: collections[3])
                     ImageLabelRow(collection: collections[4])
-
+                    
                 }.padding([.leading, .trailing])
-                 .gesture(drag)
+                    .gesture(drag)
             }
         }
     }

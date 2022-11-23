@@ -127,7 +127,7 @@ struct AbastecimentoView: View
                                             completo:  Bool(formInfo.completo),
                                             media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
                                             doPosto: posto!,
-                                            doCarro: viewModelCarro.carrosLista.first!)
+                                            doCarro: modeloGlobal.shared.carroAtual!)
             
             viewModel.add(abastecimento: uab)
         }

@@ -15,6 +15,8 @@ struct ContentView: View
     static let navigationStack = NavigationStackCompat()
     @State var showMenu: Bool
     
+    @StateObject private var viewModelCarro = CarroViewModel()
+    
     var body: some View
     {
         let drag = DragGesture()
@@ -22,7 +24,7 @@ struct ContentView: View
         {
             if $0.translation.width < -100
             {
-                    withAnimation { self.showMenu = false}
+                withAnimation { self.showMenu = false}
             }
         }
         
@@ -46,6 +48,7 @@ struct ContentView: View
                         .frame(width: geometry.size.width / 2)
                 }
             }.gesture(drag)
+            .onAppear() { viewModelCarro.selecionarCarroAtivo()}
         }
     }
 }

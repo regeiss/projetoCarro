@@ -22,6 +22,10 @@ class CarroViewModel: ObservableObject
         }
     }
 
+    func selecionarCarroAtivo()
+    {
+        CarroPublisher.shared.selecionarCarroAtivo()
+    }
     func update(carro: Carro)
     {
         CarroPublisher.shared.update(carro: carro)
