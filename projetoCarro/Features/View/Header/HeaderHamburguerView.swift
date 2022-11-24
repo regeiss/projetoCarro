@@ -43,7 +43,8 @@ struct HeaderHamburguerView: View
                     .padding([.trailing])
                     .onTapGesture { isShowingSheet.toggle()}
             }
-        }.sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
+        }.onAppear() { viewModelCarro.selecionarCarroAtivo()}
+        .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
             VStack
             {
@@ -71,5 +72,4 @@ struct HeaderHamburguerView: View
             Button("Dispensar", action: { isShowingSheet.toggle() })
         }
     }
-    
 }
