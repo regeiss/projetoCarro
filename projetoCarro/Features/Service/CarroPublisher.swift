@@ -125,8 +125,9 @@ class CarroPublisher: NSObject, ObservableObject
         do
         {
             logger.log("Context has changed, buscando carro atual")
-            let carroAtual = try backgroundContext.fetch(fetchRequest).first
-            
+            guard let carroAtual = try backgroundContext.fetch(fetchRequest).first
+            else { return}
+            modeloGlobal.shared.carroAtual = carroAtual
         }
         catch
         {

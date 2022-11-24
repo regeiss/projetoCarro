@@ -22,7 +22,7 @@ class CarroViewModel: ObservableObject
         }
     }
 
-    func selecionarCarroAtivo()
+    func selecionarCarroAtivo() 
     {
         CarroPublisher.shared.selecionarCarroAtivo()
     }
