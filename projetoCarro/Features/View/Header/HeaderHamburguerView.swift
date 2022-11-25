@@ -44,7 +44,12 @@ struct HeaderHamburguerView: View
                     .padding([.trailing])
                     .onTapGesture { isShowingSheet.toggle()}
             }
-        }.onAppear() { carroAtual = modeloGlobal.shared.carroAtual}
+        }.onReceive(NotificationCenter.default.publisher(
+            for: UIApplication.willEnterForegroundNotification
+            )) { _ in
+                loadViewData()
+            }
+        //.onAppear() { loadViewData()}
         .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
             VStack
@@ -72,5 +77,10 @@ struct HeaderHamburguerView: View
             }
             Button("Dispensar", action: { isShowingSheet.toggle() })
         }
+    }
+
+    func loadViewData()
+    {
+        carroAtual = modeloGlobal.shared.carroAtual
     }
 }
