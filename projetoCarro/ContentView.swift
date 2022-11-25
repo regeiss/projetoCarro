@@ -48,6 +48,7 @@ struct ContentView: View
                         .frame(width: geometry.size.width / 2)
                 }
             }.gesture(drag)
+            .onAppear() { viewModelCarro.selecionarCarroAtivo()}
         }
     }
 }

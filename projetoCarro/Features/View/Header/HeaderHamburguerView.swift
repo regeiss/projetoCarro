@@ -10,9 +10,10 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct HeaderHamburguerView: View
 {
-    @StateObject private var viewModel = CarroViewModel()
+    @StateObject private var viewModelCarro = CarroViewModel()
     @Binding var showMenu: Bool
     @State private var isShowingSheet = false
+    @State private var carroAtual: Carro?
     
     let router = MyRouter.shared
     var nomeView: String
@@ -36,19 +37,19 @@ struct HeaderHamburguerView: View
                 
                 Text(nomeMenu).foregroundColor(.blue).font(.system(.title3, design: .rounded))
                 Spacer()
-                Text(modeloGlobal.shared.carroAtual?.nome ?? "N/A")
+                Text(carroAtual?.nome ?? "N/A")
                 Spacer()
                 Image(systemName: "car.2").foregroundColor(.blue)
                     .imageScale(.large)
                     .padding([.trailing])
                     .onTapGesture { isShowingSheet.toggle()}
             }
-        }.onAppear() { viewModelCarro.selecionarCarroAtivo()}
+        }.onAppear() { carroAtual = modeloGlobal.shared.carroAtual}
         .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
             VStack
             {
-                ForEach(viewModel.carrosLista, id: \.self) { carros in
+                ForEach(viewModelCarro.carrosLista, id: \.self) { carros in
                     ZStack()
                     {
                         Color(.systemGray6)
@@ -62,8 +63,8 @@ struct HeaderHamburguerView: View
                                     Text("Nome: "); Text(String(carros.nome ?? ""))
                                     Text(" "); Text(String(carros.placa ?? ""))
                                     Text(" "); Text(String(carros.ano))
-                                    Spacer()
                                 }
+                                Spacer()
                             }
                         }
                     }
