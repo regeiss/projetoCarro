@@ -48,7 +48,12 @@ struct ContentView: View
                         .frame(width: geometry.size.width / 2)
                 }
             }.gesture(drag)
-            .onAppear() { viewModelCarro.selecionarCarroAtivo()}
+                        .onReceive(NotificationCenter.default.publisher(
+                for: UIApplication.willEnterForegroundNotification)) 
+                { _ in
+                        viewModelCarro.selecionarCarroAtivo()
+                }   
+            //.onAppear() { viewModelCarro.selecionarCarroAtivo()}
         }
     }
 }
