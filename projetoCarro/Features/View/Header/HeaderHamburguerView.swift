@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 @available(iOS 16.0, *)
 struct HeaderHamburguerView: View
@@ -44,12 +45,12 @@ struct HeaderHamburguerView: View
                     .padding([.trailing])
                     .onTapGesture { isShowingSheet.toggle()}
             }
-        }.onReceive(NotificationCenter.default.publisher(
-            for: UIApplication.willEnterForegroundNotification
-            )) { _ in
-                loadViewData()
-            }
-        //.onAppear() { loadViewData()}
+        }//.onReceive(NotificationCenter.default.publisher(
+//            for: UIApplication.willEnterForegroundNotification
+//            )) { _ in
+//                loadViewData()
+//            }
+        .onAppear() { loadViewData()}
         .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
             VStack
@@ -69,9 +70,10 @@ struct HeaderHamburguerView: View
                                     Text(" "); Text(String(carros.placa ?? ""))
                                     Text(" "); Text(String(carros.ano))
                                 }
-                                Spacer()
                             }
-                        }
+                        }.onTapGesture() { marcarCarroComoAtivo(ativoID: carros.objectID)}
+                            
+                        Spacer()
                     }
                 }.presentationDetents([.medium, .large])
             }
@@ -81,6 +83,12 @@ struct HeaderHamburguerView: View
 
     func loadViewData()
     {
+        carroAtual = modeloGlobal.shared.carroAtual
+    }
+    
+    func marcarCarroComoAtivo(ativoID: NSManagedObjectID)
+    {
+        viewModelCarro.marcarCarroAtivo(ativoID: ativoID)
         carroAtual = modeloGlobal.shared.carroAtual
     }
 }

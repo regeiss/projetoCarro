@@ -26,6 +26,12 @@ class CarroViewModel: ObservableObject
     {
         CarroPublisher.shared.selecionarCarroAtivo()
     }
+    
+    func marcarCarroAtivo(ativoID: NSManagedObjectID)
+    {
+        CarroPublisher.shared.marcarCarroAtivo(ativoID: ativoID)
+    }
+    
     func update(carro: Carro)
     {
         CarroPublisher.shared.update(carro: carro)

@@ -110,13 +110,10 @@ class CarroPublisher: NSObject, ObservableObject
     
     func selecionarCarroAtivo()
     {
-        // 
-
         let fetchRequest: NSFetchRequest<Carro> = Carro.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "(ativo == 1)")
         fetchRequest.fetchLimit = 1
 
-        // TODO: verificar por ID
         do
         {
             logger.log("Context has changed, buscando carro atual")
@@ -129,100 +126,57 @@ class CarroPublisher: NSObject, ObservableObject
             fatalError("Erro moc \(error.localizedDescription)")
         }
     }
-    //==============================================================================================================================================================
-    // 25/11/2022 - 14:32
-    func marcarCarroAtivo()
+
+    func marcarCarroAtivo(ativoID: NSManagedObjectID)
     {
-        // Desmarcar o ativo 
-//     persistentContainer.performBackgroundTask { privateManagedObjectContext in
-// 	// Creates new batch update request for entity `Dog`
-// 	let updateRequest = NSBatchUpdateRequest(entityName: "Dog")
-// 	// All the dogs with `isFavorite` true
-// 	let predicate = NSPredicate(format: "ativo == true")
-// 	// Assigns the predicate to the batch update
-// 	updateRequest.predicate = predicate
+        // Desmarcar o ativo
+        logger.log("Context has changed, marcando carro atual")
 
-// 	// Dictionary with the property names to update as keys and the new values as values
-// 	updateRequest.propertiesToUpdate = ["ativo": false]
-
-// 	// Sets the result type as array of object IDs updated
-// 	updateRequest.resultType = .updatedObjectIDsResultType
-
-// 	do {
-// 		// Executes batch
-// 		let result = try privateManagedObjectContext.execute(updateRequest) as? NSBatchUpdateResult
-
-// 		// Retrieves the IDs updated
-// 		guard let objectIDs = result?.result as? [NSManagedObjectID] else { return }
-
-// 		// Updates the main context
-// 		let changes = [NSUpdatedObjectsKey: objectIDs]
-// 		NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [mainManagedObjectContext])
-// 	} catch {
-// 		fatalError("Failed to execute request: \(error)")
-// 	}
-// }
-//
-// func checkAll(sender: UIBarButtonItem) { 
-//     // Create Entity Description
-//     let entityDescription = NSEntityDescription.entityForName("Item", inManagedObjectContext: managedObjectContext)
-     
-//     // Initialize Batch Update Request
-//     let batchUpdateRequest = NSBatchUpdateRequest(entity: entityDescription!)
-     
-//     // Configure Batch Update Request
-//     batchUpdateRequest.resultType = .UpdatedObjectIDsResultType
-//     batchUpdateRequest.propertiesToUpdate = ["done": NSNumber(bool: true)]
-     
-//     do {
-//         // Execute Batch Request
-//         let batchUpdateResult = try managedObjectContext.executeRequest(batchUpdateRequest) as! NSBatchUpdateResult
-         
-//         // Extract Object IDs
-//         let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
-         
-//         for objectID in objectIDs {
-//             // Turn Managed Objects into Faults
-//             let managedObject = managedObjectContext.objectWithID(objectID)
-//             managedObjectContext.refreshObject(managedObject, mergeChanges: false)
-//         }
-         
-//         // Perform Fetch
-//         try self.fetchedResultsController.performFetch()
-         
-//     } catch {
-//         let updateError = error as NSError
-//         print("\(updateError), \(updateError.userInfo)")
-//     }
-// }
-    }
-
-//=========================================================================================================================================================
-        let fetchRequest: NSFetchRequest<Carro> = Carro.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "(ativo == 1)")
-        fetchRequest.fetchLimit = 1
-
-        // TODO: verificar por ID
-
-// var error: NSError?
-// if let object = managedObjectContext.existingObjectWithID(objectID, error: &error) {
-//     // do something with it
-// }
-// else {
-//     println("Can't find object \(error)")
-// }
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Carro", in: backgroundContext)
+        let batchUpdateRequest = NSBatchUpdateRequest(entity: entityDescription!)
+        
+        batchUpdateRequest.resultType = .updatedObjectIDsResultType
+        batchUpdateRequest.propertiesToUpdate = ["ativo": NSNumber(value: false)]
+        
         do
         {
+            let batchUpdateResult = try backgroundContext.execute(batchUpdateRequest) as! NSBatchUpdateResult
+            
+            let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
+            
+            for objectID in objectIDs
+            {
+                // Turn Managed Objects into Faults
+                let managedObject = backgroundContext.object(with: objectID)
+                backgroundContext.refresh(managedObject, mergeChanges: false)
+            }
+
+            try self.carroFetchController.performFetch()
+            
+        }
+        catch
+        {
+            let updateError = error as NSError
+            print("\(updateError), \(updateError.userInfo)")
+        }
+        // TODO: verificar por ID
+        do
+        {
+            let object = try backgroundContext.existingObject(with: ativoID)
             logger.log("Context has changed, buscando carro atual")
-            guard let carroAtual = try backgroundContext.fetch(fetchRequest).first
-            else { return}
-            modeloGlobal.shared.carroAtual = carroAtual
+            object.setValue(true, forKey: "ativo")
+            update(carro: object as! Carro)
+
+            modeloGlobal.shared.carroAtual = object as? Carro
         }
         catch
         {
             fatalError("Erro moc \(error.localizedDescription)")
         }
-    }
+        
+     // do something with it
+ }
+
 }
 
 extension CarroPublisher: NSFetchedResultsControllerDelegate
@@ -233,6 +187,5 @@ extension CarroPublisher: NSFetchedResultsControllerDelegate
         else { return}
         logger.log("Context has changed, reloading carros")
         self.carroCVS.value = carros
-        modeloGlobal.shared.carroAtual = carros[0]
     }
 }
