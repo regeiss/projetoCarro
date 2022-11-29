@@ -53,34 +53,39 @@ struct HeaderHamburguerView: View
         .onAppear() { loadViewData()}
         .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
-            VStack
+            List
             {
-                ForEach(viewModelCarro.carrosLista, id: \.self) { carros in
-                    ZStack()
-                    {
-                        Color(.systemGray6)
-                        HStack
+                Section(header: Text("mm")) {
+                    ForEach(viewModelCarro.carrosLista, id: \.self) { carros in
+                        ZStack()
                         {
-                            Label("car", systemImage: "car").labelStyle(.iconOnly)
-                            VStack
+                            HStack
                             {
+                                //Label("car", systemImage: "car").labelStyle(.iconOnly)
+                                //VStack
+                                //{
                                 HStack
                                 {
-                                    Text("Nome: "); Text(String(carros.nome ?? ""))
+                                    Image(systemName: carros.ativo == true ? "checkmark.square" : "square")
+                                    Text(String(carros.nome ?? ""))
                                     Text(" "); Text(String(carros.placa ?? ""))
                                     Text(" "); Text(String(carros.ano))
                                 }
-                            }
-                        }.onTapGesture() { marcarCarroComoAtivo(ativoID: carros.objectID)}
+                                //}
+                            }.onTapGesture() { marcarCarroComoAtivo(ativoID: carros.objectID)}
                             
-                        Spacer()
-                    }
-                }.presentationDetents([.medium, .large])
+                            Spacer()
+                        }
+                    }.presentationDetents([.medium, .large])
+                }
+                
             }
             Button("Dispensar", action: { isShowingSheet.toggle() })
+                .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+
         }
     }
-
     func loadViewData()
     {
         carroAtual = modeloGlobal.shared.carroAtual
