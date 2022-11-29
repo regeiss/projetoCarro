@@ -42,6 +42,8 @@
 		E196000228FF7F850093D1F7 /* AlertasDetalheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196000128FF7F850093D1F7 /* AlertasDetalheView.swift */; };
 		E196FFFD28FF75220093D1F7 /* RelCombustivelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196FFFC28FF75220093D1F7 /* RelCombustivelView.swift */; };
 		E196FFFF28FF7A610093D1F7 /* HeaderRelatorioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */; };
+		E19DA6802936CAAD00E45130 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA67F2936CAAD00E45130 /* ErrorView.swift */; };
+		E19DA6822936CAD600E45130 /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA6812936CAD600E45130 /* ErrorWrapper.swift */; };
 		E1A131DD2900D66F0085D0E3 /* RelServicoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131DC2900D66F0085D0E3 /* RelServicoView.swift */; };
 		E1A131DF290381450085D0E3 /* ItemServicoPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131DE290381450085D0E3 /* ItemServicoPublisher.swift */; };
 		E1A131E1290382020085D0E3 /* ItemServicoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131E0290382020085D0E3 /* ItemServicoViewModel.swift */; };
@@ -128,6 +130,8 @@
 		E196000128FF7F850093D1F7 /* AlertasDetalheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertasDetalheView.swift; sourceTree = "<group>"; };
 		E196FFFC28FF75220093D1F7 /* RelCombustivelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelCombustivelView.swift; sourceTree = "<group>"; };
 		E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRelatorioView.swift; sourceTree = "<group>"; };
+		E19DA67F2936CAAD00E45130 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		E19DA6812936CAD600E45130 /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		E1A131DC2900D66F0085D0E3 /* RelServicoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelServicoView.swift; sourceTree = "<group>"; };
 		E1A131DE290381450085D0E3 /* ItemServicoPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServicoPublisher.swift; sourceTree = "<group>"; };
 		E1A131E0290382020085D0E3 /* ItemServicoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServicoViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +229,15 @@
 				E196000128FF7F850093D1F7 /* AlertasDetalheView.swift */,
 			);
 			path = Alerta;
+			sourceTree = "<group>";
+		};
+		E19DA67E2936CA8B00E45130 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				E19DA67F2936CAAD00E45130 /* ErrorView.swift */,
+				E19DA6812936CAD600E45130 /* ErrorWrapper.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		E1A131E22909F68B0085D0E3 /* Settings */ = {
@@ -435,6 +448,7 @@
 		E1E71F5728750A1E00BF5D26 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				E19DA67E2936CA8B00E45130 /* Error */,
 				E1FE52F829147FB30037636F /* Snippets */,
 				E1A131E22909F68B0085D0E3 /* Settings */,
 				E13AB1CF28F39CF600E02899 /* DarkMode */,
@@ -583,6 +597,7 @@
 				E1A131E1290382020085D0E3 /* ItemServicoViewModel.swift in Sources */,
 				E13AB1CC28F31AF100E02899 /* CarroListaView.swift in Sources */,
 				E151C2732888B03400F03BE7 /* AbastecimentoListaView.swift in Sources */,
+				E19DA6822936CAD600E45130 /* ErrorWrapper.swift in Sources */,
 				E1BBC39528E3BC2300FFBDB8 /* ServicoViewModel.swift in Sources */,
 				E1F5F1F528BEDBEC007AB40C /* PostoModel.swift in Sources */,
 				E1F5F1E428BD1A32007AB40C /* Carro+CoreDataClass.swift in Sources */,
@@ -609,6 +624,7 @@
 				E1A7F52928EA083C005BE12F /* HeaderFiltroView.swift in Sources */,
 				E151C26F28862C3300F03BE7 /* ConfiguracaoView.swift in Sources */,
 				E1F5F1FF28C81BDC007AB40C /* SideMenuView.swift in Sources */,
+				E19DA6802936CAAD00E45130 /* ErrorView.swift in Sources */,
 				E128DC2629181CA300D7144E /* Carro+CoreDataProperties.swift in Sources */,
 				E1BBC39728E3BCC100FFBDB8 /* CategoriaPublisher.swift in Sources */,
 				E1A131DD2900D66F0085D0E3 /* RelServicoView.swift in Sources */,

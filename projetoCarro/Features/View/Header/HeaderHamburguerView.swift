@@ -55,23 +55,21 @@ struct HeaderHamburguerView: View
         {
             List
             {
-                Section(header: Text("mm")) {
+                Section(header: Text("Selecione um carro")) {
                     ForEach(viewModelCarro.carrosLista, id: \.self) { carros in
                         ZStack()
                         {
                             HStack
                             {
-                                //Label("car", systemImage: "car").labelStyle(.iconOnly)
-                                //VStack
-                                //{
                                 HStack
                                 {
-                                    Image(systemName: carros.ativo == true ? "checkmark.square" : "square")
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.blue)
+                                        .opacity(carros.ativo == true ? 100 : 0.0)
                                     Text(String(carros.nome ?? ""))
                                     Text(" "); Text(String(carros.placa ?? ""))
                                     Text(" "); Text(String(carros.ano))
                                 }
-                                //}
                             }.onTapGesture() { marcarCarroComoAtivo(ativoID: carros.objectID)}
                             
                             Spacer()

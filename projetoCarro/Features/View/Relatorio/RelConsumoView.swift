@@ -19,7 +19,7 @@ struct RelConsumoView: View
         VStack()
         {
             HeaderRelatorioView(nomeView: "Consumo", nomeMenu: "Relatórios", destRouter: "rel")
-            VStack()
+            Form()
             {
                 HStack()
                 {
@@ -45,7 +45,7 @@ struct RelConsumoView: View
                     Spacer()
                     Text(String(consumoMedio))
                 }
-            }.padding([.leading, .trailing], 45)
+            }.padding([.leading, .trailing], 5)
         }
     }
 }

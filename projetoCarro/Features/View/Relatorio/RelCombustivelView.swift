@@ -11,7 +11,7 @@ struct RelCombustivelView: View
 {
     var body: some View
     {
-        HeaderRelatorioView(nomeView: "Consumo", nomeMenu: "Relatórios", destRouter: "rel")
+        HeaderRelatorioView(nomeView: "Abastecimentos", nomeMenu: "Relatórios", destRouter: "rel")
     }
 }
 
