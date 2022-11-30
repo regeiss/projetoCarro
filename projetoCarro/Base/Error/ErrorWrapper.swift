@@ -19,4 +19,4 @@ struct ErrorWrapper: Identifiable
         self.guidance = guidance
     }
 }
-
+//https://www.swiftbysundell.com/articles/propagating-user-facing-errors-in-swift/
