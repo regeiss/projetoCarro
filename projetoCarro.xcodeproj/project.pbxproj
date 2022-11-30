@@ -44,6 +44,7 @@
 		E196FFFF28FF7A610093D1F7 /* HeaderRelatorioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */; };
 		E19DA6802936CAAD00E45130 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA67F2936CAAD00E45130 /* ErrorView.swift */; };
 		E19DA6822936CAD600E45130 /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA6812936CAD600E45130 /* ErrorWrapper.swift */; };
+		E19DA68429381B7100E45130 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DA68329381B7100E45130 /* ErrorHandler.swift */; };
 		E1A131DD2900D66F0085D0E3 /* RelServicoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131DC2900D66F0085D0E3 /* RelServicoView.swift */; };
 		E1A131DF290381450085D0E3 /* ItemServicoPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131DE290381450085D0E3 /* ItemServicoPublisher.swift */; };
 		E1A131E1290382020085D0E3 /* ItemServicoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A131E0290382020085D0E3 /* ItemServicoViewModel.swift */; };
@@ -132,6 +133,7 @@
 		E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRelatorioView.swift; sourceTree = "<group>"; };
 		E19DA67F2936CAAD00E45130 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E19DA6812936CAD600E45130 /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
+		E19DA68329381B7100E45130 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		E1A131DC2900D66F0085D0E3 /* RelServicoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelServicoView.swift; sourceTree = "<group>"; };
 		E1A131DE290381450085D0E3 /* ItemServicoPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServicoPublisher.swift; sourceTree = "<group>"; };
 		E1A131E0290382020085D0E3 /* ItemServicoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemServicoViewModel.swift; sourceTree = "<group>"; };
@@ -231,13 +233,14 @@
 			path = Alerta;
 			sourceTree = "<group>";
 		};
-		E19DA67E2936CA8B00E45130 /* Error */ = {
+		E19DA67E2936CA8B00E45130 /* ErrorHandling */ = {
 			isa = PBXGroup;
 			children = (
 				E19DA67F2936CAAD00E45130 /* ErrorView.swift */,
 				E19DA6812936CAD600E45130 /* ErrorWrapper.swift */,
+				E19DA68329381B7100E45130 /* ErrorHandler.swift */,
 			);
-			path = Error;
+			path = ErrorHandling;
 			sourceTree = "<group>";
 		};
 		E1A131E22909F68B0085D0E3 /* Settings */ = {
@@ -448,7 +451,7 @@
 		E1E71F5728750A1E00BF5D26 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				E19DA67E2936CA8B00E45130 /* Error */,
+				E19DA67E2936CA8B00E45130 /* ErrorHandling */,
 				E1FE52F829147FB30037636F /* Snippets */,
 				E1A131E22909F68B0085D0E3 /* Settings */,
 				E13AB1CF28F39CF600E02899 /* DarkMode */,
@@ -617,6 +620,7 @@
 				E1B8A89128DBE1500021A0F5 /* PerfilModel.swift in Sources */,
 				E143BDCC289EB5A300A9EF77 /* Router.swift in Sources */,
 				E1BBC3A828E3C3FF00FFBDB8 /* Servico+CoreDataClass.swift in Sources */,
+				E19DA68429381B7100E45130 /* ErrorHandler.swift in Sources */,
 				E1F5F1EF28BE4308007AB40C /* CarroView.swift in Sources */,
 				E1A7F52F28EF9BE3005BE12F /* ItemServicoView.swift in Sources */,
 				E123F06B28909DF1009C0F4D /* AbastecimentoPublisher.swift in Sources */,

@@ -5,6 +5,7 @@
 //  Created by Roberto Edgar Geiss on 29/11/22.
 //
 import Foundation
+import SwiftUI
 
 struct ErrorWrapper: Identifiable
 {
@@ -19,4 +20,4 @@ struct ErrorWrapper: Identifiable
         self.guidance = guidance
     }
 }
-//https://www.swiftbysundell.com/articles/propagating-user-facing-errors-in-swift/
+
