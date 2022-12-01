@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: Enums
 enum ErrorCategory
 {
     case nonRetryable
@@ -16,7 +17,8 @@ enum ErrorCategory
     case loggedOut
 }
 
-enum NetworkingError: LocalizedError {
+enum NetworkingError: LocalizedError 
+{
     case deviceIsOffline
     case unauthorized
     case resourceNotFound
@@ -25,6 +27,7 @@ enum NetworkingError: LocalizedError {
     case decodingFailed(Error)
 }
 
+// MARK: Protocols
 protocol CategorizedError: Error
 {
     var category: ErrorCategory { get }
@@ -32,14 +35,10 @@ protocol CategorizedError: Error
 
 protocol ErrorHandler
 {
-    func handle<T: View>(
-        _ error: Error?,
-        in view: T,
-        loginStateController: LoginStateController,
-        retryHandler: @escaping () -> Void
-    ) -> AnyView
+    func handle<T: View>(_ error: Error?, in view: T, loginStateController: LoginStateController, retryHandler: @escaping () -> Void) -> AnyView
 }
 
+// MARK: Structures
 struct AlertErrorHandler: ErrorHandler
 {
     // We give our handler an ID, so that SwiftUI will be able
@@ -56,14 +55,9 @@ struct AlertErrorHandler: ErrorHandler
             return AnyView(view)
         }
 
-        var presentation = error.map { Presentation(
-            id: id,
-            error: $0,
-            retryHandler: retryHandler
-        )}
+        var presentation = error.map { Presentation(id: id, error: $0, retryHandler: retryHandler)}
 
-        // We need to convert our model to a Binding value in
-        // order to be able to present an alert using it:
+        // We need to convert our model to a Binding value in order to be able to present an alert using it:
         let binding = Binding(
             get: { presentation },
             set: { presentation = $0 }
@@ -73,12 +67,37 @@ struct AlertErrorHandler: ErrorHandler
     }
 }
 
+struct ErrorHandlerEnvironmentKey: EnvironmentKey 
+{
+    static var defaultValue: ErrorHandler = AlertErrorHandler()
+}
+
+struct ErrorEmittingViewModifier: ViewModifier 
+{
+    @EnvironmentObject var loginStateController: LoginStateController
+    @Environment(\.errorHandler) var handler
+
+    var error: Error?
+    var retryHandler: () -> Void
+
+    func body(content: Content) -> some View 
+    {
+        handler.handle(error,
+            in: content,
+            loginStateController: loginStateController,
+            retryHandler: retryHandler
+        )
+    }
+}
 
 
-
-extension NetworkingError: CategorizedError {
-    var category: ErrorCategory {
-        switch self {
+// MARK: Extensions
+extension NetworkingError: CategorizedError 
+{
+    var category: ErrorCategory 
+    {
+        switch self 
+        {
         case .deviceIsOffline, .serverError:
             return .retryable
         case .resourceNotFound, .missingData, .decodingFailed:
@@ -88,9 +107,13 @@ extension NetworkingError: CategorizedError {
         }
     }
 }
-extension Error {
-    func resolveCategory() -> ErrorCategory {
-        guard let categorized = self as? CategorizedError else {
+
+extension Error 
+{
+    func resolveCategory() -> ErrorCategory 
+    {
+        guard let categorized = self as? CategorizedError 
+        else {
             // We could optionally choose to trigger an assertion
             // here, if we consider it important that all of our
             // errors have categories assigned to them.
@@ -101,86 +124,71 @@ extension Error {
     }
 }
 
-private extension AlertErrorHandler {
-    struct Presentation: Identifiable {
+private extension AlertErrorHandler 
+{
+    struct Presentation: Identifiable 
+    {
         let id: UUID
         let error: Error
         let retryHandler: () -> Void
     }
     
-    func makeAlert(for presentation: Presentation) -> Alert {
+    func makeAlert(for presentation: Presentation) -> Alert 
+    {
         let error = presentation.error
 
-        switch error.resolveCategory() {
-        case .retryable:
-            return Alert(
-                title: Text("An error occured"),
-                message: Text(error.localizedDescription),
-                primaryButton: .default(Text("Dismiss")),
-                secondaryButton: .default(Text("Retry"),
+        switch error.resolveCategory() 
+        {
+            case .retryable:
+                return Alert(
+                    title: Text("An error occured"),
+                    message: Text(error.localizedDescription),
+                    primaryButton: .default(Text("Dismiss")),
+                    secondaryButton: .default(Text("Retry"),
                     action: presentation.retryHandler
                 )
             )
-        case .nonRetryable:
-            return Alert(
-                title: Text("An error occured"),
-                message: Text(error.localizedDescription),
-                dismissButton: .default(Text("Dismiss"))
+            case .nonRetryable:
+                return Alert(
+                    title: Text("An error occured"),
+                    message: Text(error.localizedDescription),
+                    dismissButton: .default(Text("Dismiss"))
             )
-        case .requiresLogout:
-            // We don't expect this code path to be hit, since
-            // we're guarding for this case above, so we'll
-            // trigger an assertion failure here.
-            assertionFailure("Should have logged out")
+            case .requiresLogout:
+                // We don't expect this code path to be hit, since
+                // we're guarding for this case above, so we'll
+                // trigger an assertion failure here.
+                assertionFailure("Should have logged out")
             return Alert(title: Text("Logging out..."))
-        case .loggedOut:
-            assertionFailure("Should have logged out")
-            return Alert(title: Text("Logging out..."))
+            case .loggedOut:
+                assertionFailure("Should have logged out")
+                return Alert(title: Text("Logging out..."))
         }
     }
 }
-struct ErrorHandlerEnvironmentKey: EnvironmentKey {
-    static var defaultValue: ErrorHandler = AlertErrorHandler()
-}
 
-extension EnvironmentValues {
-    var errorHandler: ErrorHandler {
+extension EnvironmentValues 
+{
+    var errorHandler: ErrorHandler 
+    {
         get { self[ErrorHandlerEnvironmentKey.self] }
         set { self[ErrorHandlerEnvironmentKey.self] = newValue }
     }
 }
 
-extension View {
-    func handlingErrors(
-        using handler: ErrorHandler
-    ) -> some View {
+extension View 
+{
+    func handlingErrors(using handler: ErrorHandler) -> some View 
+    {
         environment(\.errorHandler, handler)
     }
 }
-struct ErrorEmittingViewModifier: ViewModifier {
-    @EnvironmentObject var loginStateController: LoginStateController
-    @Environment(\.errorHandler) var handler
 
-    var error: Error?
-    var retryHandler: () -> Void
-
-    func body(content: Content) -> some View {
-        handler.handle(error,
-            in: content,
-            loginStateController: loginStateController,
-            retryHandler: retryHandler
-        )
-    }
-}
-extension View {
-    func emittingError(
-        _ error: Error?,
-        retryHandler: @escaping () -> Void
-    ) -> some View {
-        modifier(ErrorEmittingViewModifier(
-            error: error,
-            retryHandler: retryHandler
-        ))
+extension View 
+{
+    func emittingError(_ error: Error?, retryHandler: @escaping () -> Void) -> some View 
+    {
+        modifier(ErrorEmittingViewModifier(error: error, retryHandler: retryHandler))
     }
 }
 
