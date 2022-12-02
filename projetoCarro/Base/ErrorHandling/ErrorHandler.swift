@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+class LoginStateController: ObservableObject
+{
+    var state: ErrorCategory = .nonRetryable
+}
+
 // MARK: Enums
 enum ErrorCategory
 {
@@ -192,8 +197,4 @@ extension View
     }
 }
 
-class LoginStateController: ObservableObject
-{
-    var state: ErrorCategory = .nonRetryable
-}
 //https://www.swiftbysundell.com/articles/propagating-user-facing-errors-in-swift/

@@ -23,6 +23,7 @@ struct projetoCarroApp: App
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     static let persistenceController = PersistenceController.shared
     @StateObject var AppVars = modeloGlobal()
+    @StateObject var loginStateController = LoginStateController()
     
     var body: some Scene
     {
@@ -31,6 +32,7 @@ struct projetoCarroApp: App
             ContentView(showMenu: false)
                 .environment(\.managedObjectContext, projetoCarroApp.persistenceController.container.viewContext)
                 .environmentObject(AppVars)
+                .environmentObject(loginStateController)
                 .modifier(DarkModeViewModifier())
         }.onChange(of: scenePhase)
         { phase in

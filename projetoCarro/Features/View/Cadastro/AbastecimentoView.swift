@@ -106,12 +106,13 @@ struct AbastecimentoView: View
                             }
                         }.pickerStyle(.automatic)
                     }
-                }.onReceive(pub)  {_ in gravarAbastecimento()}
+                }
+                .onReceive(pub)  {_ in gravarAbastecimento()}
             }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
-        }
-    }
+        }.emittingError(viewModel.error, retryHandler: { MyRouter.shared.toAbastecimento()})
+    }//.emittingError(viewModel.error, retryHandler: { MyRouter.shared.toAbastecimento()})
     
     private func gravarAbastecimento()
     {
