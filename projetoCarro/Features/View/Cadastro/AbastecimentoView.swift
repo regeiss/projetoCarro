@@ -8,7 +8,12 @@ import SwiftUI
 import CoreData
 import NavigationStack
 import FormValidator
+import ErrorHandler
 
+enum ErrorNulo: LocalizedError
+{
+    case semPosto
+}
 enum AbastecimentoFocusable: Hashable 
 {
     case km
@@ -49,6 +54,7 @@ struct AbastecimentoView: View
     @State var isSaveDisabled: Bool = true
     @FocusState private var abastecimentoInFocus: AbastecimentoFocusable?
     @State var posto: Posto?
+//    @State private var errorWrapper: ErrorWrapper?
     
     let router = MyRouter.shared
     let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
@@ -111,26 +117,44 @@ struct AbastecimentoView: View
             }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
-        }.emittingError(viewModel.error, retryHandler: { MyRouter.shared.toAbastecimento()})
-    }//.emittingError(viewModel.error, retryHandler: { MyRouter.shared.toAbastecimento()})
+        }
+    }
+    
+    fileprivate func extractedFunc() throws
+    {
+        guard let postoPicker = posto
+        else
+        {
+            //let postoPicker = viewModelPosto.postosLista.first
+            throw ErrorNulo.semPosto
+        }
+        let uab = ultimoAbastecimento(id: UUID(),
+                                          km: (Int32(formInfo.km) ?? 0),
+                                          data: formInfo.data,
+                                          litros: (Double(formInfo.litros) ?? 0),
+                                          valorLitro: (Double(formInfo.valorLitro) ?? 0),
+                                          valorTotal: (Decimal((Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0))),
+                                          completo:  Bool(formInfo.completo),
+                                          media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
+                                          doPosto: postoPicker,
+                                          doCarro: modeloGlobal.shared.carroAtual!)
+        
+            viewModel.add(abastecimento: uab)
+    }
     
     private func gravarAbastecimento()
     {
         let valid = formInfo.form.triggerValidation()
         if valid
         {
-            let uab = ultimoAbastecimento(id: UUID(),
-                                            km: (Int32(formInfo.km) ?? 0),
-                                            data: formInfo.data,
-                                            litros: (Double(formInfo.litros) ?? 0),
-                                            valorLitro: (Double(formInfo.valorLitro) ?? 0),
-                                            valorTotal: (Decimal((Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0))),
-                                            completo:  Bool(formInfo.completo),
-                                            media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
-                                            doPosto: posto!,
-                                            doCarro: modeloGlobal.shared.carroAtual!)
-            
-            viewModel.add(abastecimento: uab)
+            do {
+                try extractedFunc()
+            }
+
+            catch
+            {
+                ErrorHandler //.defaultHandler.handle(error)
+            }
         }
     }
 

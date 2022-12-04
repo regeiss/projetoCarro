@@ -11,7 +11,6 @@ import CoreData
 
 class AbastecimentoViewModel: ObservableObject
 {
-    @Published private(set) var error: Error?
     @Published var abastecimentosLista: [Abastecimento] = []
 
     private var bag: AnyCancellable?

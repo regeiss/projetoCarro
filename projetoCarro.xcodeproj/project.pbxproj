@@ -31,6 +31,7 @@
 		E153CA4228A33899008CA4A7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E153CA4128A33899008CA4A7 /* UserSettings.swift */; };
 		E1618ACB28A1E83C00B74DF9 /* AbastecimentoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1618ACA28A1E83C00B74DF9 /* AbastecimentoViewModel.swift */; };
 		E1618ACD28A1F5F200B74DF9 /* HeaderAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1618ACC28A1F5F200B74DF9 /* HeaderAddView.swift */; };
+		E16A6DA0293D0D9A00A8BC31 /* ErrorHandler in Frameworks */ = {isa = PBXBuildFile; productRef = E16A6D9F293D0D9A00A8BC31 /* ErrorHandler */; };
 		E172B3C7287CF28D00C2D4A3 /* NavigationStack in Frameworks */ = {isa = PBXBuildFile; productRef = E172B3C6287CF28D00C2D4A3 /* NavigationStack */; };
 		E17CB7C32880EA98004BEE9E /* AlertasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C22880EA97004BEE9E /* AlertasView.swift */; };
 		E17CB7C52880EAA7004BEE9E /* RelatoriosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB7C42880EAA7004BEE9E /* RelatoriosView.swift */; };
@@ -193,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E185BDD32883133A00352EEC /* FormValidator in Frameworks */,
+				E16A6DA0293D0D9A00A8BC31 /* ErrorHandler in Frameworks */,
 				E172B3C7287CF28D00C2D4A3 /* NavigationStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +506,7 @@
 			packageProductDependencies = (
 				E172B3C6287CF28D00C2D4A3 /* NavigationStack */,
 				E185BDD22883133A00352EEC /* FormValidator */,
+				E16A6D9F293D0D9A00A8BC31 /* ErrorHandler */,
 			);
 			productName = projetoCarro;
 			productReference = E1ACCB2C286D17F60007DDC5 /* projetoCarro.app */;
@@ -536,6 +539,7 @@
 			packageReferences = (
 				E172B3C5287CF28D00C2D4A3 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */,
 				E185BDD12883133A00352EEC /* XCRemoteSwiftPackageReference "SwiftUIFormValidator" */,
+				E16A6D9E293D0D9A00A8BC31 /* XCRemoteSwiftPackageReference "swift-error-handler" */,
 			);
 			productRefGroup = E1ACCB2D286D17F60007DDC5 /* Products */;
 			projectDirPath = "";
@@ -865,6 +869,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E16A6D9E293D0D9A00A8BC31 /* XCRemoteSwiftPackageReference "swift-error-handler" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Workable/swift-error-handler.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.4;
+			};
+		};
 		E172B3C5287CF28D00C2D4A3 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/matteopuc/swiftui-navigation-stack";
@@ -884,6 +896,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E16A6D9F293D0D9A00A8BC31 /* ErrorHandler */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E16A6D9E293D0D9A00A8BC31 /* XCRemoteSwiftPackageReference "swift-error-handler" */;
+			productName = ErrorHandler;
+		};
 		E172B3C6287CF28D00C2D4A3 /* NavigationStack */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E172B3C5287CF28D00C2D4A3 /* XCRemoteSwiftPackageReference "swiftui-navigation-stack" */;
