@@ -115,8 +115,8 @@ struct AbastecimentoView: View
                 }
                 .onReceive(pub)  {_ in gravarAbastecimento()}
             }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
     }
     
@@ -147,13 +147,14 @@ struct AbastecimentoView: View
         let valid = formInfo.form.triggerValidation()
         if valid
         {
-            do {
+            do
+            {
                 try extractedFunc()
             }
 
             catch
             {
-                ErrorHandler //.defaultHandler.handle(error)
+                //ErrorHandler.defaultHandler //.defaultHandler.handle(error)
             }
         }
     }
