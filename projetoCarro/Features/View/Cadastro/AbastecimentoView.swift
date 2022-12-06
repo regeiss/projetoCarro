@@ -10,10 +10,6 @@ import NavigationStack
 import FormValidator
 import ErrorHandler
 
-enum ErrorNulo: LocalizedError
-{
-    case semPosto
-}
 enum AbastecimentoFocusable: Hashable 
 {
     case km
@@ -54,7 +50,7 @@ struct AbastecimentoView: View
     @State var isSaveDisabled: Bool = true
     @FocusState private var abastecimentoInFocus: AbastecimentoFocusable?
     @State var posto: Posto?
-//    @State private var errorWrapper: ErrorWrapper?
+    @EnvironmentObject var errorHandling: ErrorHandling
     
     let router = MyRouter.shared
     let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
@@ -126,7 +122,7 @@ struct AbastecimentoView: View
         else
         {
             //let postoPicker = viewModelPosto.postosLista.first
-            throw ErrorNulo.semPosto
+            throw ValidationError.missingName
         }
         let uab = ultimoAbastecimento(id: UUID(),
                                           km: (Int32(formInfo.km) ?? 0),
@@ -154,7 +150,7 @@ struct AbastecimentoView: View
 
             catch
             {
-                //ErrorHandler.defaultHandler //.defaultHandler.handle(error)
+                self.errorHandling.handle(error: error)
             }
         }
     }

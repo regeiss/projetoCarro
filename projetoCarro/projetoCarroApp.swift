@@ -32,7 +32,9 @@ struct projetoCarroApp: App
                 .environment(\.managedObjectContext, projetoCarroApp.persistenceController.container.viewContext)
                 .environmentObject(AppVars)
                 .modifier(DarkModeViewModifier())
-        }.onChange(of: scenePhase)
+                .withErrorHandling()
+        }
+        .onChange(of: scenePhase)
         { phase in
             switch phase
             {
