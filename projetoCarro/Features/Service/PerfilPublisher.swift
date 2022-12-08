@@ -76,7 +76,17 @@ class PerfilPublisher: NSObject, ObservableObject
 
     func update(perfil: Perfil)
     {
-        //...
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
     }
 
     func delete(perfil: Perfil)
