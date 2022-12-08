@@ -8,11 +8,13 @@
 import SwiftUI
 import CoreData
 
-final class modeloGlobal: ObservableObject
+final class ModeloGlobal: ObservableObject
 {
     static let shared = modeloGlobal()
     var ultimaKM: Int32 = 1
     var carroAtual: Carro?
+    var perfilAtual: Perfil?
+    var contextSet = false 
 }
 
 @main
@@ -22,7 +24,7 @@ struct projetoCarroApp: App
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     static let persistenceController = PersistenceController.shared
-    @StateObject var AppVars = modeloGlobal()
+    @StateObject var AppVars = ModeloGlobal()
     
     var body: some Scene
     {
@@ -52,6 +54,32 @@ struct projetoCarroApp: App
         }
     }
     
+    func prepareContext()
+    {
+        guard contextSet == false
+        else { return}
+
+        contextSet = true
+        private var viewModelPerfil = PerfilViewModel()
+        private var viewModelCarro = CarroViewModel()
+        
+        let perfil = NovoPerfil(id: UUID(),
+                                    nome: "Nenhum",
+                                    padrao: true,
+                                    email: "nenhum")
+
+                            viewModelPerfil.add(perfil: perfil)
+
+               let carro = NovoCarro(id: UUID(),
+                                      nome: "Nenhum",
+                                      marca: "Nenhum",
+                                      modelo: "Nenhum",
+                                      placa: "Nenhum",
+                                      chassis: "Nenhum",
+                                      ano: Int16(formInfo.ano) ?? 0)
+                viewModelCarro.add(carro: carro)
+    }
+
     func saveContext()
     {
         let context = moc
@@ -82,4 +110,6 @@ struct projetoCarroApp: App
         print("Core Data DB Path :: \(path ?? "Not found")")
     }
 }
+
+
 
