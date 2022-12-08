@@ -27,6 +27,11 @@ class PerfilViewModel: ObservableObject
         PerfilPublisher.shared.add(perfil: perfil)
     }
 
+    func update(perfil: Perfil)
+    {
+        PerfilPublisher.shared.update(perfil: perfil)
+    }
+
     func delete(perfil: Perfil)
     {
         PerfilPublisher.shared.delete(perfil: perfil)
