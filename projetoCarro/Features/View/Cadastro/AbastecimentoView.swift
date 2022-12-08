@@ -103,7 +103,7 @@ struct AbastecimentoView: View
                         
                         Picker("Posto:", selection: $posto)
                         {
-                            Text("Any").tag(Posto?.none)
+                            Text("Nenhum").tag(Posto?.none)
                             ForEach(viewModelPosto.postosLista) { (posto: Posto) in
                                 Text(posto.nome!).tag(posto as Posto?)
                             }

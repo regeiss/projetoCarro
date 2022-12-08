@@ -21,3 +21,9 @@ struct ErrorWrapper: Identifiable
     }
 }
 
+struct ErrorAlert: Identifiable
+{
+    var id = UUID()
+    var message: String
+    var dismissAction: (() -> Void)?
+}

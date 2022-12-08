@@ -23,9 +23,9 @@ enum ValidationError: LocalizedError
     {
         switch self
         {
-            case .missingName:
-                return "Name is a required field."
-                    case .wrongDataFormat(let error):
+        case .missingName:
+            return "Name is a required field."
+        case .wrongDataFormat(let error):
             return NSLocalizedString("Could not digest the fetched data. \(error.localizedDescription)", comment: "")
         case .missingData:
             return NSLocalizedString("Found and will discard a quake missing a valid code, magnitude, place, or time.", comment: "")
@@ -43,12 +43,7 @@ enum ValidationError: LocalizedError
     }
 }
 
-struct ErrorAlert: Identifiable
-{
-    var id = UUID()
-    var message: String
-    var dismissAction: (() -> Void)?
-}
+
 
 class ErrorHandling: ObservableObject
 {
