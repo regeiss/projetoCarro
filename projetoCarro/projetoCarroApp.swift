@@ -10,7 +10,7 @@ import CoreData
 
 final class ModeloGlobal: ObservableObject
 {
-    static let shared = modeloGlobal()
+    static let shared = ModeloGlobal()
     var ultimaKM: Int32 = 1
     var carroAtual: Carro?
     var perfilAtual: Perfil?
@@ -24,7 +24,7 @@ struct projetoCarroApp: App
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     static let persistenceController = PersistenceController.shared
-    @StateObject var AppVars = ModeloGlobal()
+    @StateObject var appVars = ModeloGlobal()
     
     var body: some Scene
     {
@@ -32,7 +32,7 @@ struct projetoCarroApp: App
         {
             ContentView(showMenu: false)
                 .environment(\.managedObjectContext, projetoCarroApp.persistenceController.container.viewContext)
-                .environmentObject(AppVars)
+                .environmentObject(appVars)
                 .modifier(DarkModeViewModifier())
                 .withErrorHandling()
         }
@@ -42,6 +42,7 @@ struct projetoCarroApp: App
             {
             case .active:
                 print("active")
+                prepareContext()
                 getCoreDataDBPath()
             case .inactive:
                 print("inactive")
@@ -56,17 +57,17 @@ struct projetoCarroApp: App
     
     func prepareContext()
     {
-        guard contextSet == false
+        guard appVars.contextSet == false
         else { return}
 
-        contextSet = true
-        private var viewModelPerfil = PerfilViewModel()
-        private var viewModelCarro = CarroViewModel()
+        appVars.contextSet.toggle()
+        var viewModelPerfil = PerfilViewModel()
+        var viewModelCarro = CarroViewModel()
         
         let perfil = NovoPerfil(id: UUID(),
                                     nome: "Nenhum",
-                                    padrao: true,
-                                    email: "nenhum")
+                                    email: "nenhum",
+                                    padrao: true)
 
                             viewModelPerfil.add(perfil: perfil)
 
@@ -76,7 +77,8 @@ struct projetoCarroApp: App
                                       modelo: "Nenhum",
                                       placa: "Nenhum",
                                       chassis: "Nenhum",
-                                      ano: Int16(formInfo.ano) ?? 0)
+                                      padrao: true,
+                                      ano: Int16(0))
                 viewModelCarro.add(carro: carro)
     }
 

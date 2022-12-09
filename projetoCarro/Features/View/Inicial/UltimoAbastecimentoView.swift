@@ -36,7 +36,7 @@ struct UltimoAbastecimentoView: View
                         Text(String(viewModel.abastecimentosLista.first?.km ?? 0).toQuilometrosFormat())
                     }.onAppear
                     {
-                        modeloGlobal.shared.ultimaKM = Int32(viewModel.abastecimentosLista.first?.km ?? 0)
+                        ModeloGlobal.shared.ultimaKM = Int32(viewModel.abastecimentosLista.first?.km ?? 0)
                     }
                     
                     HStack

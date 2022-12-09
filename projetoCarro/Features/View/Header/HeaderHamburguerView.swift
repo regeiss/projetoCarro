@@ -86,12 +86,12 @@ struct HeaderHamburguerView: View
     }
     func loadViewData()
     {
-        carroAtual = modeloGlobal.shared.carroAtual
+        carroAtual = ModeloGlobal.shared.carroAtual
     }
     
     func marcarCarroComoAtivo(ativoID: NSManagedObjectID)
     {
         viewModelCarro.marcarCarroAtivo(ativoID: ativoID)
-        carroAtual = modeloGlobal.shared.carroAtual
+        carroAtual = ModeloGlobal.shared.carroAtual
     }
 }

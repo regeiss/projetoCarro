@@ -66,7 +66,8 @@ struct PerfilView: View
                         {
                             let perfil = NovoPerfil(id: UUID(),
                                                   nome: formInfo.nome,
-                                                  email: formInfo.email)
+                                                    email: formInfo.email,
+                                                    padrao: false)
 
                             viewModel.add(perfil: perfil)
                             router.toMenu()

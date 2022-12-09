@@ -134,7 +134,7 @@ struct AbastecimentoView: View
                                           completo:  Bool(formInfo.completo),
                                           media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
                                           doPosto: postoPicker,
-                                          doCarro: modeloGlobal.shared.carroAtual!)
+                                          doCarro: ModeloGlobal.shared.carroAtual!)
         
             viewModel.add(abastecimento: uab)
     }
@@ -167,7 +167,7 @@ struct AbastecimentoView: View
         }
         else
         {
-            kmPercorrida = kmAtual - modeloGlobal.shared.ultimaKM
+            kmPercorrida = kmAtual - ModeloGlobal.shared.ultimaKM
             media = Double(kmPercorrida) / (Double(formInfo.litros) ?? 0)
             return media
         }

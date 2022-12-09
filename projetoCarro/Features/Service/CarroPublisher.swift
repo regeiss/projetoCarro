@@ -119,7 +119,7 @@ class CarroPublisher: NSObject, ObservableObject
             logger.log("Context has changed, buscando carro atual")
             guard let carroAtual = try backgroundContext.fetch(fetchRequest).first
             else { return}
-            modeloGlobal.shared.carroAtual = carroAtual
+            ModeloGlobal.shared.carroAtual = carroAtual
         }
         catch
         {
@@ -167,7 +167,7 @@ class CarroPublisher: NSObject, ObservableObject
             object.setValue(true, forKey: "ativo")
             update(carro: object as! Carro)
 
-            modeloGlobal.shared.carroAtual = object as? Carro
+            ModeloGlobal.shared.carroAtual = object as? Carro
         }
         catch
         {

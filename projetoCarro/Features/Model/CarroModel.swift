@@ -15,5 +15,6 @@ struct NovoCarro: Identifiable
     let modelo: String
     let placa: String
     let chassis: String
+    let padrao: Bool 
     let ano: Int16
 }
