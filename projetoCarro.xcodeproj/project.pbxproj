@@ -39,6 +39,7 @@
 		E185BDD32883133A00352EEC /* FormValidator in Frameworks */ = {isa = PBXBuildFile; productRef = E185BDD22883133A00352EEC /* FormValidator */; };
 		E18D11E3291096320073D549 /* LoginApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D11E2291096320073D549 /* LoginApple.swift */; };
 		E18D11E529109DBE0073D549 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D11E429109DBE0073D549 /* Login.swift */; };
+		E18F257B2949333A00110979 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18F257A2949333A00110979 /* OnBoardingView.swift */; };
 		E196000228FF7F850093D1F7 /* AlertasDetalheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196000128FF7F850093D1F7 /* AlertasDetalheView.swift */; };
 		E196FFFD28FF75220093D1F7 /* RelCombustivelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196FFFC28FF75220093D1F7 /* RelCombustivelView.swift */; };
 		E196FFFF28FF7A610093D1F7 /* HeaderRelatorioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */; };
@@ -128,6 +129,7 @@
 		E17CB7C828822F62004BEE9E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E18D11E2291096320073D549 /* LoginApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApple.swift; sourceTree = "<group>"; };
 		E18D11E429109DBE0073D549 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		E18F257A2949333A00110979 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		E196000128FF7F850093D1F7 /* AlertasDetalheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertasDetalheView.swift; sourceTree = "<group>"; };
 		E196FFFC28FF75220093D1F7 /* RelCombustivelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelCombustivelView.swift; sourceTree = "<group>"; };
 		E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRelatorioView.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				E151C270288778E700F03BE7 /* MenuRow.swift */,
 				E1F5F1FE28C81BDC007AB40C /* SideMenuView.swift */,
 				E1AE1D552899E45F00B5BCA4 /* UltimoAbastecimentoView.swift */,
+				E18F257A2949333A00110979 /* OnBoardingView.swift */,
 			);
 			path = Inicial;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				E1F5F1E428BD1A32007AB40C /* Carro+CoreDataClass.swift in Sources */,
 				E1618ACD28A1F5F200B74DF9 /* HeaderAddView.swift in Sources */,
 				E1F5F1F728C0F93E007AB40C /* CarroViewModel.swift in Sources */,
+				E18F257B2949333A00110979 /* OnBoardingView.swift in Sources */,
 				E1A7F52728E661D1005BE12F /* CategoriaView.swift in Sources */,
 				E128DC2029181CA300D7144E /* Abastecimento+CoreDataProperties.swift in Sources */,
 				E13AB1D328F634CA00E02899 /* HeaderSaveView.swift in Sources */,

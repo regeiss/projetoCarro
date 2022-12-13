@@ -12,6 +12,8 @@ import FormValidator
 @available(iOS 16.0, *)
 struct ConfiguracaoView: View
 {
+    @AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
+    
     init()
     {
         UISegmentedControl.appearance().selectedSegmentTintColor = .orange
@@ -53,6 +55,18 @@ struct ConfiguracaoView: View
                 }
                 Section()
                 {
+                Button(action: {
+                                needsAppOnboarding = true
+                            }) {
+                                Text("Reset Onboarding")
+                                .padding(.horizontal, 40)
+                                .padding(.vertical, 15)
+                                .font(Font.title2.bold().lowercaseSmallCaps())
+                            }
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(40)
+            
                     Button("OK")
                     {
                         router.toMenu()

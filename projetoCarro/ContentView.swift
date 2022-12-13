@@ -13,11 +13,13 @@ import NavigationStack
 struct ContentView: View
 {
     @State private var appSetupState = "App NOT setup"
+    @AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
+    
     static let navigationStack = NavigationStackCompat()
     @State var showMenu: Bool
     
     @StateObject private var viewModelCarro = CarroViewModel()
-    @AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
+    
     
     var body: some View
     {
@@ -50,21 +52,23 @@ struct ContentView: View
                         .frame(width: geometry.size.width / 2)
                 }
             }.gesture(drag)
-            .onAppear() { if !needsAppOnboarding { 
-                // Scenario #2: User has completed app onboarding
-                appSetupState = "App setup"
-                viewModelCarro.selecionarCarroAtivo()}
+                .onAppear() { if !needsAppOnboarding {
+                    // Scenario #2: User has completed app onboarding
+                    
+                    appSetupState = "App setup"
+                    viewModelCarro.selecionarCarroAtivo()}}
+            
             .onChange(of: needsAppOnboarding) { needsAppOnboarding in
                 
-                if !needsAppOnboarding {
+                if needsAppOnboarding {
                     
                     // Scenario #2: User has completed app onboarding during current app launch
-                    appSetupState = "App setup 😀"
+                    appSetupState = "App setup"
                 }
             }                         
             .sheet(isPresented:$needsAppOnboarding) {
                 // Scenario #1: User has NOT completed app onboarding
-                OnboardingView()
+                OnBoardingView()
             }
         }
     }
