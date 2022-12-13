@@ -46,7 +46,12 @@ class UserSettings: ObservableObject
         }
     }
     public var unidadesVolume = ["lts", "gls", "m3"]
-
+    public var contextSet: Bool {
+        didSet {
+            UserDefaults.standard.set(contextSet, forKey: "contextSet")
+        }
+    }
+    
     init()
     {
         self.backup = UserDefaults.standard.object(forKey: "fazBackup") as? Bool ?? false
@@ -55,5 +60,6 @@ class UserSettings: ObservableObject
         self.perfil = UserDefaults.standard.object(forKey: "perfil") as? String ?? ""
         self.idcarro = UserDefaults.standard.object(forKey: "idcarro") as? UUID ?? UUID()
         self.modoEscuro = UserDefaults.standard.object(forKey: "modoEscuro") as? Bool ?? false
+        self.contextSet = UserDefaults.standard.object(forKey: "contextSet") as? Bool ?? false
     }
 }

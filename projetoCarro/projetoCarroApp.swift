@@ -14,7 +14,6 @@ final class ModeloGlobal: ObservableObject
     var ultimaKM: Int32 = 1
     var carroAtual: Carro?
     var perfilAtual: Perfil?
-    var contextSet = false 
 }
 
 @main
@@ -57,12 +56,15 @@ struct projetoCarroApp: App
     
     func prepareContext()
     {
-        guard appVars.contextSet == false
+        let userSettings = UserSettings()
+        
+        guard userSettings.contextSet == false
         else { return}
-
-        appVars.contextSet.toggle()
-        var viewModelPerfil = PerfilViewModel()
-        var viewModelCarro = CarroViewModel()
+        
+        let viewModelPerfil = PerfilViewModel()
+        let viewModelCarro = CarroViewModel()
+        
+        userSettings.contextSet = true
         
         let perfil = NovoPerfil(id: UUID(),
                                     nome: "Nenhum",

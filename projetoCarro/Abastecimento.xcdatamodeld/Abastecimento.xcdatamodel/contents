@@ -43,12 +43,14 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
+        <attribute name="padrao" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="deCarro" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Carro" inverseName="dePerfil" inverseEntity="Carro"/>
     </entity>
     <entity name="Posto" representedClassName="Posto" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="logo" optional="YES" attributeType="Binary"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
+        <attribute name="padrao" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="postoAbastecimento" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Abastecimento" inverseName="doPosto" inverseEntity="Abastecimento"/>
     </entity>
     <entity name="Servico" representedClassName="Servico" syncable="YES">

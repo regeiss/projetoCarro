@@ -8,7 +8,6 @@ import SwiftUI
 import CoreData
 import NavigationStack
 import FormValidator
-import ErrorHandler
 
 enum AbastecimentoFocusable: Hashable 
 {

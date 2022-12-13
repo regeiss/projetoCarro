@@ -2,7 +2,7 @@
 //  Posto+CoreDataProperties.swift
 //  projetoCarro
 //
-//  Created by Roberto Edgar Geiss on 06/11/22.
+//  Created by Roberto Edgar Geiss on 10/12/22.
 //
 //
 
@@ -19,6 +19,7 @@ extension Posto {
     @NSManaged public var id: UUID?
     @NSManaged public var logo: Data?
     @NSManaged public var nome: String?
+    @NSManaged public var padrao: Bool
     @NSManaged public var postoAbastecimento: NSSet?
 
 }

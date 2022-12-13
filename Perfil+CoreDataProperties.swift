@@ -2,7 +2,7 @@
 //  Perfil+CoreDataProperties.swift
 //  projetoCarro
 //
-//  Created by Roberto Edgar Geiss on 06/11/22.
+//  Created by Roberto Edgar Geiss on 10/12/22.
 //
 //
 
@@ -19,6 +19,7 @@ extension Perfil {
     @NSManaged public var email: String?
     @NSManaged public var id: UUID?
     @NSManaged public var nome: String?
+    @NSManaged public var padrao: Bool
     @NSManaged public var deCarro: NSSet?
 
 }
