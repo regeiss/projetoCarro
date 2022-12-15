@@ -59,13 +59,13 @@ struct ConfiguracaoView: View
                                 needsAppOnboarding = true
                             }) {
                                 Text("Reset Onboarding")
-                                .padding(.horizontal, 40)
-                                .padding(.vertical, 15)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
                                 .font(Font.title2.bold().lowercaseSmallCaps())
                             }
                             .background(Color.black)
                             .foregroundColor(.white)
-                            .cornerRadius(40)
+                            .cornerRadius(10)
             
                     Button("OK")
                     {
