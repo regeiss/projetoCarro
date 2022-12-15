@@ -18,29 +18,33 @@ struct HandleErrorsByShowingAlertViewModifier: ViewModifier
             // Applying the alert for error handling using a background element
             // is a workaround, if the alert would be applied directly,
             // other .alert modifiers inside of content would not work anymore
+            // TODO: Alterar o alert para uma sheet
+            // TODO: Revisar o código e tratar os erros de acordo.
             .background(
                 EmptyView()
                     .alert(item: $errorHandling.currentAlert) { currentAlert in
                         Alert(
                             title: Text("Error"),
                             message: Text(currentAlert.message),
-                            dismissButton: .default(Text("Ok")) {
-                                currentAlert.dismissAction?()
-                            }
+                            dismissButton: .default(Text("Ok")) { curentAlert.dismissAction?()}
                         )
                     }
             )
     }
 }
 
-struct ErrorView: View {
+struct ErrorView: View 
+{
     let errorWrapper: ErrorWrapper
     
     @Environment(\.dismiss) private var dismiss
     
-    var body: some View {
-        NavigationView {
-            VStack {
+    var body: some View 
+    {
+        NavigationView 
+        {
+            VStack 
+            {
                 Text("An error has occurred!")
                     .font(.title)
                     .padding(.bottom)
@@ -55,12 +59,8 @@ struct ErrorView: View {
             .background(.ultraThinMaterial)
             .cornerRadius(16)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Dismiss") {
-                        dismiss()
-                    }
-                }
+            .toolbar { ToolbarItem(placement: .navigationBarTrailing) 
+                        { Button("Dismiss") { dismiss()}}
             }
         }
     }
@@ -73,3 +73,4 @@ extension View
         modifier(HandleErrorsByShowingAlertViewModifier())
     }
 }
+
