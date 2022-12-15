@@ -8,18 +8,22 @@
 import Foundation
 import SwiftUI
 
-class AppThemeViewModel: ObservableObject {
+class AppThemeViewModel: ObservableObject 
+{
     
-    @AppStorage("modoEscuro") var isDarkMode: Bool = true                           // also exists in DarkModeViewModifier()
+    @AppStorage("modoEscuro") var isDarkMode: Bool = true                            
     
 }
 
-struct DarkModeViewModifier: ViewModifier {
+struct DarkModeViewModifier: ViewModifier 
+{
     @ObservedObject var appThemeViewModel: AppThemeViewModel = AppThemeViewModel()
     
-    public func body(content: Content) -> some View {
+    public func body(content: Content) -> some View 
+    {
         content
             .preferredColorScheme(appThemeViewModel.isDarkMode ? .dark : appThemeViewModel.isDarkMode == false ? .light : nil)
             
     }
 }
+
