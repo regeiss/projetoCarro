@@ -25,7 +25,7 @@
 		E151C26F28862C3300F03BE7 /* ConfiguracaoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */; };
 		E151C271288778E700F03BE7 /* MenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C270288778E700F03BE7 /* MenuRow.swift */; };
 		E151C2732888B03400F03BE7 /* AbastecimentoListaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C2722888B03400F03BE7 /* AbastecimentoListaView.swift */; };
-		E151C2782888C6C500F03BE7 /* Abastecimento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E151C2762888C6C500F03BE7 /* Abastecimento.xcdatamodeld */; };
+		E151C2782888C6C500F03BE7 /* projetoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E151C2762888C6C500F03BE7 /* projetoCoreData.xcdatamodeld */; };
 		E151C27B2888C92200F03BE7 /* Abastecimento+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C2792888C92200F03BE7 /* Abastecimento+CoreDataClass.swift */; };
 		E151C29D2888D05800F03BE7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E151C29C2888D05800F03BE7 /* Persistence.swift */; };
 		E153CA4228A33899008CA4A7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E153CA4128A33899008CA4A7 /* UserSettings.swift */; };
@@ -293,7 +293,7 @@
 				E1ACCB31286D17F60007DDC5 /* ContentView.swift */,
 				E1ACCB33286D17FB0007DDC5 /* Assets.xcassets */,
 				E1ACCB35286D17FB0007DDC5 /* Preview Content */,
-				E151C2762888C6C500F03BE7 /* Abastecimento.xcdatamodeld */,
+				E151C2762888C6C500F03BE7 /* projetoCoreData.xcdatamodeld */,
 			);
 			path = projetoCarro;
 			sourceTree = "<group>";
@@ -577,7 +577,7 @@
 				E1F5F1ED28BE42F2007AB40C /* PostoView.swift in Sources */,
 				E128DC2429181CA300D7144E /* Perfil+CoreDataProperties.swift in Sources */,
 				E1ACCB48286D25E10007DDC5 /* AbastecimentoView.swift in Sources */,
-				E151C2782888C6C500F03BE7 /* Abastecimento.xcdatamodeld in Sources */,
+				E151C2782888C6C500F03BE7 /* projetoCoreData.xcdatamodeld in Sources */,
 				E13AB1D128F39D1E00E02899 /* AppTheme.swift in Sources */,
 				E1ACCB46286D24790007DDC5 /* MainMenuScreen.swift in Sources */,
 				E1FE52FA29147FC90037636F /* Snippets.swift in Sources */,
@@ -778,7 +778,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"projetoCarro/Preview Content\"";
 				DEVELOPMENT_TEAM = 4DLN7FPJ74;
 				ENABLE_PREVIEWS = YES;
@@ -901,13 +901,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		E151C2762888C6C500F03BE7 /* Abastecimento.xcdatamodeld */ = {
+		E151C2762888C6C500F03BE7 /* projetoCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				E151C2772888C6C500F03BE7 /* Abastecimento.xcdatamodel */,
 			);
 			currentVersion = E151C2772888C6C500F03BE7 /* Abastecimento.xcdatamodel */;
-			path = Abastecimento.xcdatamodeld;
+			path = projetoCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

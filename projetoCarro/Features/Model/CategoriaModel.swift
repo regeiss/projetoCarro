@@ -11,5 +11,5 @@ struct NovaCategoria: Identifiable
 {
     let id: UUID
     let nome: String
-    let icone: Data
+    let nomeImagem: String
 }

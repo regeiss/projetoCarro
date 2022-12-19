@@ -26,7 +26,7 @@ struct HandleErrorsByShowingAlertViewModifier: ViewModifier
                         Alert(
                             title: Text("Error"),
                             message: Text(currentAlert.message),
-                            dismissButton: .default(Text("Ok")) { curentAlert.dismissAction?()}
+                            dismissButton: .default(Text("Ok")) { currentAlert.dismissAction?()}
                         )
                     }
             )

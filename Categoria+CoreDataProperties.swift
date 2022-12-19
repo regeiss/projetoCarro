@@ -2,7 +2,7 @@
 //  Categoria+CoreDataProperties.swift
 //  projetoCarro
 //
-//  Created by Roberto Edgar Geiss on 15/11/22.
+//  Created by Roberto Edgar Geiss on 18/12/22.
 //
 //
 
@@ -18,6 +18,7 @@ extension Categoria {
 
     @NSManaged public var id: UUID?
     @NSManaged public var nome: String?
+    @NSManaged public var nomeImagem: String?
     @NSManaged public var doServico: NSSet?
 
 }

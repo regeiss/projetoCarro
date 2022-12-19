@@ -58,6 +58,7 @@ class CategoriaPublisher: NSObject, ObservableObject
         let newCategoria = Categoria(context: backgroundContext)
         newCategoria.id = categoria.id
         newCategoria.nome = categoria.nome
+        newCategoria.nomeImagem = categoria.nomeImagem
 
         backgroundContext.performAndWait
         {
