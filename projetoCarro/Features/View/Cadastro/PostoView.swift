@@ -20,7 +20,7 @@ class PostoFormInfo: ObservableObject
 {
     @Published var nome: String = ""
     
-    lazy var form = { FormValidation(validationType: .immediate)}()
+    lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
 }
 

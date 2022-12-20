@@ -28,14 +28,14 @@ class AbastecimentoFormInfo: ObservableObject
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
-    lazy var form = { FormValidation(validationType: .immediate)}()
+    lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valKMVazio: ValidationContainer = { $km.nonEmptyValidator(form: form, errorMessage: "km deve ser informada")}()
     lazy var valKMNumerico: ValidationContainer = { $km.patternValidator(form: form, pattern: regexNumerico, errorMessage: "km deve ser númerica")}()
     lazy var valLitros: ValidationContainer = { $litros.nonEmptyValidator(form: form, errorMessage: "qtd litros deve ser informada")}()
     lazy var valLitrosNumerico: ValidationContainer = { $litros.patternValidator(form: form, pattern: regexNumerico, errorMessage: "qtd litros deve ser númerica")}()
     lazy var validacaoValorLitro: ValidationContainer = { $valorLitro.nonEmptyValidator(form: form, errorMessage: "valor deve ser informado")}()
     lazy var valValorNumerico: ValidationContainer = { $valorLitro.patternValidator(form: form, pattern: regexNumerico, errorMessage: "valor litro deve ser númerico")}()
-    lazy var dataAbastecimento: ValidationContainer = { $data.dateValidator(form: form, before: Date(), errorMessage: "data não pode maior que hoje")}()
+    lazy var dataAbastecimento: ValidationContainer = { $data.dateValidator(form: form, before: Date(), errorMessage: "data não pode ser maior que hoje")}()
 }
 
 @available(iOS 16.0, *)
@@ -116,7 +116,7 @@ struct AbastecimentoView: View
         }
     }
     
-    fileprivate func extractedFunc() throws
+    fileprivate func saveAbastecimento() throws
     {
         guard let postoPicker = posto
         else
@@ -145,7 +145,7 @@ struct AbastecimentoView: View
         {
             do
             {
-                try extractedFunc()
+                try saveAbastecimento()
             }
 
             catch

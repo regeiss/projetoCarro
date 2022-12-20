@@ -33,3 +33,26 @@ Based on the above criteria, we can extract three separate scenarios relating to
 // https://zendesk.engineering/app-onboarding-with-swiftui-23d970ab24d4
 
 // https://pmnh1.atlassian.net/jira/software/projects/PROJ/boards/1
+//                    PhotosPicker(
+//                        selection: $selectedItem,
+//                        matching: .images,
+//                        photoLibrary: .shared()) {
+//                            Text("Selecione uma imagem")
+//                        }
+//                        .onChange(of: selectedItem) { newItem in
+//                            Task {
+//                                // Retrieve selected asset in the form of Data
+//                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+//                                    selectedImageData = data
+//                                }
+//                            }
+//                        }
+//
+//                    if let selectedImageData,
+//                       let uiImage = UIImage(data: selectedImageData)
+//                    {
+//                        Image(uiImage: uiImage)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 250, height: 250)
+//                    }

@@ -33,7 +33,7 @@ class ItemServicoFormInfo: ObservableObject
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
-    lazy var form = { FormValidation(validationType: .immediate)}()
+    lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
     lazy var validacaoCusto: ValidationContainer = { $custo.nonEmptyValidator(form: form, errorMessage: "custo deve ser informado")}()
     lazy var valValorNumerico: ValidationContainer = { $custo.patternValidator(form: form, pattern: regexNumerico, errorMessage: "valor deve ser númerico")}()

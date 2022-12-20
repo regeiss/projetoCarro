@@ -24,7 +24,7 @@ class CategoriaFormInfo: ObservableObject
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
-    lazy var form = { FormValidation(validationType: .immediate)}()
+    lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
 }
 
@@ -58,29 +58,7 @@ struct CategoriaView: View
                         .validation(formInfo.valNomeVazio)
                         .focused($categoriaInFocus, equals: .nome)
                         .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {self.categoriaInFocus = .nome}}
-//                    PhotosPicker(
-//                        selection: $selectedItem,
-//                        matching: .images,
-//                        photoLibrary: .shared()) {
-//                            Text("Selecione uma imagem")
-//                        }
-//                        .onChange(of: selectedItem) { newItem in
-//                            Task {
-//                                // Retrieve selected asset in the form of Data
-//                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-//                                    selectedImageData = data
-//                                }
-//                            }
-//                        }
-//
-//                    if let selectedImageData,
-//                       let uiImage = UIImage(data: selectedImageData)
-//                    {
-//                        Image(uiImage: uiImage)
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 250, height: 250)
-//                    }
+                    Image("engine.combustion")
                 }
             }.onReceive(pub)  {_ in gravarCategoria()}
              .onAppear() {if isEdit {formInfo.nome = categoria.nome ?? ""}}

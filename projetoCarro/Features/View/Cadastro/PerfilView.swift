@@ -23,7 +23,7 @@ class PerfilFormInfo: ObservableObject
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
-    lazy var form = { FormValidation(validationType: .immediate)}()
+    lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
 }
 

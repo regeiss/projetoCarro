@@ -26,7 +26,7 @@ struct CategoriaListaView: View
                     {
                         Text(String(categoria.nome!))
                         Spacer()
-                        //Image(categoria.icone)
+                        Image(systemName: "engine.combustion")
                     }.padding([.top, .bottom], 4)
                      .onTapGesture { editCategorias(categoria: categoria)}
                 }.onDelete(perform: deleteCategorias)
