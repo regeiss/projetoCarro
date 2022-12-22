@@ -23,6 +23,8 @@ enum ValidationError: LocalizedError
     {
         switch self
         {
+            case .missingPosto:
+                return "Posto is a required field."
             case .missingName:
                 return "Name is a required field."
             case .wrongDataFormat(let error):
