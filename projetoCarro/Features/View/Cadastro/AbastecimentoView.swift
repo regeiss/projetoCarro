@@ -33,7 +33,7 @@ class AbastecimentoFormInfo: ObservableObject
     lazy var valKMNumerico: ValidationContainer = { $km.patternValidator(form: form, pattern: regexNumerico, errorMessage: "km deve ser númerica")}()
     lazy var valLitros: ValidationContainer = { $litros.nonEmptyValidator(form: form, errorMessage: "qtd litros deve ser informada")}()
     lazy var valLitrosNumerico: ValidationContainer = { $litros.patternValidator(form: form, pattern: regexNumerico, errorMessage: "qtd litros deve ser númerica")}()
-    lazy var validacaoValorLitro: ValidationContainer = { $valorLitro.nonEmptyValidator(form: form, errorMessage: "valor deve ser informado")}()
+    lazy var valValorLitro: ValidationContainer = { $valorLitro.nonEmptyValidator(form: form, errorMessage: "valor deve ser informado")}()
     lazy var valValorNumerico: ValidationContainer = { $valorLitro.patternValidator(form: form, pattern: regexNumerico, errorMessage: "valor litro deve ser númerico")}()
     lazy var dataAbastecimento: ValidationContainer = { $data.dateValidator(form: form, before: Date(), errorMessage: "data não pode ser maior que hoje")}()
 }
@@ -80,7 +80,7 @@ struct AbastecimentoView: View
                             .focused($abastecimentoInFocus, equals: .km)
                             .keyboardType(.numbersAndPunctuation)
                             .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {self.abastecimentoInFocus = .km}}
-                        DatePicker("Data", selection: $formInfo.data)
+                        DatePicker("data", selection: $formInfo.data)
                             .frame(maxHeight: 400)
                             .focused($abastecimentoInFocus, equals: .data)
                             .validation(formInfo.dataAbastecimento)
@@ -90,7 +90,7 @@ struct AbastecimentoView: View
                             .focused($abastecimentoInFocus, equals: .litros)
                             .keyboardType(.numbersAndPunctuation)
                         TextField("valorLitro", text: $formInfo.valorLitro)
-                            .validation(formInfo.validacaoValorLitro)
+                            .validation(formInfo.valValorLitro)
                             .validation(formInfo.valValorNumerico)
                             .focused($abastecimentoInFocus, equals: .litros)
                             .keyboardType(.numbersAndPunctuation)
