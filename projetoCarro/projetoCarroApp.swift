@@ -14,6 +14,7 @@ final class ModeloGlobal: ObservableObject
     var ultimaKM: Int32 = 1
     var carroAtual: Carro?
     var perfilAtual: Perfil?
+    var postoPadrao: Posto?
 }
 
 @main
@@ -59,29 +60,37 @@ struct projetoCarroApp: App
         let userSettings = UserSettings()
         
         guard userSettings.contextSet == false
-        else { return}
+        else { return }
         
         let viewModelPerfil = PerfilViewModel()
         let viewModelCarro = CarroViewModel()
+        let viewModelPosto = PostoViewModel() 
         
         userSettings.contextSet = true
         
         let perfil = NovoPerfil(id: UUID(),
-                                    nome: "Nenhum",
+                                    nome: "Padrão",
                                     email: "nenhum",
                                     padrao: true)
 
-                            viewModelPerfil.add(perfil: perfil)
+        viewModelPerfil.add(perfil: perfil)
 
-               let carro = NovoCarro(id: UUID(),
-                                      nome: "Nenhum",
-                                      marca: "Nenhum",
-                                      modelo: "Nenhum",
-                                      placa: "Nenhum",
-                                      chassis: "Nenhum",
-                                      padrao: true,
-                                      ano: Int16(0))
-                viewModelCarro.add(carro: carro)
+        let carro = NovoCarro(id: UUID(),
+                                nome: "Padrão",
+                                marca: "Nenhum",
+                                modelo: "Nenhum",
+                                placa: "Nenhum",
+                                chassis: "Nenhum",
+                                padrao: true,
+                                ano: Int16(0))
+
+        viewModelCarro.add(carro: carro)
+
+        let posto = NovoPosto(id: UUID(),
+                                nome: "Padrão",
+                                logo: "Nenhum")
+
+        viewModelPosto.add(posto: posto)
     }
 
     func saveContext()
