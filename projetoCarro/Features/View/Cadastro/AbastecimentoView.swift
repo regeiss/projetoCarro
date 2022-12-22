@@ -121,9 +121,17 @@ struct AbastecimentoView: View
         guard let postoPicker = posto
         else
         {
-            //let postoPicker = viewModelPosto.postosLista.first
-            throw ValidationError.missingName
+            let postoPicker = ModeloGlobal.shared.postoPadrao
+            throw ValidationError.missingPosto
         }
+
+        guard let carroAtual = ModeloGlobal.shared.carroAtual
+        else
+        {
+            let carroAtual = viewModelCarro.carrosLista.first 
+            throw ValidationError.missingCarro
+        }
+
         let uab = ultimoAbastecimento(id: UUID(),
                                           km: (Int32(formInfo.km) ?? 0),
                                           data: formInfo.data,
@@ -133,7 +141,7 @@ struct AbastecimentoView: View
                                           completo:  Bool(formInfo.completo),
                                           media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
                                           doPosto: postoPicker,
-                                          doCarro: ModeloGlobal.shared.carroAtual!)
+                                          doCarro: carroAtual)
         
             viewModel.add(abastecimento: uab)
     }
