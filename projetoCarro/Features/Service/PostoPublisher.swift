@@ -105,6 +105,26 @@ class PostoPublisher: NSObject, ObservableObject
             }
         }
     }
+
+   func selecionarPostoPadrao()
+    {
+        let fetchRequest: NSFetchRequest<Posto> = Posto.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "(padrao == 1)")
+        fetchRequest.fetchLimit = 1
+
+        do
+        {
+            logger.log("Context has changed, buscando posto padrao")
+            guard let postoPadrao = try backgroundContext.fetch(fetchRequest).first
+            else { return }
+            ModeloGlobal.shared.postoPadrao = postoPadrao
+        }
+        catch
+        {
+            fatalError("Erro moc \(error.localizedDescription)")
+        }
+    }
+
 }
 
 extension PostoPublisher: NSFetchedResultsControllerDelegate
