@@ -83,7 +83,17 @@ class AbastecimentoPublisher: NSObject, ObservableObject
 
     func update(abastecimento: Abastecimento)
     {
-        //...
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
     }
 
     func delete(abastecimento: Abastecimento)
