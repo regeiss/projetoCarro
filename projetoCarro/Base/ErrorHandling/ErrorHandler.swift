@@ -10,6 +10,8 @@ import SwiftUI
 
 enum ValidationError: LocalizedError
 {
+    case missingPosto
+    case missingCarro
     case missingName
     case wrongDataFormat(error: Error)
     case missingData
@@ -25,6 +27,8 @@ enum ValidationError: LocalizedError
         {
             case .missingPosto:
                 return "Posto is a required field."
+            case .missingCarro:
+                return "Carro is a required field."
             case .missingName:
                 return "Name is a required field."
             case .wrongDataFormat(let error):
@@ -56,8 +60,6 @@ class ErrorHandling: ObservableObject
         currentAlert = ErrorAlert(message: error.localizedDescription)
     }
 }
- 
-
 
 //https://www.swiftbysundell.com/articles/propagating-user-facing-errors-in-swift/
 //https://www.ralfebert.com/swiftui/generic-error-handling/

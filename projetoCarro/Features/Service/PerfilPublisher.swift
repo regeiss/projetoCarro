@@ -30,7 +30,6 @@ class PerfilPublisher: NSObject, ObservableObject
         let sortDescriptor = NSSortDescriptor(key: "nome", ascending: false)
 
         fetchRequest.sortDescriptors = [sortDescriptor]
-        //fetchRequest.resultType = .dictionaryResultType
         fetchRequest.returnsDistinctResults = true
         
         perfilFetchController = NSFetchedResultsController(

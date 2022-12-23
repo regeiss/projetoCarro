@@ -53,7 +53,7 @@ struct AbastecimentoView: View
     
     let router = MyRouter.shared
     let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
-
+    
     private var valorTotal: String
     {
         let formatter = NumberFormatter()
@@ -116,19 +116,24 @@ struct AbastecimentoView: View
         }
     }
     
-    fileprivate func saveAbastecimento() throws
+    private func saveAbastecimento() throws
     {
-        guard let postoPicker = posto
+        var postoPicker: Posto?
+        var carroAtual: Carro?
+        
+        if posto == nil
+        {
+            postoPicker = ModeloGlobal.shared.postoPadrao
+        }
         else
         {
-            let postoPicker = ModeloGlobal.shared.postoPadrao
-            throw ValidationError.missingPosto
+            postoPicker = posto
         }
 
         guard let carroAtual = ModeloGlobal.shared.carroAtual
         else
         {
-            let carroAtual = viewModelCarro.carrosLista.first 
+            carroAtual = viewModelCarro.carrosLista.first
             throw ValidationError.missingCarro
         }
 
@@ -140,7 +145,7 @@ struct AbastecimentoView: View
                                           valorTotal: (Decimal((Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0))),
                                           completo:  Bool(formInfo.completo),
                                           media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
-                                          doPosto: postoPicker,
+                                      doPosto: postoPicker!,
                                           doCarro: carroAtual)
         
             viewModel.add(abastecimento: uab)

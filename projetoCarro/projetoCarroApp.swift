@@ -64,9 +64,7 @@ struct projetoCarroApp: App
         
         let viewModelPerfil = PerfilViewModel()
         let viewModelCarro = CarroViewModel()
-        let viewModelPosto = PostoViewModel() 
-        
-        userSettings.contextSet = true
+        let viewModelPosto = PostoViewModel()
         
         let perfil = NovoPerfil(id: UUID(),
                                     nome: "Padrão",
@@ -74,7 +72,8 @@ struct projetoCarroApp: App
                                     padrao: true)
 
         viewModelPerfil.add(perfil: perfil)
-
+        appVars.perfilAtual = perfil
+        
         let carro = NovoCarro(id: UUID(),
                                 nome: "Padrão",
                                 marca: "Nenhum",
@@ -85,12 +84,17 @@ struct projetoCarroApp: App
                                 ano: Int16(0))
 
         viewModelCarro.add(carro: carro)
-
+        appVars.perfilAtual = perfil
+        
+        let imgShell: UIImage = UIImage(named: "ipiranga")!
+        let logo = imgShell.toData as NSData?
         let posto = NovoPosto(id: UUID(),
                                 nome: "Padrão",
-                                logo: "Nenhum")
+                                logo: logo!)
 
         viewModelPosto.add(posto: posto)
+        
+        userSettings.contextSet = true
     }
 
     func saveContext()

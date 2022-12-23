@@ -83,11 +83,11 @@ class AbastecimentoPublisher: NSObject, ObservableObject
 
     func update(abastecimento: Abastecimento)
     {
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
             do
             {
-                try self.backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
