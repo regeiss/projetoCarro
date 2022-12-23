@@ -105,6 +105,28 @@ class PerfilPublisher: NSObject, ObservableObject
     }
 }
 
+    private func inserePadrao()
+    {
+        let newPerfil = Perfil(context: backgroundContext)
+        newPerfil.id = UUID()
+        newPerfil.nome = "Padrão"
+        newPerfil.email = "padrão"
+        
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
+
+        ModeloGlobal.shared.perfilAtual = newPerfil
+    }
+
 extension PerfilPublisher: NSFetchedResultsControllerDelegate
 {
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>)
