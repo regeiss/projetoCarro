@@ -56,3 +56,5 @@ Based on the above criteria, we can extract three separate scenarios relating to
 //                            .scaledToFit()
 //                            .frame(width: 250, height: 250)
 //                    }
+
+// https://pmnh1.atlassian.net/wiki/spaces/DM/pages/36274177/Create+a+Slide+Down+Error+Alert+with+SwiftUI+and+Animations
