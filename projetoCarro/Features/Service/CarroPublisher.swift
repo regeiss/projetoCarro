@@ -108,6 +108,32 @@ class CarroPublisher: NSObject, ObservableObject
         }
     }
     
+    private func inserePadrao()
+    {
+        let newCarro = Carro(context: backgroundContext)
+            newCarro.id = carro.id
+            newCarro.nome = carro.nome
+            newCarro.marca = carro.marca
+            newCarro.modelo = carro.modelo
+            newCarro.placa = carro.placa
+            newCarro.chassis = carro.chassis
+            newCarro.ano = carro.ano
+        
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
+
+        ModeloGlobal.shared.carroAtual = newCarro
+    }
+
     func selecionarCarroAtivo()
     {
         let fetchRequest: NSFetchRequest<Carro> = Carro.fetchRequest()
@@ -174,8 +200,7 @@ class CarroPublisher: NSObject, ObservableObject
             fatalError("Erro moc \(error.localizedDescription)")
         }
         
-     // do something with it
- }
+ }  
 
 }
 
