@@ -66,34 +66,11 @@ struct projetoCarroApp: App
         let viewModelCarro = CarroViewModel()
         let viewModelPosto = PostoViewModel()
         
-        let perfil = NovoPerfil(id: UUID(),
-                                    nome: "Padrão",
-                                    email: "nenhum",
-                                    padrao: true)
+        // Inserir perfil padrão
+        viewModelPerfil.inserePadrao()
+        viewModelCarro.inserePadrao()
+        viewModelPosto.inserePadrao()
 
-        viewModelPerfil.add(perfil: perfil)
-        appVars.perfilAtual = perfil
-        
-        let carro = NovoCarro(id: UUID(),
-                                nome: "Padrão",
-                                marca: "Nenhum",
-                                modelo: "Nenhum",
-                                placa: "Nenhum",
-                                chassis: "Nenhum",
-                                padrao: true,
-                                ano: Int16(0))
-
-        viewModelCarro.add(carro: carro)
-        appVars.perfilAtual = perfil
-        
-        let imgShell: UIImage = UIImage(named: "ipiranga")!
-        let logo = imgShell.toData as NSData?
-        let posto = NovoPosto(id: UUID(),
-                                nome: "Padrão",
-                                logo: logo!)
-
-        viewModelPosto.add(posto: posto)
-        
         userSettings.contextSet = true
     }
 
@@ -127,6 +104,10 @@ struct projetoCarroApp: App
         print("Core Data DB Path :: \(path ?? "Not found")")
     }
 }
+
+
+
+
 
 
 
