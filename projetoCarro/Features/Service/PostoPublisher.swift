@@ -106,7 +106,31 @@ class PostoPublisher: NSObject, ObservableObject
         }
     }
 
-   func selecionarPostoPadrao()
+    private func inserePadrao()
+    {
+        let imgShell: UIImage = UIImage(named: "ipiranga")!
+        let logo = imgShell.toData as NSData?
+        let newPosto = Posto(context: backgroundContext)
+        newPosto.id = UUID()
+        newPosto.nome = "Nenhum"
+        newPosto.logo = posto.logo as Data
+        
+        backgroundContext.performAndWait
+        {
+            do
+            {
+                try self.backgroundContext.save()
+            }
+            catch
+            {
+                fatalError("Erro moc \(error.localizedDescription)")
+            }
+        }
+
+        ModeloGlobal.shared.postoAtual = newPosto 
+    }
+
+    func selecionarPostoPadrao()
     {
         let fetchRequest: NSFetchRequest<Posto> = Posto.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "(padrao == 1)")
@@ -137,3 +161,4 @@ extension PostoPublisher: NSFetchedResultsControllerDelegate
         self.postoCVS.value = postos
     }
 }
+
