@@ -124,17 +124,16 @@ struct AbastecimentoView: View
         if posto == nil
         {
             postoPicker = ModeloGlobal.shared.postoPadrao
+            print(ModeloGlobal.shared.postoPadrao!.nome as Any)
         }
         else
         {
             postoPicker = posto
         }
 
-        guard let carroAtual = ModeloGlobal.shared.carroAtual
-        else
+        if ModeloGlobal.shared.carroAtual == nil
         {
             carroAtual = viewModelCarro.carrosLista.first
-            throw ValidationError.missingCarro
         }
 
         let uab = ultimoAbastecimento(id: UUID(),
@@ -145,8 +144,8 @@ struct AbastecimentoView: View
                                           valorTotal: (Decimal((Double(formInfo.litros) ?? 0) * (Double(formInfo.valorLitro) ?? 0))),
                                           completo:  Bool(formInfo.completo),
                                           media: calculaMedia(kmAtual: Int32(formInfo.km) ?? 0, litros: Double(formInfo.litros) ?? 0),
-                                      doPosto: postoPicker!,
-                                          doCarro: carroAtual)
+                                          doPosto: postoPicker!,
+                                          doCarro: carroAtual!)
         
             viewModel.add(abastecimento: uab)
     }

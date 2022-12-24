@@ -36,5 +36,10 @@ class PerfilViewModel: ObservableObject
     {
         PerfilPublisher.shared.delete(perfil: perfil)
     }
+    
+    func inserePadrao()
+    {
+        PerfilPublisher.shared.inserePadrao()
+    }
 }
 

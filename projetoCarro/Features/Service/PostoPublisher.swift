@@ -106,14 +106,14 @@ class PostoPublisher: NSObject, ObservableObject
         }
     }
 
-    private func inserePadrao()
+    func inserePadrao()
     {
         let imgShell: UIImage = UIImage(named: "ipiranga")!
         let logo = imgShell.toData as NSData?
         let newPosto = Posto(context: backgroundContext)
         newPosto.id = UUID()
         newPosto.nome = "Nenhum"
-        newPosto.logo = posto.logo as Data
+        newPosto.logo = logo as Data?
         
         backgroundContext.performAndWait
         {
@@ -127,7 +127,7 @@ class PostoPublisher: NSObject, ObservableObject
             }
         }
 
-        ModeloGlobal.shared.postoAtual = newPosto 
+        ModeloGlobal.shared.postoPadrao = newPosto
     }
 
     func selecionarPostoPadrao()

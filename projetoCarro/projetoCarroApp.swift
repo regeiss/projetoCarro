@@ -23,8 +23,11 @@ struct projetoCarroApp: App
 {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
-    static let persistenceController = PersistenceController.shared
+    
     @StateObject var appVars = ModeloGlobal()
+    @AppStorage("contextSet") private var contextSet: Bool = false
+    
+    static let persistenceController = PersistenceController.shared
     
     var body: some Scene
     {
@@ -57,9 +60,7 @@ struct projetoCarroApp: App
     
     func prepareContext()
     {
-        let userSettings = UserSettings()
-        
-        guard userSettings.contextSet == false
+        guard contextSet == false
         else { return }
         
         let viewModelPerfil = PerfilViewModel()
@@ -71,7 +72,7 @@ struct projetoCarroApp: App
         viewModelCarro.inserePadrao()
         viewModelPosto.inserePadrao()
 
-        userSettings.contextSet = true
+        contextSet = true
     }
 
     func saveContext()

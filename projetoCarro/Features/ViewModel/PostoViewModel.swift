@@ -36,4 +36,9 @@ class PostoViewModel: ObservableObject
     {
         PostoPublisher.shared.delete(posto: posto)
     }
+    
+    func inserePadrao()
+    {
+        PostoPublisher.shared.inserePadrao()
+    }
 }

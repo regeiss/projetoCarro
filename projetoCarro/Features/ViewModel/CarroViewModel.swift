@@ -46,4 +46,9 @@ class CarroViewModel: ObservableObject
     {
         CarroPublisher.shared.delete(carro: carro)
     }
+    
+    func inserePadrao()
+    {
+        CarroPublisher.shared.inserePadrao()
+    }
 }

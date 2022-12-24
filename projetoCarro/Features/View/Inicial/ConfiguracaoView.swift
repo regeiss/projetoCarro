@@ -13,6 +13,7 @@ import FormValidator
 struct ConfiguracaoView: View
 {
     @AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
+    @AppStorage("contextSet") private var contextSet: Bool = false
     
     init()
     {
@@ -57,6 +58,7 @@ struct ConfiguracaoView: View
                 {
                 Button(action: {
                                 needsAppOnboarding = true
+                                contextSet = false
                             }) {
                                 Text("Reset Onboarding")
                                 .padding(.horizontal, 10)

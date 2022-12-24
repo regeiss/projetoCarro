@@ -17,31 +17,31 @@ class PerfilPublisher: NSObject, ObservableObject
     private let perfilFetchController: NSFetchedResultsController<Perfil>
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Publisher")
     
-    var backgroundContext: NSManagedObjectContext = {
-         let context = PersistenceController.shared.container.viewContext 
-             context.mergePolicy = NSMergePolicy( merge: .mergeByPropertyObjectTrumpMergePolicyType)
-             context.automaticallyMergesChangesFromParent = true
-         return context
-         }()
+    var publisherContext: NSManagedObjectContext = {
+        let context = PersistenceController.shared.container.viewContext
+        context.mergePolicy = NSMergePolicy( merge: .mergeByPropertyObjectTrumpMergePolicyType)
+        context.automaticallyMergesChangesFromParent = true
+        return context
+    }()
     
     private override init()
     {
         let fetchRequest: NSFetchRequest<Perfil> = Perfil.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "nome", ascending: false)
-
+        
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.returnsDistinctResults = true
         
         perfilFetchController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: backgroundContext,
+            managedObjectContext: publisherContext,
             sectionNameKeyPath: nil, cacheName: nil
         )
-
+        
         super.init()
-
+        
         perfilFetchController.delegate = self
-
+        
         do
         {
             try perfilFetchController.performFetch()
@@ -52,19 +52,19 @@ class PerfilPublisher: NSObject, ObservableObject
             NSLog("Erro: could not fetch objects")
         }
     }
-
+    
     func add(perfil: NovoPerfil)
     {
-        let newPerfil = Perfil(context: backgroundContext)
+        let newPerfil = Perfil(context: publisherContext)
         newPerfil.id = perfil.id
         newPerfil.nome = perfil.nome
         newPerfil.email = perfil.email
         
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
             do
             {
-                try self.backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
@@ -72,14 +72,14 @@ class PerfilPublisher: NSObject, ObservableObject
             }
         }
     }
-
+    
     func update(perfil: Perfil)
     {
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
             do
             {
-                try self.backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
@@ -87,15 +87,15 @@ class PerfilPublisher: NSObject, ObservableObject
             }
         }
     }
-
+    
     func delete(perfil: Perfil)
     {
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
-            backgroundContext.delete(perfil)
+            publisherContext.delete(perfil)
             do
             {
-                try self.backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
@@ -103,29 +103,29 @@ class PerfilPublisher: NSObject, ObservableObject
             }
         }
     }
-}
-
-    private func inserePadrao()
+    
+    func inserePadrao()
     {
-        let newPerfil = Perfil(context: backgroundContext)
+        let newPerfil = Perfil(context: publisherContext)
         newPerfil.id = UUID()
         newPerfil.nome = "Padrão"
         newPerfil.email = "padrão"
         
-        backgroundContext.performAndWait
+        publisherContext.performAndWait
         {
             do
             {
-                try self.backgroundContext.save()
+                try self.publisherContext.save()
             }
             catch
             {
                 fatalError("Erro moc \(error.localizedDescription)")
             }
         }
-
+        
         ModeloGlobal.shared.perfilAtual = newPerfil
     }
+}
 
 extension PerfilPublisher: NSFetchedResultsControllerDelegate
 {
