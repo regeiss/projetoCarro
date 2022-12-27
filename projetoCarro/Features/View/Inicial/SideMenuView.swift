@@ -46,7 +46,7 @@ struct SideMenuView: View
             .onTapGesture
             {
                 showMenu = false
-                router.toPerfil()
+                router.toListaPerfil()
             }
             HStack
             {

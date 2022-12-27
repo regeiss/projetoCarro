@@ -21,6 +21,7 @@
         <attribute name="marca" optional="YES" attributeType="String"/>
         <attribute name="modelo" optional="YES" attributeType="String"/>
         <attribute name="nome" optional="YES" attributeType="String"/>
+        <attribute name="padrao" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="placa" optional="YES" attributeType="String"/>
         <relationship name="carroAbastecimento" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Abastecimento" inverseName="doCarro" inverseEntity="Abastecimento"/>
         <relationship name="dePerfil" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Perfil" inverseName="deCarro" inverseEntity="Perfil"/>

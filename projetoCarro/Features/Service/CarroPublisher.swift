@@ -118,6 +118,7 @@ class CarroPublisher: NSObject, ObservableObject
             newCarro.placa = "padrão"
             newCarro.chassis = "padrão"
             newCarro.ano = Int16(0)
+            newCarro.padrao = true
         
         publisherContext.performAndWait
         {

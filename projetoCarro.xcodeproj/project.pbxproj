@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E121D812295A685500BAA819 /* PerfilListaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E121D811295A685500BAA819 /* PerfilListaView.swift */; };
 		E123F06B28909DF1009C0F4D /* AbastecimentoPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06A28909DF1009C0F4D /* AbastecimentoPublisher.swift */; };
 		E123F06D2890AA75009C0F4D /* ImageLabelRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */; };
 		E123F06F2890AB8C009C0F4D /* MenuInicialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123F06E2890AB8C009C0F4D /* MenuInicialModel.swift */; };
@@ -99,6 +100,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E121D811295A685500BAA819 /* PerfilListaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilListaView.swift; sourceTree = "<group>"; };
 		E123F06A28909DF1009C0F4D /* AbastecimentoPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbastecimentoPublisher.swift; sourceTree = "<group>"; };
 		E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelRow.swift; sourceTree = "<group>"; };
 		E123F06E2890AB8C009C0F4D /* MenuInicialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInicialModel.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				E13AB1CD28F3258900E02899 /* PostoListaView.swift */,
 				E1BBC3A028E3C03900FFBDB8 /* ServicoListaView.swift */,
 				E1D137E628FC6C5D00983BFE /* ItemServicoListaView.swift */,
+				E121D811295A685500BAA819 /* PerfilListaView.swift */,
 			);
 			path = Lista;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				E128DC2029181CA300D7144E /* Abastecimento+CoreDataProperties.swift in Sources */,
 				E13AB1D328F634CA00E02899 /* HeaderSaveView.swift in Sources */,
 				E17CB7C72880EAC0004BEE9E /* ServicoView.swift in Sources */,
+				E121D812295A685500BAA819 /* PerfilListaView.swift in Sources */,
 				E153CA4228A33899008CA4A7 /* UserSettings.swift in Sources */,
 				E1B8A88D28DBE0BE0021A0F5 /* PerfilViewModel.swift in Sources */,
 				E1E71F5B2875106800BF5D26 /* Enums.swift in Sources */,

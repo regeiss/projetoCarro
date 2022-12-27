@@ -114,6 +114,7 @@ class PostoPublisher: NSObject, ObservableObject
         newPosto.id = UUID()
         newPosto.nome = "Nenhum"
         newPosto.logo = logo as Data?
+        newPosto.padrao = true
         
         backgroundContext.performAndWait
         {

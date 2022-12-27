@@ -2,7 +2,7 @@
 //  Carro+CoreDataProperties.swift
 //  projetoCarro
 //
-//  Created by Roberto Edgar Geiss on 06/11/22.
+//  Created by Roberto Edgar Geiss on 26/12/22.
 //
 //
 
@@ -25,6 +25,7 @@ extension Carro {
     @NSManaged public var modelo: String?
     @NSManaged public var nome: String?
     @NSManaged public var placa: String?
+    @NSManaged public var padrao: Bool
     @NSManaged public var carroAbastecimento: NSSet?
     @NSManaged public var dePerfil: NSSet?
 

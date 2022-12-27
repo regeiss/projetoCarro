@@ -11,14 +11,14 @@ import CoreData
 
 class PerfilViewModel: ObservableObject
 {
-    @Published var perfilsLista: [Perfil] = []
+    @Published var perfilLista: [Perfil] = []
 
     private var bag: AnyCancellable?
 
     init(perfilPublisher: AnyPublisher<[Perfil], Never> = PerfilPublisher.shared.perfilCVS.eraseToAnyPublisher())
     {
         bag = perfilPublisher.sink { [unowned self] perfilsLista in
-            self.perfilsLista = perfilsLista
+            self.perfilLista = perfilsLista
         }
     }
 
@@ -40,6 +40,11 @@ class PerfilViewModel: ObservableObject
     func inserePadrao()
     {
         PerfilPublisher.shared.inserePadrao()
+    }
+    
+    func selecionarPerfilPadrao()
+    {
+        PerfilPublisher.shared.selecionarPerfilPadrao()
     }
 }
 

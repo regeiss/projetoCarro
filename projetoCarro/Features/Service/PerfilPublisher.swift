@@ -110,6 +110,7 @@ class PerfilPublisher: NSObject, ObservableObject
         newPerfil.id = UUID()
         newPerfil.nome = "Padrão"
         newPerfil.email = "padrão"
+        newPerfil.padrao = true 
         
         publisherContext.performAndWait
         {
@@ -124,6 +125,25 @@ class PerfilPublisher: NSObject, ObservableObject
         }
         
         ModeloGlobal.shared.perfilAtual = newPerfil
+    }
+    
+    func selecionarPerfilPadrao()
+    {
+        let fetchRequest: NSFetchRequest<Perfil> = Perfil.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "(padrao == 1)")
+        fetchRequest.fetchLimit = 1
+
+        do
+        {
+            logger.log("Context has changed, buscando perfil padrao")
+            guard let perfilPadrao = try publisherContext.fetch(fetchRequest).first
+            else { return }
+            ModeloGlobal.shared.perfilPadrao = perfilPadrao
+        }
+        catch
+        {
+            fatalError("Erro moc \(error.localizedDescription)")
+        }
     }
 }
 

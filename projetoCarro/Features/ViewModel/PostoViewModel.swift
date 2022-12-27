@@ -41,4 +41,9 @@ class PostoViewModel: ObservableObject
     {
         PostoPublisher.shared.inserePadrao()
     }
+    
+    func selecionarPostoPadrao()
+    {
+        PostoPublisher.shared.selecionarPostoPadrao()
+    }
 }

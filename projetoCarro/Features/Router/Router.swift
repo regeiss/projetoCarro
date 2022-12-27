@@ -71,6 +71,11 @@ final class MyRouter: ObservableObject
         self.navStack.push(CategoriaListaView())
     }
     
+    func toListaPerfil()
+    {
+        self.navStack.push(PerfilListaView())
+    }
+    
     func toCarro(carro: Carro, isEdit: Bool)
     {
         self.navStack.push(CarroView(isEdit: isEdit, carro: carro))
@@ -106,7 +111,7 @@ final class MyRouter: ObservableObject
         self.navStack.push(PostoListaView())
     }
     
-    func toPerfil()
+    func toPerfil(perfil: Perfil, isEdit: Bool)
     {
         self.navStack.push(PerfilView())
     }

@@ -15,6 +15,7 @@ struct HeaderHamburguerView: View
     @Binding var showMenu: Bool
     @State private var isShowingSheet = false
     @State private var carroAtual: Carro?
+    @State private var perfilAtual: Perfil?
     
     let router = MyRouter.shared
     var nomeView: String
@@ -39,18 +40,14 @@ struct HeaderHamburguerView: View
                 Text(nomeMenu).foregroundColor(.blue).font(.system(.title3, design: .rounded))
                 Spacer()
                 Text(carroAtual?.nome ?? "N/A")
+                Text(perfilAtual?.nome ?? "N/A")
                 Spacer()
                 Image(systemName: "car.2").foregroundColor(.blue)
                     .imageScale(.large)
                     .padding([.trailing])
                     .onTapGesture { isShowingSheet.toggle()}
-            }
-        }//.onReceive(NotificationCenter.default.publisher(
-//            for: UIApplication.willEnterForegroundNotification
-//            )) { _ in
-//                loadViewData()
-//            }
-        .onAppear() { loadViewData()}
+            }.onAppear() { loadViewData() }
+        }
         .sheet(isPresented: $isShowingSheet, onDismiss: didDismiss)
         {
             List
@@ -76,17 +73,19 @@ struct HeaderHamburguerView: View
                         }
                     }.presentationDetents([.medium, .large])
                 }
-                
             }
             Button("Dispensar", action: { isShowingSheet.toggle() })
                 .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-
+                .controlSize(.large)
         }
     }
+    
     func loadViewData()
     {
         carroAtual = ModeloGlobal.shared.carroAtual
+        perfilAtual = ModeloGlobal.shared.perfilAtual
+        print("hamburguer view")
+        print(perfilAtual?.nome as Any)
     }
     
     func marcarCarroComoAtivo(ativoID: NSManagedObjectID)

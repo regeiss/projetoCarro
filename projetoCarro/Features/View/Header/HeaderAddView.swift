@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import NavigationStack
 
 @available(iOS 16.0, *)

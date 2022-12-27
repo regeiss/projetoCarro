@@ -28,6 +28,7 @@ struct UltimoAbastecimentoView: View
                         Text("Última vez: ")
                         Text((viewModel.abastecimentosLista.first?.data ?? Date()).formatted(date: .numeric, time: .omitted))
                         Spacer()
+                        Text(String(format: "%.2f", viewModel.abastecimentosLista.first?.media ?? 0))
                     }
                     
                     HStack

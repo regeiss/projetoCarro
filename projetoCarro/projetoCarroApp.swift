@@ -14,6 +14,7 @@ final class ModeloGlobal: ObservableObject
     var ultimaKM: Int32 = 1
     var carroAtual: Carro?
     var perfilAtual: Perfil?
+    var perfilPadrao: Perfil?
     var postoPadrao: Posto?
 }
 
@@ -45,7 +46,8 @@ struct projetoCarroApp: App
             {
             case .active:
                 print("active")
-                prepareContext()
+                prepareAppContext()
+                setAppVars()
                 getCoreDataDBPath()
             case .inactive:
                 print("inactive")
@@ -58,7 +60,7 @@ struct projetoCarroApp: App
         }
     }
     
-    func prepareContext()
+    func prepareAppContext()
     {
         guard contextSet == false
         else { return }
@@ -73,6 +75,17 @@ struct projetoCarroApp: App
         viewModelPosto.inserePadrao()
 
         contextSet = true
+    }
+    
+    func setAppVars()
+    {
+        let viewModelPerfil = PerfilViewModel()
+        let viewModelCarro = CarroViewModel()
+        let viewModelPosto = PostoViewModel()
+        
+        viewModelCarro.selecionarCarroAtivo()
+        viewModelPosto.selecionarPostoPadrao()
+        viewModelPerfil.selecionarPerfilPadrao()
     }
 
     func saveContext()

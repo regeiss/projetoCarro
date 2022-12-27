@@ -69,7 +69,7 @@ struct AbastecimentoView: View
         {
             VStack
             {
-                HeaderSaveView(isSaveDisabled: $isSaveDisabled, nomeView: "Posto", nomeMenu: "Menu", destRouter: "lstAbastecimento")
+                HeaderSaveView(isSaveDisabled: $isSaveDisabled, nomeView: "Abastecimento", nomeMenu: "Menu", destRouter: "lstAbastecimento")
                 Form
                 {
                     Section()
@@ -134,6 +134,10 @@ struct AbastecimentoView: View
         if ModeloGlobal.shared.carroAtual == nil
         {
             carroAtual = viewModelCarro.carrosLista.first
+        }
+        else
+        {
+            carroAtual = ModeloGlobal.shared.carroAtual
         }
 
         let uab = ultimoAbastecimento(id: UUID(),
