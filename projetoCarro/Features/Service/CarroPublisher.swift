@@ -13,9 +13,11 @@ import SwiftUI
 
 class CarroPublisher: NSObject, ObservableObject
 {
+    @EnvironmentObject var appState: ModeloGlobal
     static let shared = CarroPublisher()
     var carroCVS = CurrentValueSubject<[Carro], Never>([])
     private let carroFetchController: NSFetchedResultsController<Carro>
+    
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Publisher")
 
     var publisherContext: NSManagedObjectContext = {
@@ -132,7 +134,7 @@ class CarroPublisher: NSObject, ObservableObject
             }
         }
 
-        ModeloGlobal.shared.carroAtual = newCarro
+        appState.carroAtual = newCarro
     }
 
     func selecionarCarroAtivo()
@@ -146,7 +148,7 @@ class CarroPublisher: NSObject, ObservableObject
             logger.log("Context has changed, buscando carro atual")
             guard let carroAtual = try publisherContext.fetch(fetchRequest).first
             else { return }
-            ModeloGlobal.shared.carroAtual = carroAtual
+            appState.carroAtual = carroAtual
         }
         catch
         {
@@ -194,7 +196,7 @@ class CarroPublisher: NSObject, ObservableObject
             object.setValue(true, forKey: "ativo")
             update(carro: object as! Carro)
 
-            ModeloGlobal.shared.carroAtual = object as? Carro
+            appState.carroAtual = object as? Carro
         }
         catch
         {

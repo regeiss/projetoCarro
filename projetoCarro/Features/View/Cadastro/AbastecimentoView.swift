@@ -41,6 +41,9 @@ class AbastecimentoFormInfo: ObservableObject
 @available(iOS 16.0, *)
 struct AbastecimentoView: View
 {
+    @EnvironmentObject var errorHandling: ErrorHandling
+    @EnvironmentObject var appState: ModeloGlobal
+    
     @StateObject private var viewModel = AbastecimentoViewModel()
     @StateObject private var viewModelPosto = PostoViewModel()
     @StateObject private var viewModelCarro = CarroViewModel()
@@ -49,7 +52,7 @@ struct AbastecimentoView: View
     @State var isSaveDisabled: Bool = true
     @FocusState private var abastecimentoInFocus: AbastecimentoFocusable?
     @State var posto: Posto?
-    @EnvironmentObject var errorHandling: ErrorHandling
+    
     
     let router = MyRouter.shared
     let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
@@ -123,21 +126,21 @@ struct AbastecimentoView: View
         
         if posto == nil
         {
-            postoPicker = ModeloGlobal.shared.postoPadrao
-            print(ModeloGlobal.shared.postoPadrao!.nome as Any)
+            postoPicker = appState.postoPadrao
+            
         }
         else
         {
             postoPicker = posto
         }
 
-        if ModeloGlobal.shared.carroAtual == nil
+        if appState.carroAtual == nil
         {
             carroAtual = viewModelCarro.carrosLista.first
         }
         else
         {
-            carroAtual = ModeloGlobal.shared.carroAtual
+            carroAtual = appState.carroAtual
         }
 
         let uab = ultimoAbastecimento(id: UUID(),
@@ -182,7 +185,7 @@ struct AbastecimentoView: View
         }
         else
         {
-            kmPercorrida = kmAtual - ModeloGlobal.shared.ultimaKM
+            kmPercorrida = kmAtual - appState.ultimaKM
             media = Double(kmPercorrida) / (Double(formInfo.litros) ?? 0)
             return media
         }

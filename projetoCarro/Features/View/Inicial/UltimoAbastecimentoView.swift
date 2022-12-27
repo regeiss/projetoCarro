@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UltimoAbastecimentoView: View
 {
+    @EnvironmentObject var appState: ModeloGlobal
     @StateObject private var viewModel = AbastecimentoViewModel()
     
     var body: some View
@@ -37,7 +38,7 @@ struct UltimoAbastecimentoView: View
                         Text(String(viewModel.abastecimentosLista.first?.km ?? 0).toQuilometrosFormat())
                     }.onAppear
                     {
-                        ModeloGlobal.shared.ultimaKM = Int32(viewModel.abastecimentosLista.first?.km ?? 0)
+                        appState.ultimaKM = Int32(viewModel.abastecimentosLista.first?.km ?? 0)
                     }
                     
                     HStack

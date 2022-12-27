@@ -10,6 +10,7 @@ import Combine
 
 class UserSettings: ObservableObject
 {
+    // TODO: Verificar o uso de wrapper
     @Published var perfil: String {
         didSet {
             UserDefaults.standard.set(backup, forKey: "perfil")

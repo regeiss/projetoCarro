@@ -14,12 +14,14 @@ enum PerfilFocusable: Hashable
 {
     case nome
     case email
+    case padrao
 }
 
 class PerfilFormInfo: ObservableObject
 {
     @Published var nome: String = ""
     @Published var email: String = ""
+    @Published var padrao: Bool = false
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
@@ -31,19 +33,22 @@ class PerfilFormInfo: ObservableObject
 struct PerfilView: View
 {
     @ObservedObject var formInfo = PerfilFormInfo()
-   // @ObservedObject var salvarPerfil = SalvarPerfil()
     @StateObject private var viewModel = PerfilViewModel()
-
-    @State private var isSaveDisabled: Bool = true
     @FocusState private var perfilInFocus: PerfilFocusable?
+    @State private var isSaveDisabled: Bool = true
+    
+    // controle do tipo de edição
+    var isEdit: Bool
+    var perfil: Perfil
     
     let router = MyRouter.shared
-
+    let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
+    
     var body: some View
     {
         VStack
         {
-            HeaderSaveView(isSaveDisabled: $isSaveDisabled, nomeView: "Perfil", nomeMenu: "Menu", destRouter: "default")
+            HeaderSaveView(isSaveDisabled: $isSaveDisabled, nomeView: "Perfil", nomeMenu: "Menu", destRouter: "lstPerfil")
             Form
             {
                 Section()
@@ -51,32 +56,42 @@ struct PerfilView: View
                     TextField("nome", text: $formInfo.nome)
                         .validation(formInfo.valNomeVazio)
                         .focused($perfilInFocus, equals: .nome)
-                        .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {self.perfilInFocus = .nome}}
+                        .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) { self.perfilInFocus = .nome }}
                     TextField("email", text: $formInfo.email)
                         .keyboardType(.emailAddress)
-
-                }
-                
-                Section()
-                {
-                    Button("OK")
+                        .textInputAutocapitalization(.none)
+                        .textCase(.lowercase)
+                    Toggle(isOn: $formInfo.padrao)
                     {
-                        let valid = formInfo.form.triggerValidation()
-                        if valid
-                        {
-                            let perfil = NovoPerfil(id: UUID(),
-                                                  nome: formInfo.nome,
-                                                    email: formInfo.email,
-                                                    padrao: false)
-
-                            viewModel.add(perfil: perfil)
-                            router.toMenu()
-                        }
-                    }.disabled(isSaveDisabled)
+                        Text("Padrão")
+                    }
                 }
-            }//.onReceive(salvarPerfil.$salvar)
-            
+            }.onReceive(pub)  {_ in gravarPerfil() }
+            .onAppear() { if isEdit {
+                            formInfo.nome = perfil.nome ?? ""
+                            formInfo.email = perfil.email ?? ""
+                            formInfo.padrao = perfil.padrao
+                        }}
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
     }
+    
+    private func gravarPerfil()
+    {
+        let valid = formInfo.form.triggerValidation()
+        if valid
+        {
+            if isEdit
+            {
+                perfil.nome = formInfo.nome
+                perfil.email = formInfo.email
+                perfil.padrao = formInfo.padrao
+                viewModel.update(perfil: perfil)
+            }
+            else
+            {
+                let nvp = NovoPerfil(id: UUID(), nome: formInfo.nome, email: formInfo.email, padrao: false)
+                viewModel.add(perfil: nvp)
+            }
+        }
+    }
 }
-

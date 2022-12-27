@@ -15,10 +15,6 @@ final class MyRouter: ObservableObject
     let navStack: NavigationStackCompat
     static let shared = MyRouter(navStack: ContentView.navigationStack)
     
-    lazy var categoria: Categoria = {Categoria(context: PersistenceController.shared.container.viewContext)}()
-    lazy var posto: Posto =  {Posto(context: PersistenceController.shared.container.viewContext)}()
-    lazy var carro: Carro = {Carro(context: PersistenceController.shared.container.viewContext)}()
-    lazy var servico: Servico = {Servico(context: PersistenceController.shared.container.viewContext)}()
     var isEdit: Bool = false
     
     private init(navStack: NavigationStackCompat)
@@ -113,7 +109,7 @@ final class MyRouter: ObservableObject
     
     func toPerfil(perfil: Perfil, isEdit: Bool)
     {
-        self.navStack.push(PerfilView())
+        self.navStack.push(PerfilView(isEdit: isEdit, perfil: perfil))
     }
 
     func toCadastros()

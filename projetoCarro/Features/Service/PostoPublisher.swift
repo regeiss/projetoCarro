@@ -12,9 +12,11 @@ import SwiftUI
 
 class PostoPublisher: NSObject, ObservableObject
 {
+    @EnvironmentObject var appState: ModeloGlobal
     static let shared = PostoPublisher()
     var postoCVS = CurrentValueSubject<[Posto], Never>([])
     private let postoFetchController: NSFetchedResultsController<Posto>
+    
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Publisher")
     
     var backgroundContext: NSManagedObjectContext = {
@@ -128,7 +130,7 @@ class PostoPublisher: NSObject, ObservableObject
             }
         }
 
-        ModeloGlobal.shared.postoPadrao = newPosto
+       appState.postoPadrao = newPosto
     }
 
     func selecionarPostoPadrao()
@@ -142,7 +144,7 @@ class PostoPublisher: NSObject, ObservableObject
             logger.log("Context has changed, buscando posto padrao")
             guard let postoPadrao = try backgroundContext.fetch(fetchRequest).first
             else { return }
-            ModeloGlobal.shared.postoPadrao = postoPadrao
+            appState.postoPadrao = postoPadrao
         }
         catch
         {

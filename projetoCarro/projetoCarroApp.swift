@@ -8,16 +8,6 @@
 import SwiftUI
 import CoreData
 
-final class ModeloGlobal: ObservableObject
-{
-    static let shared = ModeloGlobal()
-    var ultimaKM: Int32 = 1
-    var carroAtual: Carro?
-    var perfilAtual: Perfil?
-    var perfilPadrao: Perfil?
-    var postoPadrao: Posto?
-}
-
 @main
 @available(iOS 16.0, *)
 struct projetoCarroApp: App
@@ -25,9 +15,8 @@ struct projetoCarroApp: App
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     
-    @StateObject var appVars = ModeloGlobal()
     @AppStorage("contextSet") private var contextSet: Bool = false
-    
+    @StateObject var appState = ModeloGlobal()
     static let persistenceController = PersistenceController.shared
     
     var body: some Scene
@@ -36,7 +25,7 @@ struct projetoCarroApp: App
         {
             ContentView(showMenu: false)
                 .environment(\.managedObjectContext, projetoCarroApp.persistenceController.container.viewContext)
-                .environmentObject(appVars)
+                .environmentObject(appState)
                 .modifier(DarkModeViewModifier())
                 .withErrorHandling()
         }

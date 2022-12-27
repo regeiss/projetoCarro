@@ -12,9 +12,11 @@ import SwiftUI
 
 class PerfilPublisher: NSObject, ObservableObject
 {
+    @EnvironmentObject var appState: ModeloGlobal
     static let shared = PerfilPublisher()
     var perfilCVS = CurrentValueSubject<[Perfil], Never>([])
     private let perfilFetchController: NSFetchedResultsController<Perfil>
+    
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Publisher")
     
     var publisherContext: NSManagedObjectContext = {
@@ -124,7 +126,7 @@ class PerfilPublisher: NSObject, ObservableObject
             }
         }
         
-        ModeloGlobal.shared.perfilAtual = newPerfil
+        appState.perfilAtual = newPerfil
     }
     
     func selecionarPerfilPadrao()
@@ -138,7 +140,7 @@ class PerfilPublisher: NSObject, ObservableObject
             logger.log("Context has changed, buscando perfil padrao")
             guard let perfilPadrao = try publisherContext.fetch(fetchRequest).first
             else { return }
-            ModeloGlobal.shared.perfilPadrao = perfilPadrao
+            appState.perfilPadrao = perfilPadrao
         }
         catch
         {

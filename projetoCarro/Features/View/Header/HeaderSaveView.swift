@@ -70,6 +70,8 @@ struct HeaderSaveView: View
             router.toListaCarro()
         case "lstPosto":
             router.toListaPosto()
+        case "lstPerfil":
+            router.toListaPerfil()
         default:
             router.toMenu()
         }

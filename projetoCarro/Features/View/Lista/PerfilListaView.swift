@@ -25,7 +25,8 @@ struct PerfilListaView: View
                     HStack
                     {
                         Text(String(perfil.nome ?? ""))
-                        Text("Padrao") + Text(perfil.padrao ? "Sim" : "Nao")
+                        Spacer()
+                        Text(perfil.padrao ? "ativo" : " ")
                     }.onTapGesture
                     {
                         editPerfil(perfil: perfil)

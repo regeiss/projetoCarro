@@ -27,8 +27,8 @@ class PostoFormInfo: ObservableObject
 @available(iOS 16.0, *)
 struct PostoView: View
 {
-    @StateObject private var viewModel = PostoViewModel()
     @ObservedObject var formInfo = PostoFormInfo()
+    @StateObject private var viewModel = PostoViewModel()
     @FocusState private var postoInFocus: PostoFocusable?
     @State var isSaveDisabled: Bool = true
     
@@ -38,7 +38,6 @@ struct PostoView: View
     
     let router = MyRouter.shared
     let imgShell: UIImage = UIImage(named: "ipiranga")!
-    
     let pub = NotificationCenter.default.publisher(for: Notification.Name("Save"))
     
     var body: some View
@@ -58,7 +57,7 @@ struct PostoView: View
                 }
                 
             }.onReceive(pub)  {_ in gravarPosto()}
-                .onAppear() {if isEdit {formInfo.nome = posto.nome ?? ""}}
+            .onAppear() {if isEdit {formInfo.nome = posto.nome ?? ""}}
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
     }
     
@@ -90,7 +89,7 @@ struct PostoView: View
 
 //===================================================================================================================================================
 //import SwiftUI
-//import Combine
+//import Combine controle de teclado
 //
 //struct ItemsView: View {
 //    let items: [String]

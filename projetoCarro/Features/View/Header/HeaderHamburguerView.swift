@@ -11,6 +11,7 @@ import CoreData
 @available(iOS 16.0, *)
 struct HeaderHamburguerView: View
 {
+    @EnvironmentObject var appState: ModeloGlobal
     @StateObject private var viewModelCarro = CarroViewModel()
     @Binding var showMenu: Bool
     @State private var isShowingSheet = false
@@ -82,15 +83,13 @@ struct HeaderHamburguerView: View
     
     func loadViewData()
     {
-        carroAtual = ModeloGlobal.shared.carroAtual
-        perfilAtual = ModeloGlobal.shared.perfilAtual
-        print("hamburguer view")
-        print(perfilAtual?.nome as Any)
+        carroAtual = appState.carroAtual
+        perfilAtual = appState.perfilAtual
     }
     
     func marcarCarroComoAtivo(ativoID: NSManagedObjectID)
     {
         viewModelCarro.marcarCarroAtivo(ativoID: ativoID)
-        carroAtual = ModeloGlobal.shared.carroAtual
+        carroAtual = appState.carroAtual
     }
 }
