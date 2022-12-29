@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UltimoAbastecimentoView: View
 {
-    @EnvironmentObject var appState: ModeloGlobal
+    var appState = AppState.shared
     @StateObject private var viewModel = AbastecimentoViewModel()
     
     var body: some View
@@ -20,7 +20,7 @@ struct UltimoAbastecimentoView: View
         {
             HStack
             {
-                StyledGauge()
+                StyledGauge(current: viewModel.abastecimentosLista.first?.media ?? 0)
                 
                 VStack(alignment: .leading)
                 {
@@ -70,17 +70,17 @@ struct UltimoAbastecimentoView: View
 
 struct StyledGauge: View
 {
-    @State private var current = 67.0
-    @State private var minValue = 50.0
+    @State var current: Double
+    @State private var minValue = 0.0
     @State private var maxValue = 170.0
     let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
-
+    
     var body: some View {
         Gauge(value: current, in: minValue...maxValue) {
             Image(systemName: "heart.fill")
                 .foregroundColor(.red)
         } currentValueLabel: {
-            Text("\(Int(current))")
+            Text(String(format: "%.2f", current))
                 .foregroundColor(Color.green)
         } minimumValueLabel: {
             Text("\(Int(minValue))")
@@ -90,6 +90,7 @@ struct StyledGauge: View
                 .foregroundColor(Color.red)
         }
         .gaugeStyle(.accessoryCircularCapacity)
+        .tint(gradient)
     }
 }
 

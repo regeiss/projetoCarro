@@ -42,7 +42,7 @@ class AbastecimentoFormInfo: ObservableObject
 struct AbastecimentoView: View
 {
     @EnvironmentObject var errorHandling: ErrorHandling
-    @EnvironmentObject var appState: ModeloGlobal
+    var appState = AppState.shared
     
     @StateObject private var viewModel = AbastecimentoViewModel()
     @StateObject private var viewModelPosto = PostoViewModel()

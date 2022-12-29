@@ -11,12 +11,12 @@ import CoreData
 @available(iOS 16.0, *)
 struct HeaderHamburguerView: View
 {
-    @EnvironmentObject var appState: ModeloGlobal
+    var appState = AppState.shared
     @StateObject private var viewModelCarro = CarroViewModel()
     @Binding var showMenu: Bool
     @State private var isShowingSheet = false
     @State private var carroAtual: Carro?
-    @State private var perfilAtual: Perfil?
+    @State private var perfilPadrao: Perfil?
     
     let router = MyRouter.shared
     var nomeView: String
@@ -41,7 +41,7 @@ struct HeaderHamburguerView: View
                 Text(nomeMenu).foregroundColor(.blue).font(.system(.title3, design: .rounded))
                 Spacer()
                 Text(carroAtual?.nome ?? "N/A")
-                Text(perfilAtual?.nome ?? "N/A")
+                Text(perfilPadrao?.nome ?? "N/S")
                 Spacer()
                 Image(systemName: "car.2").foregroundColor(.blue)
                     .imageScale(.large)
@@ -81,10 +81,25 @@ struct HeaderHamburguerView: View
         }
     }
     
+    func setAppVars()
+    {
+        let viewModelPerfil = PerfilViewModel()
+        let viewModelCarro = CarroViewModel()
+        let viewModelPosto = PostoViewModel()
+        
+        viewModelCarro.selecionarCarroAtivo()
+        viewModelPosto.selecionarPostoPadrao()
+        viewModelPerfil.selecionarPerfilPadrao()
+    }
+    
     func loadViewData()
     {
+        setAppVars()
         carroAtual = appState.carroAtual
-        perfilAtual = appState.perfilAtual
+        perfilPadrao = appState.perfilPadrao
+        print(perfilPadrao?.id?.uuidString as Any)
+        print(carroAtual?.nome as Any)
+
     }
     
     func marcarCarroComoAtivo(ativoID: NSManagedObjectID)

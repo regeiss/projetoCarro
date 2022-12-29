@@ -13,8 +13,9 @@ import SwiftUI
 
 class CarroPublisher: NSObject, ObservableObject
 {
-    @EnvironmentObject var appState: ModeloGlobal
     static let shared = CarroPublisher()
+    var appState = AppState.shared
+    
     var carroCVS = CurrentValueSubject<[Carro], Never>([])
     private let carroFetchController: NSFetchedResultsController<Carro>
     
@@ -202,9 +203,7 @@ class CarroPublisher: NSObject, ObservableObject
         {
             fatalError("Erro moc \(error.localizedDescription)")
         }
-        
- }  
-
+    }
 }
 
 extension CarroPublisher: NSFetchedResultsControllerDelegate

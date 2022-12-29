@@ -12,7 +12,7 @@ import SwiftUI
 
 class PostoPublisher: NSObject, ObservableObject
 {
-    @EnvironmentObject var appState: ModeloGlobal
+    var appState = AppState.shared
     static let shared = PostoPublisher()
     var postoCVS = CurrentValueSubject<[Posto], Never>([])
     private let postoFetchController: NSFetchedResultsController<Posto>

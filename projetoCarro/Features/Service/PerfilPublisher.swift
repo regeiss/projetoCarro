@@ -12,8 +12,9 @@ import SwiftUI
 
 class PerfilPublisher: NSObject, ObservableObject
 {
-    @EnvironmentObject var appState: ModeloGlobal
     static let shared = PerfilPublisher()
+    var appState = AppState.shared
+    
     var perfilCVS = CurrentValueSubject<[Perfil], Never>([])
     private let perfilFetchController: NSFetchedResultsController<Perfil>
     
@@ -111,7 +112,7 @@ class PerfilPublisher: NSObject, ObservableObject
         let newPerfil = Perfil(context: publisherContext)
         newPerfil.id = UUID()
         newPerfil.nome = "Padrão"
-        newPerfil.email = "padrão"
+        newPerfil.email = "padrão@com.br"
         newPerfil.padrao = true 
         
         publisherContext.performAndWait
@@ -132,15 +133,16 @@ class PerfilPublisher: NSObject, ObservableObject
     func selecionarPerfilPadrao()
     {
         let fetchRequest: NSFetchRequest<Perfil> = Perfil.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "(padrao == 1)")
+        fetchRequest.predicate = NSPredicate(format: "(padrao == true)")
         fetchRequest.fetchLimit = 1
 
         do
         {
-            logger.log("Context has changed, buscando perfil padrao")
             guard let perfilPadrao = try publisherContext.fetch(fetchRequest).first
             else { return }
+            
             appState.perfilPadrao = perfilPadrao
+            logger.log("Contexto mudou, buscando perfil padrao")
         }
         catch
         {

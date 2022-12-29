@@ -16,8 +16,8 @@ struct projetoCarroApp: App
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     
     @AppStorage("contextSet") private var contextSet: Bool = false
-    @StateObject var appState = ModeloGlobal()
     static let persistenceController = PersistenceController.shared
+    //static let appState = AppState()
     
     var body: some Scene
     {
@@ -25,7 +25,7 @@ struct projetoCarroApp: App
         {
             ContentView(showMenu: false)
                 .environment(\.managedObjectContext, projetoCarroApp.persistenceController.container.viewContext)
-                .environmentObject(appState)
+                //.environmentObject(AppState)
                 .modifier(DarkModeViewModifier())
                 .withErrorHandling()
         }
@@ -36,7 +36,7 @@ struct projetoCarroApp: App
             case .active:
                 print("active")
                 prepareAppContext()
-                setAppVars()
+                //setAppVars()
                 getCoreDataDBPath()
             case .inactive:
                 print("inactive")
@@ -62,19 +62,8 @@ struct projetoCarroApp: App
         viewModelPerfil.inserePadrao()
         viewModelCarro.inserePadrao()
         viewModelPosto.inserePadrao()
-
-        contextSet = true
-    }
-    
-    func setAppVars()
-    {
-        let viewModelPerfil = PerfilViewModel()
-        let viewModelCarro = CarroViewModel()
-        let viewModelPosto = PostoViewModel()
         
-        viewModelCarro.selecionarCarroAtivo()
-        viewModelPosto.selecionarPostoPadrao()
-        viewModelPerfil.selecionarPerfilPadrao()
+        contextSet = true
     }
 
     func saveContext()

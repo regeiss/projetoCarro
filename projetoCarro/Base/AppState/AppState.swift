@@ -8,11 +8,19 @@
 import Foundation
 import SwiftUI
 
-class ModeloGlobal: ObservableObject
+class AppState
 {
-    @Published var ultimaKM: Int32 = 1
-    @Published var carroAtual: Carro?
-    @Published var perfilAtual: Perfil?
-    @Published var perfilPadrao: Perfil?
-    @Published var postoPadrao: Posto?
+    var ultimaKM: Int32
+    var carroAtual: Carro?
+    var carroPadrao: Carro?
+    var perfilAtual: Perfil?
+    var perfilPadrao: Perfil?
+    var postoPadrao: Posto?
+    
+    static var shared = AppState()
+    
+    private init()
+    {
+        ultimaKM = 1
+    }
 }
