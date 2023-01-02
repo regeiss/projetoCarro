@@ -107,13 +107,14 @@ class PerfilPublisher: NSObject, ObservableObject
         }
     }
     
+    // MARK: Perfil padrão 
     func inserePadrao()
     {
         let newPerfil = Perfil(context: publisherContext)
         newPerfil.id = UUID()
         newPerfil.nome = "Padrão"
         newPerfil.email = "padrão@com.br"
-        newPerfil.padrao = true 
+        newPerfil.ativo = true 
         
         publisherContext.performAndWait
         {
@@ -127,13 +128,13 @@ class PerfilPublisher: NSObject, ObservableObject
             }
         }
         
-        appState.perfilAtual = newPerfil
+        appState.perfilAtivo = newPerfil
     }
     
-    func selecionarPerfilPadrao()
+    func selecionarPerfilAtivo()
     {
         let fetchRequest: NSFetchRequest<Perfil> = Perfil.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "(padrao == true)")
+        fetchRequest.predicate = NSPredicate(format: "(ativo == true)")
         fetchRequest.fetchLimit = 1
 
         do
@@ -142,13 +143,61 @@ class PerfilPublisher: NSObject, ObservableObject
             else { return }
             
             appState.perfilPadrao = perfilPadrao
-            logger.log("Contexto mudou, buscando perfil padrao")
+            logger.log("Contexto mudou, buscando perfil ativo")
         }
         catch
         {
             fatalError("Erro moc \(error.localizedDescription)")
         }
     }
+
+    func marcarPerfilAtivo(ativoID: NSManagedObjectID)
+    {
+        // Desmarcar o ativo
+        logger.log("Context has changed, marcando perfil atual")
+
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Perfil", in: publisherContext)
+        let batchUpdateRequest = NSBatchUpdateRequest(entity: entityDescription!)
+        
+        batchUpdateRequest.resultType = .updatedObjectIDsResultType
+        batchUpdateRequest.propertiesToUpdate = ["ativo": NSNumber(value: false)]
+        
+        do
+        {
+            let batchUpdateResult = try publisherContext.execute(batchUpdateRequest) as! NSBatchUpdateResult
+            let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
+            
+            for objectID in objectIDs
+            {
+                // Turn Managed Objects into Faults
+                let managedObject = publisherContext.object(with: objectID)
+                publisherContext.refresh(managedObject, mergeChanges: false)
+            }
+
+            try self.perfilFetchController.performFetch()
+            
+        }
+        catch
+        {
+            let updateError = error as NSError
+            print("\(updateError), \(updateError.userInfo)")
+        }
+        // TODO: verificar por ID
+        do
+        {
+            let object = try publisherContext.existingObject(with: ativoID)
+            logger.log("Context has changed, buscando carro atual")
+            object.setValue(true, forKey: "ativo")
+            update(perfil: object as! Perfil)
+
+            appState.perfilAtivo = object as? Perfil
+        }
+        catch
+        {
+            fatalError("Erro moc \(error.localizedDescription)")
+        }
+    }
+
 }
 
 extension PerfilPublisher: NSFetchedResultsControllerDelegate
