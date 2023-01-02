@@ -111,6 +111,7 @@ class CarroPublisher: NSObject, ObservableObject
         }
     }
     
+    // MARK: Carro padrão 
     func inserePadrao()
     {
         let newCarro = Carro(context: publisherContext)
@@ -121,7 +122,7 @@ class CarroPublisher: NSObject, ObservableObject
             newCarro.placa = "padrão"
             newCarro.chassis = "padrão"
             newCarro.ano = Int16(0)
-            newCarro.padrao = true
+            newCarro.ativo = true
         
         publisherContext.performAndWait
         {
@@ -135,7 +136,7 @@ class CarroPublisher: NSObject, ObservableObject
             }
         }
 
-        appState.carroAtual = newCarro
+        appState.carroAtivo = newCarro
     }
 
     func selecionarCarroAtivo()
@@ -197,7 +198,7 @@ class CarroPublisher: NSObject, ObservableObject
             object.setValue(true, forKey: "ativo")
             update(carro: object as! Carro)
 
-            appState.carroAtual = object as? Carro
+            appState.carroAtivo = object as? Carro
         }
         catch
         {
