@@ -27,6 +27,7 @@ class PerfilFormInfo: ObservableObject
     
     lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
+    lazy var valEmail: ValidationContainer = { $nome.emailValidator(form: form, errorMessage: "email deve ser válido")}()
 }
 
 @available(iOS 16.0, *)
@@ -58,12 +59,13 @@ struct PerfilView: View
                         .focused($perfilInFocus, equals: .nome)
                         .onAppear{ DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) { self.perfilInFocus = .nome }}
                     TextField("email", text: $formInfo.email)
+                        .validation(formInfo.valEmail)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.none)
                         .textCase(.lowercase)
                     Toggle(isOn: $formInfo.ativo)
                     {
-                        Text("Padrão")
+                        Text("Ativo")
                     }
                 }
             }.onReceive(pub)  {_ in gravarPerfil() }
@@ -86,6 +88,12 @@ struct PerfilView: View
                 perfil.email = formInfo.email
                 perfil.ativo = formInfo.ativo
                 viewModel.update(perfil: perfil)
+
+                if perfil.ativo == true 
+                {
+                    viewModel.marcarPerfilAtivo(ativoID: perfil.objectID)
+                }
+
             }
             else
             {
@@ -95,3 +103,4 @@ struct PerfilView: View
         }
     }
 }
+
