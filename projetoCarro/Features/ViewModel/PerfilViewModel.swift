@@ -42,9 +42,14 @@ class PerfilViewModel: ObservableObject
         PerfilPublisher.shared.inserePadrao()
     }
     
-    func selecionarPerfilPadrao()
+    func selecionarPerfilAtivo()
     {
-        PerfilPublisher.shared.selecionarPerfilPadrao()
+        PerfilPublisher.shared.selecionarPerfilAtivo()
+    }
+    
+    func marcarPerfilAtivo(ativoID: NSManagedObjectID)
+    {
+        PerfilPublisher.shared.marcarPerfilAtivo(ativoID: ativoID)
     }
 }
 

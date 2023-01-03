@@ -73,7 +73,7 @@ struct StyledGauge: View
     @State var current: Double
     @State private var minValue = 0.0
     @State private var maxValue = 170.0
-    let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
+    let gradient = Gradient(colors: [.green, .yellow, .red])
     
     var body: some View {
         Gauge(value: current, in: minValue...maxValue) {

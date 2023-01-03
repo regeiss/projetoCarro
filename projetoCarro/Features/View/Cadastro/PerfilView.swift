@@ -14,14 +14,14 @@ enum PerfilFocusable: Hashable
 {
     case nome
     case email
-    case padrao
+    case ativo
 }
 
 class PerfilFormInfo: ObservableObject
 {
     @Published var nome: String = ""
     @Published var email: String = ""
-    @Published var padrao: Bool = false
+    @Published var ativo: Bool = false
     
     let regexNumerico: String =  "[0-9[\\b]]+"
     
@@ -61,7 +61,7 @@ struct PerfilView: View
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.none)
                         .textCase(.lowercase)
-                    Toggle(isOn: $formInfo.padrao)
+                    Toggle(isOn: $formInfo.ativo)
                     {
                         Text("Padrão")
                     }
@@ -70,7 +70,7 @@ struct PerfilView: View
             .onAppear() { if isEdit {
                             formInfo.nome = perfil.nome ?? ""
                             formInfo.email = perfil.email ?? ""
-                            formInfo.padrao = perfil.padrao
+                            formInfo.ativo = perfil.ativo
                         }}
         }.onReceive(formInfo.form.$allValid) { isValid in self.isSaveDisabled = !isValid}
     }
@@ -84,12 +84,12 @@ struct PerfilView: View
             {
                 perfil.nome = formInfo.nome
                 perfil.email = formInfo.email
-                perfil.padrao = formInfo.padrao
+                perfil.ativo = formInfo.ativo
                 viewModel.update(perfil: perfil)
             }
             else
             {
-                let nvp = NovoPerfil(id: UUID(), nome: formInfo.nome, email: formInfo.email, padrao: false)
+                let nvp = NovoPerfil(id: UUID(), nome: formInfo.nome, email: formInfo.email, ativo: false)
                 viewModel.add(perfil: nvp)
             }
         }

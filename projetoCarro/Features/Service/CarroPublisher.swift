@@ -150,7 +150,7 @@ class CarroPublisher: NSObject, ObservableObject
             logger.log("Context has changed, buscando carro atual")
             guard let carroAtual = try publisherContext.fetch(fetchRequest).first
             else { return }
-            appState.carroAtual = carroAtual
+            appState.carroAtivo = carroAtual
         }
         catch
         {

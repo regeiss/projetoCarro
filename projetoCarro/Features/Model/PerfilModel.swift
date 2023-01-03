@@ -12,5 +12,5 @@ struct NovoPerfil: Identifiable
     let id: UUID
     let nome: String
     let email: String
-    let padrao: Bool 
+    let ativo: Bool
 }

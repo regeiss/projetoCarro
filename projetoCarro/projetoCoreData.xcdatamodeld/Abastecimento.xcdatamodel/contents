@@ -42,6 +42,7 @@
         <relationship name="doServico" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Servico" inverseName="doItemServico" inverseEntity="Servico"/>
     </entity>
     <entity name="Perfil" representedClassName="Perfil" syncable="YES">
+        <attribute name="ativo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="nome" optional="YES" attributeType="String"/>

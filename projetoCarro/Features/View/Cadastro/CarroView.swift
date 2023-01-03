@@ -104,7 +104,7 @@ struct CarroView: View
                                       modelo: formInfo.modelo,
                                       placa: formInfo.placa,
                                       chassis: formInfo.chassis,
-                                      padrao: false,
+                                      ativo: false,
                                       ano: Int16(formInfo.ano) ?? 0)
                 viewModel.add(carro: carro)
             }

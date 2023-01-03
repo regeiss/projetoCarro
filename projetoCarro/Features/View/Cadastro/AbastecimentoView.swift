@@ -134,13 +134,13 @@ struct AbastecimentoView: View
             postoPicker = posto
         }
 
-        if appState.carroAtual == nil
+        if appState.carroAtivo == nil
         {
             carroAtual = viewModelCarro.carrosLista.first
         }
         else
         {
-            carroAtual = appState.carroAtual
+            carroAtual = appState.carroAtivo
         }
 
         let uab = ultimoAbastecimento(id: UUID(),

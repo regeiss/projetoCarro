@@ -89,14 +89,14 @@ struct HeaderHamburguerView: View
         
         viewModelCarro.selecionarCarroAtivo()
         viewModelPosto.selecionarPostoPadrao()
-        viewModelPerfil.selecionarPerfilPadrao()
+        viewModelPerfil.selecionarPerfilAtivo()
     }
     
     func loadViewData()
     {
         setAppVars()
-        carroAtual = appState.carroAtual
-        perfilPadrao = appState.perfilPadrao
+        carroAtual = appState.carroAtivo
+        perfilPadrao = appState.perfilAtivo
         print(perfilPadrao?.id?.uuidString as Any)
         print(carroAtual?.nome as Any)
 
@@ -105,6 +105,6 @@ struct HeaderHamburguerView: View
     func marcarCarroComoAtivo(ativoID: NSManagedObjectID)
     {
         viewModelCarro.marcarCarroAtivo(ativoID: ativoID)
-        carroAtual = appState.carroAtual
+        carroAtual = appState.carroAtivo
     }
 }

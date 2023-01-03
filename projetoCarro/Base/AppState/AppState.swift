@@ -11,10 +11,8 @@ import SwiftUI
 class AppState
 {
     var ultimaKM: Int32
-    var carroAtual: Carro?
-    var carroPadrao: Carro?
-    var perfilAtual: Perfil?
-    var perfilPadrao: Perfil?
+    var carroAtivo: Carro?
+    var perfilAtivo: Perfil?
     var postoPadrao: Posto?
     
     static var shared = AppState()

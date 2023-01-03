@@ -139,10 +139,10 @@ class PerfilPublisher: NSObject, ObservableObject
 
         do
         {
-            guard let perfilPadrao = try publisherContext.fetch(fetchRequest).first
+            guard let perfilAtivo = try publisherContext.fetch(fetchRequest).first
             else { return }
             
-            appState.perfilPadrao = perfilPadrao
+            appState.perfilAtivo = perfilAtivo
             logger.log("Contexto mudou, buscando perfil ativo")
         }
         catch
@@ -186,7 +186,9 @@ class PerfilPublisher: NSObject, ObservableObject
         do
         {
             let object = try publisherContext.existingObject(with: ativoID)
-            logger.log("Context has changed, buscando carro atual")
+            appState.perfilAtivo = object as? Perfil
+
+            logger.log("Context has changed, buscando perfil ativo")
             object.setValue(true, forKey: "ativo")
             update(perfil: object as! Perfil)
 
@@ -197,7 +199,6 @@ class PerfilPublisher: NSObject, ObservableObject
             fatalError("Erro moc \(error.localizedDescription)")
         }
     }
-
 }
 
 extension PerfilPublisher: NSFetchedResultsControllerDelegate
