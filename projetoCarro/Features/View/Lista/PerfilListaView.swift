@@ -26,7 +26,7 @@ struct PerfilListaView: View
                     {
                         Text(String(perfil.nome ?? ""))
                         Spacer()
-                        Text(perfil.padrao ? "ativo" : " ").foregroundColor(.blue)
+                        Text(perfil.ativo ? "ativo" : " ").foregroundColor(.blue)
                     }.onTapGesture
                     {
                         editPerfil(perfil: perfil)

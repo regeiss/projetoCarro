@@ -27,7 +27,7 @@ class PerfilFormInfo: ObservableObject
     
     lazy var form = { FormValidation(validationType: .deferred)}()
     lazy var valNomeVazio: ValidationContainer = { $nome.nonEmptyValidator(form: form, errorMessage: "nome deve ser informado")}()
-    lazy var valEmail: ValidationContainer = { $nome.emailValidator(form: form, errorMessage: "email deve ser válido")}()
+    lazy var valEmail: ValidationContainer = { $email.emailValidator(form: form, errorMessage: "email deve ser válido")}()
 }
 
 @available(iOS 16.0, *)
@@ -97,7 +97,7 @@ struct PerfilView: View
             }
             else
             {
-                let nvp = NovoPerfil(id: UUID(), nome: formInfo.nome, email: formInfo.email, ativo: false)
+                let nvp = NovoPerfil(id: UUID(), nome: formInfo.nome, email: formInfo.email, ativo: false, padrao: false)
                 viewModel.add(perfil: nvp)
             }
         }

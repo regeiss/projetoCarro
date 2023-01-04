@@ -13,4 +13,5 @@ struct NovoPerfil: Identifiable
     let nome: String
     let email: String
     let ativo: Bool
+    let padrao: Bool
 }

@@ -416,10 +416,10 @@
 				E151C2722888B03400F03BE7 /* AbastecimentoListaView.swift */,
 				E13AB1CB28F31AF100E02899 /* CarroListaView.swift */,
 				E1BBC39A28E3BD5200FFBDB8 /* CategoriaListaView.swift */,
-				E13AB1CD28F3258900E02899 /* PostoListaView.swift */,
-				E1BBC3A028E3C03900FFBDB8 /* ServicoListaView.swift */,
 				E1D137E628FC6C5D00983BFE /* ItemServicoListaView.swift */,
 				E121D811295A685500BAA819 /* PerfilListaView.swift */,
+				E13AB1CD28F3258900E02899 /* PostoListaView.swift */,
+				E1BBC3A028E3C03900FFBDB8 /* ServicoListaView.swift */,
 			);
 			path = Lista;
 			sourceTree = "<group>";
@@ -442,9 +442,9 @@
 				E1618ACC28A1F5F200B74DF9 /* HeaderAddView.swift */,
 				E1A7F52828EA083C005BE12F /* HeaderFiltroView.swift */,
 				E1F5F20028C95702007AB40C /* HeaderHamburguerView.swift */,
+				E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */,
 				E13AB1D228F634CA00E02899 /* HeaderSaveView.swift */,
 				E17CB7C828822F62004BEE9E /* HeaderView.swift */,
-				E196FFFE28FF7A610093D1F7 /* HeaderRelatorioView.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -457,9 +457,9 @@
 				E151C26E28862C3300F03BE7 /* ConfiguracaoView.swift */,
 				E123F06C2890AA75009C0F4D /* ImageLabelRow.swift */,
 				E151C270288778E700F03BE7 /* MenuRow.swift */,
+				E18F257A2949333A00110979 /* OnBoardingView.swift */,
 				E1F5F1FE28C81BDC007AB40C /* SideMenuView.swift */,
 				E1AE1D552899E45F00B5BCA4 /* UltimoAbastecimentoView.swift */,
-				E18F257A2949333A00110979 /* OnBoardingView.swift */,
 			);
 			path = Inicial;
 			sourceTree = "<group>";
