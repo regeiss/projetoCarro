@@ -29,7 +29,7 @@ extension Abastecimento
     @NSManaged public var doPosto: Posto?
 }
 
-extension Abastecimento : Identifiable
+extension Abastecimento: Identifiable
 {
 
 }

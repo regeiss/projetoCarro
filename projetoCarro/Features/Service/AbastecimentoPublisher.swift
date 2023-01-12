@@ -112,19 +112,22 @@ class AbastecimentoPublisher: NSObject, ObservableObject
         }
     }
 
-    // MARK:- sectioned dictionary
-    func getSectionedDictionary() -> Dictionary <String , [Abastecimento]> 
-    {
-        let sectionDictionary: Dictionary<String, [Abastecimento]> = {
-            return Dictionary(grouping: abastecimentos, by: {
-                let dataAbastecimento = $0.data 
-                let normalizedDate = Text(dataAbastecimento, format: .year().month())
-                let firstChar = String(normalizedName.first!).uppercased()
-                return firstChar
-            })
-        }()
-        return sectionDictionary
-    }
+//    // MARK:- sectioned dictionary
+//    func getSectionedDictionary() -> Dictionary <String , [Abastecimento]>
+//    {
+//        let sectionDictionary: Dictionary<String, [Abastecimento]> = {
+//            return Dictionary(grouping: abastecimentos, by: {
+//
+//                let dataAbastecimento = $0.data
+//                let calendar = Calendar.current
+//                let components = calendar.dateComponents([.year], from: dataAbastecimento)
+//                let year = components.year
+//                let normalizedDate = String(year!)
+//                return normalizedDate
+//            })
+//        }()
+//        return sectionDictionary
+//    }
 }
 
 extension AbastecimentoPublisher: NSFetchedResultsControllerDelegate 
@@ -134,6 +137,7 @@ extension AbastecimentoPublisher: NSFetchedResultsControllerDelegate
         guard let abastecimentos = controller.fetchedObjects as? [Abastecimento] 
         else { return }
         logger.log("Context has changed, reloading abastecimento")
+        
         self.abastecimentoCVS.value = abastecimentos
     }
 }
@@ -148,17 +152,17 @@ extension Date {
     }
 }
 
-let date = Date()
-
-// MARK: Way 1
-
-let components = date.get(.day, .month, .year)
-if let day = components.day, let month = components.month, let year = components.year {
-    print("day: \(day), month: \(month), year: \(year)")
-}
+//let date = Date()
+//
+//// MARK: Way 1
+//
+//let components = date.get(.day, .month, .year)
+//if let day = components.day, let month = components.month, let year = components.year {
+//    print("day: \(day), month: \(month), year: \(year)")
+//}
 
 // MARK: Way 2
 
-print("day: \(date.get(.day)), month: \(date.get(.month)), year: \(date.get(.year))")
+//print("day: \(date.get(.day)), month: \(date.get(.month)), year: \(date.get(.year))")
 // https://betterprogramming.pub/how-to-section-lists-alphabetically-in-swiftui-e841f35993f
 // https://www.zerotoappstore.com/get-year-month-day-from-date-swift.html
