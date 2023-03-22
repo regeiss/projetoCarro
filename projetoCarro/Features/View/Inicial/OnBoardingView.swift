@@ -41,6 +41,7 @@ struct OnBoardingView: View
 
 struct OnboardingTabView: View
 {
+    @Environment(\.dismiss) var dismiss
     var data: OnboardingData
 
     @State private var isAnimating: Bool = false
@@ -80,7 +81,7 @@ struct OnboardingTabView: View
             Spacer()
             
             Button(action: {
-                // Add action for button
+                dismiss()
             }, label: {
                 Text("Get Started")
                     .font(.headline)

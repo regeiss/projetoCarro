@@ -20,7 +20,6 @@ struct ContentView: View
     
     @StateObject private var viewModelCarro = CarroViewModel()
     
-    
     var body: some View
     {
         let drag = DragGesture()
