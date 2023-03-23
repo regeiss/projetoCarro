@@ -64,7 +64,6 @@ struct OnboardingTabView: View
             }
             
             Spacer()
-            Spacer()
             
             Text(data.primaryText)
                 .font(.title2)
